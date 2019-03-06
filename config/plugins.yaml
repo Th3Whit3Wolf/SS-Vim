@@ -1,0 +1,475 @@
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Static Plugins
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- repo: Shougo/dein.vim
+
+- repo: vim-airline/vim-airline
+  depends: vim-airline/vim-airline-themes
+- repo: vim-airline/vim-airline-themes
+  depends: vim-airline/vim-airline
+
+- repo: itchyny/lightline.vim
+  if: exists('g:lightline')
+- repo: FriedPandaFries/Lightline-Extras
+  if: exists('g:lightline')
+  depends: lightline.vim
+- repo: palpatineli/lightline-lsc-nvim
+  if: exists('g:lightline')
+  depends: lightline.vim
+
+- repo: chrisbra/Colorizer
+- repo: tpope/vim-fugitive
+- repo: liuchengxu/space-vim-dark
+- repo: jiangmiao/auto-pairs
+- repo: ryanoasis/vim-devicons
+- repo: SirVer/ultisnips
+- repo: lifepillar/vim-mucomplete
+
+- repo: godlygeek/tabular
+  on_ft: [
+    \ ada, ansible, apiblueprint, asciidoc, asm, awk, aws, bibtex, c,
+    \ cmake, coffeescript, cpp, crystal, cs, css, cucumber, cuda,
+    \ clojure, d, dart, dockerfile, dafny, elixir, elm, erlang,
+    \ fountain, fortran, fusionscript, gitcommit, glsl, go, graphql,
+    \ hack,  haml, handlebars, haskell, hcl, html, java, javascript,
+    \ javascript.jsx, kotlin, latex, less, lua, make, markdown, matlab,
+    \ nim, nix, nroff, objc, objcpp, ocaml, pawn, perl, perl6, php, po,
+    \ pod, pony, prolog, proto, pug, puppet, purescript, python, qml,
+    \ r, racket, reason, review, rpmspec, rst, ruby, rust, sass, scala,
+    \ scss, sh, slim, solidity, sql, stylus, sugarss, swift, tcl, texinfo,
+    \ thrift, typescript, vala, verilog, vhdl, vim, vue, xhtml, xml, yaml
+    \ ]
+
+- repo: sbdchd/neoformat
+  hook_source: source $VIMPATH/config/plugins/format.vim
+  on_ft: [
+    \ ada, ansible, apiblueprint, asciidoc, asm, awk, aws, bibtex, c,
+    \ cmake, coffeescript, cpp, crystal, cs, css, cucumber, cuda,
+    \ clojure, d, dart, dockerfile, dafny, elixir, elm, erlang,
+    \ fountain, fortran, fusionscript, gitcommit, glsl, go, graphql,
+    \ hack,  haml, handlebars, haskell, hcl, html, java, javascript,
+    \ javascript.jsx, kotlin, latex, less, lua, make, markdown, matlab,
+    \ nim, nix, nroff, objc, objcpp, ocaml, pawn, perl, perl6, php, po,
+    \ pod, pony, prolog, proto, pug, puppet, purescript, python, qml,
+    \ r, racket, reason, review, rpmspec, rst, ruby, rust, sass, scala,
+    \ scss, sh, slim, solidity, sql, stylus, sugarss, swift, tcl, texinfo,
+    \ thrift, typescript, vala, verilog, vhdl, vim, vue, xhtml, xml, yaml
+    \ ]
+
+# Vim8 only:
+- { repo: roxma/nvim-yarp, if: ! has('nvim') }
+- { repo: roxma/vim-hug-neovim-rpc, if: ! has('nvim'), depends: nvim-yarp }
+
+- repo: mhinz/vim-startify
+  hook_source: source $VIMPATH/config/plugins/ss.vim
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# Linters
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- repo: w0rp/ale
+  on_ft: [
+    \ ada, ansible, apiblueprint, asciidoc, asm, awk, aws, bibtex, c,
+    \ cmake, coffeescript, cpp, crystal, cs, css, cucumber, cuda,
+    \ clojure, d, dart, dockerfile, dafny, elixir, elm, erlang,
+    \ fountain, fortran, fusionscript, gitcommit, glsl, go, graphql,
+    \ hack,  haml, handlebars, haskell, hcl, html, java, javascript,
+    \ javascript.jsx, kotlin, latex, less, lua, make, markdown, matlab,
+    \ nim, nix, nroff, objc, objcpp, ocaml, pawn, perl, perl6, php, po,
+    \ pod, pony, prolog, proto, pug, puppet, purescript, python, qml,
+    \ r, racket, reason, review, rpmspec, rst, ruby, rust, sass, scala,
+    \ scss, sh, slim, solidity, sql, stylus, sugarss, swift, tcl, texinfo,
+    \ thrift, typescript, vala, verilog, vhdl, vim, vue, xhtml, xml, yaml
+    \ ]
+- repo: autozimu/LanguageClient-neovim
+  rev: next
+  build: bash install.sh
+  on_ft: [
+    \ c, cpp, cs, css, cuda, clojure, d, dart, dockerfile,
+    \ glsl, go, elixir, erlang, fortran, haskell, html, java,
+    \ javascript, javascript.jsx, julia, kotlin, less, lua, nim,
+    \ objc, objcpp, ocaml, php, puppet, purescript, python, reason,
+    \ ruby, sass, scss, rust, sh, typescript, vue
+    \ ]
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Lazy Load Depending on File Type
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# Web
+#
+- { repo: ElmCast/elm-vim, on_ft: elm }
+- { repo: hail2u/vim-css3-syntax, on_ft: css }
+- { repo: ap/vim-css-color, on_ft: [ css, scss, sass ] }
+- { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
+- { repo: groenewege/vim-less, on_ft: less }
+- { repo: othree/csscomplete.vim, on_ft: css }
+- { repo: mustache/vim-mustache-handlebars, on_ft: html }
+- { repo: pearofducks/ansible-vim, on_ft: [ yaml.ansible, ansible_hosts ]}
+- { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: posva/vim-vue, on_ft: [ vue ]}
+- { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: jparise/vim-graphql, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
+- { repo: elzr/vim-json, on_ft: json }
+- { repo: digitaltoad/vim-pug, on_ft: pug }
+- { repo: vim-scripts/vim-coffee-script, on_ft: coffeescript }
+- { repo: Quramy/tsuquyomi, on_ft: typescript }
+- { repo: ianks/vim-tsx, on_ft: typescript }
+- { repo: leafgarland/typescript-vim, on_ft: typescript }
+- { repo: aklt/plantuml-syntax, on_ft: plantuml }
+- { repo: StanAngeloff/php.vim, on_ft: php }
+- { repo: shawncplus/phpcomplete.vim, on_ft: php, on_i: 1 }
+- { repo: osyo-manga/vim-monster, on_ft: ruby }
+- { repo: vim-ruby/vim-ruby, on_ft: ruby }
+- { repo: neoclide/vim-jsx-improve, on_ft: javascript }
+- { repo: xuhdev/vim-latex-live-preview, on_ft: latex}
+- { repo: skywind3000/asyncrun.vim, on ft: [c, cpp, java, sh, python] }
+- repo: MaxMEllon/vim-jsx-pretty
+  on_ft: [ javascript, jsx, javascript.jsx ]
+  depends: vim-javascript
+  hook_source: let g:vim_jsx_pretty_colorful_config = 1
+- { repo: posva/vim-vue, on_ft: vue }
+
+- repo: othree/html5.vim
+  on_ft: html
+  hook_add: |
+    let g:html5_event_handler_attributes_complete = 0
+    let g:html5_rdfa_attributes_complete = 0
+    let g:html5_microdata_attributes_complete = 0
+    let g:html5_aria_attributes_complete = 0
+
+# Markdown
+- repo: plasticboy/vim-markdown
+  on_ft: markdown
+  hook_add: |
+    let g:vim_markdown_folding_level = 6
+    let g:vim_markdown_emphasis_multiline = 0
+    let g:vim_markdown_conceal = 0
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_new_list_item_indent = 2
+    let g:vim_markdown_edit_url_in = 'vsplit'
+    let g:vim_markdown_strikethrough = 1
+    let g:vim_markdown_fenced_languages = [
+      \ 'c++=cpp',
+      \ 'viml=vim',
+      \ 'bash=sh',
+      \ 'ini=dosini',
+      \ 'js=javascript',
+      \ 'json=javascript',
+      \ 'docker=Dockerfile',
+      \ 'makefile=make',
+      \ 'py=python'
+      \ ]
+
+- repo: euclio/vim-markdown-composer
+  if: executable('cargo')
+  build: cargo build --release
+  on_ft: markdown
+
+- repo: rhysd/vim-gfm-syntax
+  depends: vim-markdown
+  on_ft: markdown
+  hook_source: |
+    let g:gfm_syntax_enable_always = 0
+    let g:gfm_syntax_highlight_emoji = 0
+    let g:gfm_syntax_enable_filetypes = ['markdown']
+
+- repo: pangloss/vim-javascript
+  on_ft: [ javascript, jsx, javascript.jsx ]
+  hook_source: |
+    let g:javascript_plugin_jsdoc = 1
+    let g:javascript_plugin_flow = 1
+    highlight! link jsFutureKeys PreProc
+
+# Bazel
+- { repo: bazelbuild/vim-bazel, on_ft: bazel }
+- { repo: google/vim-maktaba, on_source: vim-bazel }
+
+# Compiled
+# --------
+# Web Assembly
+- { repo: ianks/vim-tsx, on_ft: wasm }
+
+# Assembly
+- repo: Shirk/vim-gas
+  on_ft: asm
+
+# C Family
+- repo: octol/vim-cpp-enhanced-highlight
+  on_ft: cpp
+  hook_source: |
+    let c_no_curly_error=1
+
+- { repo: OmniSharp/omnisharp-vim, on_ft: cs }
+- { repo: bfrg/vim-cpp-modern, on_ft: cpp }
+- { repo: vim-jp/vim-cpp, on_ft: cpp }
+
+# Cmake
+- repo: pboettch/vim-cmake-syntax
+  on_ft: cmake
+
+# Rust
+- repo: rust-lang/rust.vim
+  if: executable('cargo')
+  on_ft: rust
+
+- repo: racer-rust/vim-racer
+  if: executable('cargo')
+  on_ft: rust
+
+# Swift
+- repo: toyamarinyon/vim-swift
+  if: executable('swift')
+  on_ft: swift
+
+
+# Clojure
+- repo: guns/vim-clojure-highlight
+  if: executable('clojure')
+  on_ft: clojure
+
+- repo: guns/vim-clojure-static
+  if: executable('clojure')
+  on_ft: clojure
+
+- repo: guns/vim-slamhound
+  if: executable('clojure')
+  on_ft: clojure
+
+- repo: kovisoft/paredit
+  if: executable('clojure')
+  on_ft: clojure
+
+- repo: tpope/vim-fireplace
+  if: executable('clojure')
+  on_ft: clojure
+
+- repo: venantius/vim-cljfmt
+  if: executable('elixirc')
+  on_ft: clojure
+
+# Elixir
+- repo: elixir-lang/vim-elixir
+  if: executable('elixirc')
+  on_ft: elixir
+
+- repo: slashmili/alchemist.vim
+  if: executable('elixirc')
+  on_ft: elixir
+
+# Erlang
+- repo: vim-erlang/erlang-motions.vim
+  if: executable('erlc')
+  on_ft: erlang
+
+- repo: vim-erlang/vim-erlang-compiler
+  if: executable('erlc')
+  on_ft: erlang
+
+- repo: vim-erlang/vim-erlang-omnicomplete
+  if: executable('erlc')
+  on_ft: erlang
+
+- repo: vim-erlang/vim-erlang-skeletons
+  if: executable('erlc')
+  on_ft: erlang
+
+- repo: vim-erlang/vim-erlang-tags
+  if: executable('erlc')
+  on_ft: erlang
+
+# Scala
+- repo: derekwyatt/vim-scala
+  if: executable('scalac')
+  on_ft: scala
+
+- repo: udalov/kotlin-vim
+  if: executable('kotlin')
+  on_ft: kotlin
+
+- repo: rhysd/vim-clang-format
+  if: executable('clang')
+  on_ft: [ cpp, c, java, objc, objcpp, proto, javascript, java, typescript]
+
+# Haskell
+- { repo: eagletmt/ghcmod-vim, if: executable('ghc-mod'), on_ft: haskell }
+- { repo: dan-t/vim-hsimport, if: executable('hsimport'), on_ft: haskell }
+- { repo: neovimhaskell/haskell-vim, on_ft: haskell }
+- { repo: parsonsmatt/intero-neovim, on_ft: haskell }
+
+# GO
+- repo: fatih/vim-go
+  if: executable('go')
+  on_ft: go
+  on_build: nvim -c GoUpdateBinaries
+  hook_source: |
+    let g:go_highlight_array_whitespace_error = 0
+    let g:go_highlight_chan_whitespace_error = 0
+    let g:go_highlight_space_tab_error = 0
+    let g:go_highlight_trailing_whitespace_error = 0
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 0
+    let g:go_highlight_format_strings = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_string_spellcheck = 0
+
+- { repo: artur-shaik/vim-javacomplete2, on_ft: java }
+
+
+# Interpreted
+# -----------
+- { repo: vim-python/python-syntax, on_ft: python }
+- { repo: timothycrosley/isort , on_ft: python }
+- { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
+- { repo: vim-scripts/python_match.vim, on_ft: python }
+- { repo: tmhedberg/SimpylFold, on_ft: python }
+
+- { repo: raimon49/requirements.txt.vim, on_ft: requirements }
+- { repo: tbastos/vim-lua, on_ft: lua }
+
+# Other
+# -----
+- { repo: vim-jp/syntax-vim-ex, on_ft: vim }
+- { repo: chrisbra/csv.vim, on_ft: csv }
+- { repo: tpope/vim-git, on_ft: [ gitcommit, gitrebase, gitconfig ]}
+- { repo: ekalinin/Dockerfile.vim, on_ft: [ Dockerfile, yaml.docker-compose ]}
+- { repo: tmux-plugins/vim-tmux, on_ft: tmux }
+- { repo: andreshazard/vim-logreview, on_ft: logreview }
+- { repo: cespare/vim-toml, on_ft: toml }
+- { repo: mboughaba/i3config.vim, on_ft: i3config }
+- { repo: dag/vim-fish, on_ft: fish }
+- { repo: jstrater/mpvim, on_ft: portfile }
+- { repo: robbles/logstash.vim, on_ft: logstash }
+- { repo: exu/pgsql.vim, on_ft: pgsql }
+- { repo: othree/nginx-contrib-vim, on_ft: nginx }
+- { repo: IN3D/vim-raml, on_ft: raml }
+- { repo: raimon49/requirements.txt.vim, on_ft: requirements }
+- { repo: tclh123/vim-thrift, on_ft: thrift }
+- { repo: kylef/apiblueprint.vim, on_ft: apiblueprint }
+- { repo: vmchale/ion-vim, on_ft: ion }
+- { repo: liuchengxu/graphviz.vim, on_ft: graphviz }
+- { repo: jparise/vim-graphql, on_ft: graphql }
+- { repo: Quramy/vison, on_ft: json }
+- { repo: elzr/vim-json, on_ft: json }
+- { repo: cespare/vim-toml, on_ft: toml }
+- { repo: mrk21/yaml-vim, on_ft: yaml }
+- { repo: stephpy/vim-yaml, on_ft: yaml }
+- repo: hashivim/vim-terraform
+  on_ft: terraform
+  on_cmd: [ Terraform, TerraformFmt ]
+  hook_source: let g:terraform_fmt_on_save = 1
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Commands
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- repo: FriedPandaFries/nerdtree
+  on_map: { n: <Plug> }
+  trusted: 1
+  on_cmd': [ NERDTree, NERDTreeVCS, NERDTreeFromBookmark, NERDTreeToggle, NERDTreeFocus, NERDTreeMirror, NERDTreeClose, NERDTreeFind, NERDTreeCWD, NERDTreeRefreshRoot ]
+  hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
+
+- { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
+- { repo: tiagofumo/vim-nerdtree-syntax-highlight, on_source: nerdtree }
+- { repo: mbbill/undotree, on_cmd: UndotreeToggle }
+- { repo: jreybert/vimagit, on_cmd: Magit }
+- { repo: lambdalisue/gina.vim, on_cmd: Gina }
+- { repo: lambdalisue/suda.vim, on_path: 'suda://' }
+
+- repo: tyru/open-browser.vim
+  on_map: { nxv: <Plug>(openbrowser }
+  on_cmd: [ OpenBrowser, OpenBrowserSearch, OpenBrowserSmartSearch ]
+
+- repo: tyru/open-browser-unicode.vim
+  depends: open-browser.vim
+  on_cmd: OpenBrowserUnicode
+
+- repo: tyru/open-browser-github.vim
+  depends: open-browser.vim
+  on_cmd: [ OpenGithubFile, OpenGithubIssue, OpenGithubProject ]
+
+- { repo: tyru/caw.vim, on_map: { nx: <Plug> }}
+
+- repo: mzlogin/vim-markdown-toc
+  on_cmd: [ GenTocGFM, GenTocRedcarpet, GenTocGitLab, UpdateToc ]
+  hook_source: let g:vmt_auto_update_on_save = 0
+
+- repo: chemzqm/vim-easygit
+  on_cmd: [Gcd, Glcd, Gcommit, Gblame, Gstatus, Gdiff, Gbrowse, Gstatus, Gpush]
+  hook_source: let g:easygit_enable_command = 1
+
+- repo: majutsushi/tagbar
+  on_cmd: TagbarToggle
+  hook_source: |
+    let g:tagbar_width = 28
+    if executable('jsctags')
+      let g:tagbar_type_javascript = { 'ctagsbin': 'jsctags' }
+    endif
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Interface
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- { repo: wsdjeg/dein-ui.vim, on_cmd: DeinUpdate }
+- { repo: t9md/vim-quickhl, on_map: { nv: <Plug> }}
+
+- repo: airblade/vim-gitgutter
+  on_path: .*
+  hook_source: |
+    let g:gitgutter_map_keys = 0
+    let g:gitgutter_sh = $SHELL
+
+- repo: nathanaelkane/vim-indent-guides
+  on_cmd: [ IndentGuidesEnable, IndentGuidesDisable, IndentGuidesToggle ]
+  hook_post_source: |
+    call indent_guides#init_script_vars()
+    call indent_guides#highlight_colors()
+  hook_add: |
+    let g:indent_guides_color_change_percent = 3
+    let g:indent_guides_autocmds_enabled = 0
+    let g:indent_guides_default_mapping = 0
+    let g:indent_guides_guide_size = 1
+    let g:indent_guides_indent_levels = 15
+    let g:indent_exclude = [ 'help', 'codi' ]
+    autocmd MyAutoCmd BufEnter *
+      \ if ! empty(&l:filetype) && index(g:indent_exclude, &l:filetype) == -1
+      \|   if g:indent_guides_autocmds_enabled == 0 && &l:expandtab
+      \|     IndentGuidesEnable
+      \|   elseif g:indent_guides_autocmds_enabled == 1 && ! &l:expandtab
+      \|     IndentGuidesDisable
+      \|   endif
+      \| endif
+
+- repo: junegunn/goyo.vim
+  depends: limelight.vim
+  on_cmd: Goyo
+  hook_source: source $VIMPATH/config/plugins/goyo.vim
+
+- repo: junegunn/limelight.vim
+  on_cmd: Limelight
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Lazy Load Autocompletion
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- repo: ludovicchabant/vim-gutentags
+  if: executable('ctags')
+  on_path: .*
+  hook_add: |
+    let g:gutentags_cache_dir = $VARPATH.'/tags'
+    let g:gutentags_generate_on_write = 1
+    let g:gutentags_generate_on_missing = 0
+    let g:gutentags_generate_on_new = 0
+    let g:gutentags_ctags_exclude_wildignore = 1
+    let g:gutentags_ctags_exclude = [
+      \ '*/wp-admin', '*/wp-content', '*/wp-includes',
+      \ '*/application/vendor', '*/vendor/ckeditor', '*/media/vendor'
+      \ ]
+
+- repo: mattn/emmet-vim
+  on_event: InsertEnter
+  on_ft: [ html, css, jsx, javascript, javascript.jsx ]
+  hook_source: |
+    let g:use_emmet_complete_tag = 0
+    let g:user_emmet_install_global = 0
+    let g:user_emmet_install_command = 0
+    let g:user_emmet_mode = 'i'
+
+- repo: juliosueiras/vim-terraform-completion
+  hook_add: let g:terraform_completion_keys = 1
+  on_ft: [ terraform ]
+  on_event: InsertEnter
