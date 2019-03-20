@@ -17,7 +17,7 @@ function! Lint()
       endif
     elseif &filetype == 'cpp'
       if executable('ccls')
-        let g:LanguageClient_serverCommands = {'cpp': ['ccls', '--log-file=/tmp/cc.log']}
+        let g:LanguageClient_serverCommands = {'cpp': ['/usr/bin/ccls', '--log-file=/tmp/cc.log']}
         call Lsp_on()
       elseif executable('cquery')
         let g:LanguageClient_serverCommands = {'cpp': ['cquery', '--log-file=/tmp/cq.log']}
@@ -1014,6 +1014,7 @@ function! Lsp_on()
   let g:LanguageClient_autoStart = 1
   let g:airline#extensions#languageclient#enabled = 1
   let g:airline#extensions#ale#enabled = 0
+  call SetLSPShortcuts()
   autocmd BufEnter  *  call ncm2#enable_for_buffer()
   set completeopt=noinsert,menuone,noselect
 endfunction
@@ -1072,3 +1073,16 @@ let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'
 
 let g:ale_linter_aliases  = {'jsx': ['css', 'javascript']}
 let g:ale_linters         = {'jsx': ['stylelint', 'eslint']}
+
+function SetLSPShortcuts()
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()

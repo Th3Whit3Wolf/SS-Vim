@@ -400,16 +400,24 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""
 " Autocompletion
 """"""""""""""""""""""""""""""""""""""""
+set signcolumn=yes
 set noinfercase
 set completeopt=longest,menuone,noselect
 let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default = ['omni', 'c-n', 'path', 'tags', 'dict']
+let s:cpp_cond = { t -> t =~# '\%(->\|::\|\.\)$' }
+let g:mucomplete#can_complete = {}
+let g:mucomplete#can_complete.cpp = { 'omni': s:cpp_cond }
+let g:mucomplete#completion_delay = 100
+let g:mucomplete#reopen_immediately = 0
 set shortmess+=c " Turn off completion messages
 
-setlocal omnifunc=LanguageClient#complete
+"setlocal omnifunc=LanguageClient#complete
 
 
 "Traverse the Pop Up Menu with      Shift+Tab,Tab,Up,Down,
-inoremap <expr> <Tab>       pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <CR>        pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
 
