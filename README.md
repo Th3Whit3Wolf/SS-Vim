@@ -25,9 +25,9 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## Pre-requisites
 
-- Python 3 (`brew install python`)
-- Python 2 (`brew install python@2`)
-- Neovim (Optional, `brew install neovim`)
+- Python 3
+- Python 2
+- Neovim (Optional)
 - virtualenv for both python3 and python2:
   ```
   pip2 install virtualenv
