@@ -368,7 +368,6 @@
 
 - repo: tpope/vim-fugitive
   on_cmd: Gstatus
-  augroup: fugitive
   on_source: gitv
 
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
