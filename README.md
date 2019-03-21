@@ -25,10 +25,10 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## Pre-requisites
 
-* Python 3 (`brew install python`)
-* Python 2 (`brew install python@2`)
-* Neovim (Optional, `brew install neovim`)
-* virtualenv for both python3 and python2:
+- Python 3 (`brew install python`)
+- Python 2 (`brew install python@2`)
+- Neovim (Optional, `brew install neovim`)
+- virtualenv for both python3 and python2:
   ```
   pip2 install virtualenv
   pip3 install virtualenv
@@ -184,86 +184,156 @@ Run `make update`
 
 - Package management with caching enabled and lazy loading
 - Project-aware tabs and label
-- Go completion via vim-go and gocode
-- Javascript completion via Tern
-- Python Jedi completion, PEP8 convention
+- Support for nearlly all Language Servers
+- Statusline depends on the set theme
+- Linting will switch between LanguageClient-neovim & ALE, depending on if Language Servers are installed
+- Fastest possible autocompletion with LanguageClient-neovim and Mucomplete
+- Formats code on save
 - Languages: Basically all of them
 
 _Note_ that 95% of the plugins are **[lazy-loaded]**.
 
 ## Non Lazy-Loaded Plugins
 
-| Name                               | Description                                                |
-| ---------------------------------- | ---------------------------------------------------------- |
-| [Shougo/dein.vim]                  | Dark powered Vim/Neovim plugin manager                     |
-| [liuchengxu/space-vim-dark]        | Space-vim-dark colorscheme inspired by Spacemacs           |
-| [w0rp/ale]                         | Asynchronous linting/fixing                                |
-| [thinca/vim-localrc]               | Enable configuration file of each directory                |
-| [tpope/vim-fugitive]               | A Git wrapper so awesome, it should be illegal             |
-| [Yggdroot/indentLine]              | Display the indention levels with thin vertical lines      |
-| [jiangmiao/auto-pairs]             | Insert or delete brackets, parens, quotes in pairs         |
-| [chrisbra/Colorizer]               | Highlight color names & codes in the color they represent  |
-| [FriedPandaFries/Lightline-Extras] | A few extra lightline themes                               |
-| [christoomey/tmux-navigator]       | Seamless navigation between tmux panes and vim splits      |
-| [junegunn/vim-peekaboo]            | See the contents of registers                              |
-| [tpope/vim-sleuth]                 | Heuristically set buffer indent options                    |
-| [sgur/vim-editorconfig]            | EditorConfig plugin written entirely in Vimscript          |
-| [itchyny/lightline.vim]            | A light and configurable statusline/tabline plugin for Vim |
-| [itchyny/vim-parenmatch]           | Efficient alternative to the standard matchparen plugin    |
-| [itchyny/cursorword]               | Underlines word under cursor                               |
-| [roxma/nvim-yarp]                  | Remote Plugin Framework for Neovim (Loads in Vim8 only)    |
-| [roxma/vim-hug-neovim-rpc]         | Vim8 compatibility layer for neovim rpc client             |
+| Name                        | Description                                                        |
+| --------------------------- | ------------------------------------------------------------------ |
+| [Shougo/dein.vim]           | Dark powered Vim/Neovim plugin manager                             |
+| [liuchengxu/space-vim-dark] | Space-vim-dark colorscheme inspired by Spacemacs                   |
+| [w0rp/ale]                  | Asynchronous linting/fixing                                        |
+| [ryanoasis/vim-devicons]    | Adds file type glyphs to popular vim plugins                       |
+| [SirVer/ultisnips]          | Ultimate Solution for snippets in vim                              |
+| [lifepillar/vim-mucomplete] | Minimalistic autocompletor for vim                                 |
+| [tpope/vim-fugitive]        | A Git wrapper so awesome, it should be illegal                     |
+| [Yggdroot/indentLine]       | Display the indention levels with thin vertical lines              |
+| [jiangmiao/auto-pairs]      | Insert or delete brackets, parens, quotes in pairs                 |
+| [chrisbra/Colorizer]        | Highlight color names & codes in the color they represent          |
+| [roxma/nvim-yarp]           | Remote Plugin Framework for Neovim (Loads in Vim8 only)            |
+| [roxma/vim-hug-neovim-rpc]  | Vim8 compatibility layer for neovim rpc client(Loads in Vim8 only) |
+| [mhinz/vim-startify]        | Fancy Start screen for vim                                         |
 
 ## Lazy-Loaded Plugins
 
+### Theme
+
+| Name                               | Description                                   |
+| ---------------------------------- | --------------------------------------------- |
+| [FriedPandaFries/Lightline-Extras] | A few extra lightline themes                  |
+| [itchyny/lightline.vim]            | A light and configurable plugin for Vim       |
+| [vim-airline/vim-airline]          | Lean and mean statusline that's light as air. |
+| [vim-airline/vim-airline-themes]   | A collection of themes for vim-airline        |
+
+### Linters
+
+| Name                             | Description                              |
+| -------------------------------- | ---------------------------------------- |
+| [autozimu/LanguageClient-neovim] | Language Client support for vim & neovim |
+| [w0rp/ale]                       | Asynchronous Linting Engine              |
+
+### Formatter
+
+| Name               | Description                            |
+| ------------------ | -------------------------------------- |
+| [sbdchd/neoformat] | A (Neo)vim plugin for formatting code. |
+
+
 ### Language
 
-| Name                               | Description                                                  |
-| ---------------------------------- | ------------------------------------------------------------ |
-| [othree/html5.vim]                 | HTML5 omnicomplete and syntax                                |
-| [mustache/vim-mustache-handlebars] | Mustache and handlebars syntax                               |
-| [pearofducks/ansible-vim]          | Improved YAML support for Ansible                            |
-| [groenewege/vim-less]              | Syntax for LESS                                              |
-| [hail2u/vim-css3-syntax]           | CSS3 syntax support to vim's built-in `syntax/css.vim`       |
-| [othree/csscomplete.vim]           | Updated built-in CSS complete with latest standards          |
-| [cakebaker/scss-syntax.vim]        | Syntax file for scss (Sassy CSS)                             |
-| [ap/vim-css-color]                 | Preview colors in source-code while editing                  |
-| [plasticboy/vim-markdown]          | Markdown syntax highlighting                                 |
-| [rhysd/vim-gfm-syntax]             | GitHub Flavored Markdown syntax highlight extension          |
-| [pangloss/vim-javascript]          | Enhanced Javascript syntax                                   |
-| [othree/jspc.vim]                  | JavaScript Parameter Complete                                |
-| [posva/vim-vue]                    | Syntax Highlight for Vue.js components                       |
-| [heavenshell/vim-jsdoc]            | Generate JSDoc to your JavaScript code                       |
-| [jparise/vim-graphql]              | GraphQL file detection, syntax highlighting, and indentation |
-| [moll/vim-node]                    | Superb development with Node.js                              |
-| [elzr/vim-json]                    | Better JSON support                                          |
-| [MaxMEllon/vim-jsx-pretty]         | React JSX syntax pretty highlighting                         |
-| [fatih/vim-go]                     | Go development                                               |
-| [vim-python/python-syntax]         | Enhanced version of the original Python syntax               |
-| [Vimjas/vim-python-pep8-indent]    | A nicer Python indentation style                             |
-| [vim-scripts/python_match.vim]     | Extend the % motion for Python files                         |
-| [tmhedberg/SimpylFold]             | No-BS Python code folding                                    |
-| [raimon49/requirements.txt.vim]    | Python requirements file format                              |
-| [StanAngeloff/php.vim]             | Up-to-date PHP syntax file (5.3 – 7.1 support)               |
-| [shawncplus/phpcomplete.vim]       | PHP completion                                               |
-| [osyo-manga/vim-monster]           | Ruby code completion                                         |
-| [tbastos/vim-lua]                  | Improved Lua 5.3 syntax and indentation support              |
-| [toyamarinyon/vim-swift]           | Swift support                                                |
-| [vim-jp/syntax-vim-ex]             | Improved Vim syntax highlighting                             |
-| [chrisbra/csv.vim]                 | Handling column separated data                               |
-| [tpope/vim-git]                    | Git runtime files                                            |
-| [ekalinin/Dockerfile.vim]          | syntax and snippets for Dockerfile                           |
-| [tmux-plugins/vim-tmux]            | vim plugin for tmux.conf                                     |
-| [andreshazard/vim-logreview]       | Bueatify log viewing                                         |
-| [hashivim/vim-terraform]           | Base Terraform integration                                   |
-| [cespare/vim-toml]                 | Syntax for TOML                                              |
-| [mboughaba/i3config.vim]           | i3 window manager config syntax                              |
-| [dag/vim-fish]                     | Fish shell edit support                                      |
-| [jstrater/mpvim]                   | Macports portfile configuration files                        |
-| [robbles/logstash.vim]             | Highlights logstash configuration files                      |
-| [exu/pgsql.vim]                    | PostgreSQL syntax                                            |
-| [othree/nginx-contrib-vim]         | Fork official vim nginx                                      |
-| [IN3D/vim-raml]                    | Syntax and language settings for RAML                        |
+| Name                                 | Description                                                          |
+| ------------------------------------ | -------------------------------------------------------------------- |
+| [othree/html5.vim]                   | HTML5 omnicomplete and syntax                                        |
+| [mustache/vim-mustache-handlebars]   | Mustache and handlebars syntax                                       |
+| [pearofducks/ansible-vim]            | Improved YAML support for Ansible                                    |
+| [groenewege/vim-less]                | Syntax for LESS                                                      |
+| [hail2u/vim-css3-syntax]             | CSS3 syntax support to vim's  `syntax/css.vim`                       |
+| [othree/csscomplete.vim]             | Updated  CSS complete with latest standards                          |
+| [cakebaker/scss-syntax.vim]          | Syntax file for scss (Sassy CSS)                                     |
+| [ap/vim-css-color]                   | Preview colors in source-code while editing                          |
+| [plasticboy/vim-markdown]            | Markdown syntax highlighting                                         |
+| [rhysd/vim-gfm-syntax]               | GitHub Flavored Markdown syntax highlighting                         |
+| [pangloss/vim-javascript]            | Enhanced Javascript syntax                                           |
+| [othree/jspc.vim]                    | JavaScript Parameter Complete                                        |
+| [posva/vim-vue]                      | Syntax Highlight for Vue.js components                               |
+| [heavenshell/vim-jsdoc]              | Generate JSDoc to your JavaScript code                               |
+| [jparise/vim-graphql]                | GraphQL detection, syntax highlighting, & indentation                |
+| [moll/vim-node]                      | Superb development with Node.js                                      |
+| [elzr/vim-json]                      | Better JSON support                                                  |
+| [Quramy/vison]                       | Plugin for writing JSON with JSON Schema                             |
+| [digitaltoad/vim-pug]                | Vim syntax highlighting for Pug templates                            |
+| [dNitro/vim-pug-complete]            | Vim omni-completion support for pug template engine                  |
+| [ElmCast/elm-vim]                    | Elm syntax-hl, completion, formatting, linting, etc                  |
+| [mrk21/yaml-vim]                     | YAML syntax/indent plugin                                            |
+| [kchmck/vim-coffee-script]           | Coffescript syntax, identing, compiling, and more support            |
+| [Quramy/tsuquyomi]                   | Typescript TSServer client                                           |
+| [ianks/vim-tsx]                      | Syntax highlighting and indenting for tsx                            |
+| [leafgarland/typescript-vim]         | Syntax file and other settings for Typescript                        |
+| [aklt/plantuml-syntax]               | Syntax file for PlantUML                                             |
+| [vim-ruby/vim-ruby]                  | Syntax, indention, and compiler for ruby                             |
+| [neoclide/vim-jsx-improve]           | Syntax and indent plugin for React JSX                               |
+| [xuhdev/vim-latex-live-preview]      | Vim plugin for live previewing LaTeX PDF Output                      |
+| [skywind3000/asyncrun.vim]           | Run Async Shell Commands in (Neo)vim                                 |
+| [euclio/vim-markdown-composer]       | An Asynchronous markdown preview plugin for (Neo)vim                 |
+| [bazelbuild/vim-bazel]               | Plugin for invoking bazel and interacting with bazel artifacts       |
+| [google/vim-maktaba]                 | Vimscript plugin library                                             |
+| [Shirk/vim-gas]                      | Syntax highlighting for GNU Assmebly                                 |
+| [OmniSharp/omnisharp-vim]            | Vim Omnicompletion(intellisense) and more for C#                     |
+| [bfrg/vim-cpp-modern]                | Additional Vim syntax highlighting for C++                           |
+| [vim-jp/vim-cpp]                     | C/C++ Syntax Highlighting                                            |
+| [pboettch/vim-cmake-syntax]          | Vim syntax highlighting rules for modern CMake                       |
+| [rust-lang/rust.vim]                 | Rust lang Syntax highlighting, formatting, and file detection        |
+| [racer-rust/vim-racer]               | Rust Racer autocompletion support                                    |
+| [keith/swift.vim]                    | Swift syntax and indenting support                                   |
+| [guns/vim-clojure-highlight]         | Extend builtin syntax highlighting for Closure                       |
+| [guns/vim-clojure-static]            | Meikel Brandmeyer's excellent Clojure runtime files                  |
+| [guns/vim-slamhound]                 | Slamhound integration for vim                                        |
+| [kovisoft/paredit]                   | Maintains balanced state for matched characters(parens, quotes, etc) |
+| [tpope/vim-fireplace]                | Clojure REPL Support                                                 |
+| [venantius/vim-cljfmt]               | Vim plugin for Clojure formatting tool                               |
+| [elixir-lang/vim-elixir]             | Elixir file detectiong, automatic indentation, syntax highlighting   |
+| [slashmili/alchemist.vim]            | Elixir completion, Doc lookups, jump to def, etc                     |
+| [vim-erlang/erlang-motions.vim]      |                                                                      |
+| [vim-erlang/vim-erlang-compiler]     |                                                                      |
+| [vim-erlang/vim-erlang-omnicomplete] | Erlang omnicomplete plugin for (Neo)vim                              |
+| [vim-erlang/vim-erlang-skeletons]    |                                                                      |
+| [vim-erlang/vim-erlang-tags]         |                                                                      |
+| [derekwyatt/vim-scala]               |                                                                      |
+| [udalov/kotlin-vim]                  |                                                                      |
+| [rhysd/vim-clang-format]             |                                                                      |
+| [eagletmt/ghcmod-vim]                |                                                                      |
+| [dan-t/vim-hsimport]                 |                                                                      |
+| [neovimhaskell/haskell-vim]          |                                                                      |
+| [parsonsmatt/intero-neovim]          |                                                                      |
+| [tclh123/vim-thrift]                 |                                                                      |
+| [MaxMEllon/vim-jsx-pretty]           | React JSX syntax pretty highlighting                                 |
+| [fatih/vim-go]                       | Go development                                                       |
+| [timothycrosley/isort]               |                                                                      |
+| [vim-python/python-syntax]           | Enhanced version of the original Python syntax                       |
+| [Vimjas/vim-python-pep8-indent]      | A nicer Python indentation style                                     |
+| [vim-scripts/python_match.vim]       | Extend the % motion for Python files                                 |
+| [tmhedberg/SimpylFold]               | No-BS Python code folding                                            |
+| [raimon49/requirements.txt.vim]      | Python requirements file format                                      |
+| [StanAngeloff/php.vim]               | Up-to-date PHP syntax file (5.3 – 7.1 support)                       |
+| [shawncplus/phpcomplete.vim]         | PHP completion                                                       |
+| [osyo-manga/vim-monster]             | Ruby code completion                                                 |
+| [tbastos/vim-lua]                    | Improved Lua 5.3 syntax and indentation support                      |
+| [toyamarinyon/vim-swift]             | Swift support                                                        |
+| [vim-jp/syntax-vim-ex]               | Improved Vim syntax highlighting                                     |
+| [chrisbra/csv.vim]                   | Handling column separated data                                       |
+| [tpope/vim-git]                      | Git runtime files                                                    |
+| [ekalinin/Dockerfile.vim]            | syntax and snippets for Dockerfile                                   |
+| [tmux-plugins/vim-tmux]              | vim plugin for tmux.conf                                             |
+| [andreshazard/vim-logreview]         | Bueatify log viewing                                                 |
+| [hashivim/vim-terraform]             | Base Terraform integration                                           |
+| [cespare/vim-toml]                   | Syntax for TOML                                                      |
+| [mboughaba/i3config.vim]             | i3 window manager config syntax                                      |
+| [dag/vim-fish]                       | Fish shell edit support                                              |
+| [jstrater/mpvim]                     | Macports portfile configuration files                                |
+| [robbles/logstash.vim]               | Highlights logstash configuration files                              |
+| [exu/pgsql.vim]                      | PostgreSQL syntax                                                    |
+| [othree/nginx-contrib-vim]           | Fork official vim nginx                                              |
+| [IN3D/vim-raml]                      | Syntax and language settings for RAML                                |
+| [kylef/apiblueprint.vim]             |                                                                      |
+| [vmchale/ion-vim]                    | Syntax highlighting for ion shell                                    |
+| [liuchengxu/graphviz.vim]            |                                                                      |
 
 ### Commands
 
@@ -299,81 +369,28 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 
 ### Interface
 
-| Name                              | Description                                        |
-| --------------------------------- | -------------------------------------------------- |
-| [haya14busa/vim-asterisk]         | Improved * motions                                 |
-| [rhysd/accelerated-jk]            | Up/down movement acceleration                      |
-| [haya14busa/vim-edgemotion]       | Jump to the edge of block                          |
-| [t9md/vim-quickhl]                | Quickly highlight words                            |
-| [rafi/vim-sidemenu]               | Small side-menu useful for terminal users          |
-| [airblade/vim-gitgutter]          | Show git changes at Vim gutter and un/stages hunks |
-| [nathanaelkane/vim-indent-guides] | Visually display indent levels in code             |
-| [MattesGroeger/vim-bookmarks]     | Bookmarks, works independently from vim marks      |
-| [hotwatermorning/auto-git-diff]   | Display Git diff for interactive rebase            |
-| [rhysd/committia.vim]             | Pleasant editing on Git commit messages            |
-| [benekastah/neomake]              | Asynchronous linting and make framework            |
-| [lambdalisue/vim-improve-diff]    | Improve diff experience                            |
-| [junegunn/goyo]                   | Distraction-free writing                           |
-| [junegunn/limelight]              | Hyperfocus-writing                                 |
-| [itchyny/calendar.vim]            | Calendar application                               |
-| [vimwiki/vimwiki]                 | Personal Wiki for Vim                              |
+| Name                                      | Description                                                           |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| [t9md/vim-quickhl]                        | Quickly highlight words                                               |
+| [airblade/vim-gitgutter]                  | Show git changes at Vim gutter and un/stages hunks                    |
+| [nathanaelkane/vim-indent-guides]         | Visually display indent levels in code                                |
+| [lambdalisue/vim-improve-diff]            | Improve diff experience                                               |
+| [junegunn/goyo]                           | Distraction-free writing                                              |
+| [junegunn/limelight]                      | Hyperfocus-writing                                                    |
+| [vimwiki/vimwiki]                         | Personal Wiki for Vim                                                 |
+| [wsdjeg/dein-ui.vim]                      |                                                                       |
+| [FriedPandaFries/nerdtree]                | Nerd Tree where <kbd>ctrl</kbd> `+` <kbd>h</kbd> toggles hidden files |
+| [Xuyuanp/nerdtree-git-plugin]             |                                                                       |
+| [tiagofumo/vim-nerdtree-syntax-highlight] |                                                                       |
+
 
 ### Completion
 
 | Name                                    | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| [Shougo/deoplete.nvim]                  | Neovim: Dark powered asynchronous completion framework |
-| [Shougo/neosnippet.vim]                 | Snippets with integration to Deoplete                  |
 | [ludovicchabant/vim-gutentags]          | Manages your tag files                                 |
 | [mattn/emmet-vim]                       | Provides support for expanding abbreviations alá emmet |
-| [Shougo/echodoc.vim]                    | Print objects' documentation in echo area              |
-| [Raimondi/delimitMate]                  | Auto-completion for quotes, parens, brackets           |
-| [Shougo/neosnippet-snippets]            | Standard snippets repository for neosnippet            |
-| [Shougo/context_filetype.vim]           | Context filetype library for Vim script                |
-| [Shougo/neco-vim]                       | Deoplete source for Vimscript                          |
-| [Shougo/neoinclude.vim]                 | Include completion framework for Deoplete              |
-| [Shougo/neco-syntax]                    | Syntax source for Deoplete                             |
-| [davidhalter/jedi-vim]                  | Python jedi autocompletion library                     |
-| [zchee/deoplete-go]                     | deoplete.nvim source for Go                            |
-| [zchee/deoplete-jedi]                   | deoplete.nvim source for Python                        |
-| [carlitux/deoplete-ternjs]              | deoplete.nvim source for javascript                    |
-| [wellle/tmux-complete.vim]              | Completion of words in adjacent tmux panes             |
-| [fszymanski/deoplete-emoji]             | Deoplete source for emoji codes                        |
 | [juliosueiras/vim-terraform-completion] | Autocompletion and linter for Terraform                |
-| [ternjs/tern_for_vim]                   | Provides Tern-based JavaScript editing support         |
-
-### Denite
-
-| Name                      | Description                                       |
-| ------------------------- | ------------------------------------------------- |
-| [Shougo/denite.nvim]      | Dark powered asynchronous unite all interfaces    |
-| [nixprime/cpsm]           | File matcher, specialized for paths               |
-| [Shougo/neoyank.vim]      | Denite plugin for yank history                    |
-| [Shougo/junkfile.vim]     | Denite plugin for temporary files                 |
-| [chemzqm/unite-location]  | Denite location & quickfix lists                  |
-| [chemzqm/denite-git]      | gitlog, gitstatus and gitchanged sources          |
-| [rafi/vim-denite-z]       | Filter and browse Z (jump around) data file       |
-| [rafi/vim-denite-session] | Browse and open sessions                          |
-| [rafi/vim-denite-mpc]     | Denite source for browsing your MPD music library |
-
-### Operators & Text Objects
-
-| Name                                | Description                                         |
-| ----------------------------------- | --------------------------------------------------- |
-| [kana/vim-operator-user]            | Define your own custom operators                    |
-| [kana/vim-operator-replace]         | Operator to replace text with register content      |
-| [rhysd/vim-operator-surround]       | Operator to enclose text objects                    |
-| [haya14busa/vim-operator-flashy]    | Highlight yanked area                               |
-| [kana/vim-textobj-user]             | Create your own text objects                        |
-| [terryma/vim-expand-region]         | Visually select increasingly larger regions of text |
-| [AndrewRadev/sideways.vim]          | Match function arguments                            |
-| [AndrewRadev/splitjoin.vim]         | Transition code between multi-line and single-line  |
-| [AndrewRadev/linediff.vim]          | Perform diffs on blocks of code                     |
-| [AndrewRadev/dsf.vim]               | Delete surrounding function call                    |
-| [osyo-manga/vim-textobj-multiblock] | Handle bracket objects                              |
-| [kana/vim-textobj-function]         | Text objects for functions                          |
-
-
 
 
 
@@ -533,13 +550,11 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 
 Note that,
 
-* Leader key is set as <kbd>Space</kbd>
-* Local-leader is set as <kbd>;</kbd> and is used for Denite
+- Leader key is set as <kbd>Space</kbd>
 
 | Key                   |     Mode      | Action                                                          |
 | --------------------- | :-----------: | --------------------------------------------------------------- |
 | `Space`               |     _All_     | **Leader**                                                      |
-| `;`                   |     _All_     | **Local Leader**                                                |
 | Arrows                |    Normal     | Resize splits (* Enable `g:elite_mode` in `.vault.vim`)         |
 | `Backspace`           |    Normal     | Match bracket (%)                                               |
 | `K`                   |    Normal     | Open Zeal or Dash on some file types (except Python+Vim script) |
@@ -572,7 +587,6 @@ Note that,
 | `Ctrl`+`b`            |    Command    | Move cursor backward in command line                            |
 | `Ctrl`+`f`            |    Command    | Move cursor forward in command line                             |
 | `Ctrl`+`r`            |    Visual     | Replace selection with step-by-step confirmation                |
-| `,`+`Space`           |    Normal     | Remove all spaces at EOL                                        |
 | `<leader>`+`<leader>` |    Normal     | Enter visual line-mode                                          |
 | `<leader>`+`a`        |    Normal     | Align paragraph                                                 |
 | `<leader>`+`os`       |    Normal     | Load last session                                               |
@@ -634,60 +648,17 @@ Note that,
 | `<leader>`+`sv`      | Normal | Split with previous buffer            |
 | `<leader>`+`sg`      | Normal | Vertical split with previous buffer   |
 
-### Plugin: Denite
 
-| Key                      |     Mode      | Action                               |
-| ------------------------ | :-----------: | ------------------------------------ |
-| `;`+`r`                  |    Normal     | Resumes last Denite window           |
-| `;`+`f`                  |    Normal     | File search                          |
-| `;`+`b`                  |    Normal     | Buffers and MRU                      |
-| `;`+`d`                  |    Normal     | Directories                          |
-| `;`+`v`                  | Normal/Visual | Yank history                         |
-| `;`+`l`                  |    Normal     | Location list                        |
-| `;`+`q`                  |    Normal     | Quick fix                            |
-| `;`+`n`                  |    Normal     | Dein plugin list                     |
-| `;`+`g`                  |    Normal     | Grep search                          |
-| `;`+`j`                  |    Normal     | Jump points                          |
-| `;`+`u`                  |    Normal     | Junk files                           |
-| `;`+`o`                  |    Normal     | Outline tags                         |
-| `;`+`s`                  |    Normal     | Sessions                             |
-| `;`+`t`                  |    Normal     | Tag list                             |
-| `;`+`p`                  |    Normal     | Jump to previous position            |
-| `;`+`h`                  |    Normal     | Help                                 |
-| `;`+`m`                  |    Normal     | Memo list                            |
-| `;`+`z`                  |    Normal     | Z (jump around)                      |
-| `;`+`/`                  |    Normal     | Buffer lines                         |
-| `;`+`*`                  |    Normal     | Match word under cursor with lines   |
-| `;`+`;`                  |    Normal     | Command history                      |
-| `<leader>`+`gl`          |    Normal     | Git log (all)                        |
-| `<leader>`+`gs`          |    Normal     | Git status                           |
-| `<leader>`+`gc`          |    Normal     | Git branches                         |
-| `<leader>`+`gt`          |    Normal     | Find tags matching word under cursor |
-| `<leader>`+`gf`          |    Normal     | Find file matching word under cursor |
-| `<leader>`+`gg`          | Normal/Visual | Grep word under cursor               |
-| **Within _Denite_ mode** |
-| `Escape`                 | Normal/Insert | Toggle modes                         |
-| `jj`                     |    Insert     | Leave Insert mode                    |
-| `Ctrl`+`y`               |    Insert     | Redraw                               |
-| `r`                      |    Normal     | Redraw                               |
-| `st`                     |    Normal     | Open in a new tab                    |
-| `sg`                     |    Normal     | Open in a vertical split             |
-| `sv`                     |    Normal     | Open in a split                      |
-| `'`                      |    Normal     | Toggle mark current candidate        |
+### Plugin:  Emmet
 
-### Plugin: Deoplete / Emmet
-
-| Key                  |     Mode      | Action                              |
-| -------------------- | :-----------: | ----------------------------------- |
-| `Enter`              |    Insert     | Select completion or expand snippet |
-| `Tab`                | Insert/select | Smart tab movement or completion    |
-| `Ctrl`+`j/k/f/b/d/u` |    Insert     | Movement in completion pop-up       |
-| `Ctrl`+`<Return>`    |    Insert     | Expand Emmet sequence               |
-| `Ctrl`+`o`           |    Insert     | Expand snippet                      |
-| `Ctrl`+`g`           |    Insert     | Refresh candidates                  |
-| `Ctrl`+`l`           |    Insert     | Complete common string              |
-| `Ctrl`+`e`           |    Insert     | Cancel selection and close pop-up   |
-| `Ctrl`+`y`           |    Insert     | Close pop-up                        |
+| Key                  |  Mode  | Action                            |
+| -------------------- | :----: | --------------------------------- |
+| `Ctrl`+`j/k/f/b/d/u` | Insert | Movement in completion pop-up     |
+| `Ctrl`+`<Return>`    | Insert | Expand Emmet sequence             |
+| `Ctrl`+`o`           | Insert | Expand snippet                    |
+| `Ctrl`+`g`           | Insert | Refresh candidates                |
+| `Ctrl`+`l`           | Insert | Complete common string            |
+| `Ctrl`+`e`           | Insert | Cancel selection and close pop-up |
 
 ### Plugin: Caw (comments)
 
@@ -698,25 +669,11 @@ Note that,
 | `<leader>`+`v` | Normal/visual | Toggle single-line comments |
 | `<leader>`+`V` | Normal/visual | Toggle comment block        |
 
-### Plugin: Edge Motion
-
-| Key     |     Mode      | Action                 |
-| ------- | :-----------: | ---------------------- |
-| `g`+`j` | Normal/Visual | Jump to edge downwards |
-| `g`+`k` | Normal/Visual | Jump to edge upwards   |
-
 ### Plugin: QuickHL
 
 | Key            |     Mode      | Action                  |
 | -------------- | :-----------: | ----------------------- |
 | `<leader>`+`,` | Normal/Visual | Toggle highlighted word |
-
-### Plugin: Expand-Region
-
-| Key |     Mode      | Action           |
-| --- | :-----------: | ---------------- |
-| `v` | Visual/select | Expand selection |
-| `V` | Visual/select | Reduce selection |
 
 ### Plugin: Easymotion
 
@@ -732,23 +689,6 @@ Note that,
 | `s`+`/` | Normal/operator | Jump to free-search               |
 | `s`+`n` |     Normal      | Smart next occurrence             |
 | `s`+`p` |     Normal      | Smart previous occurrence         |
-
-### Plugin: ChooseWin
-
-| Key            |  Mode  | Action                              |
-| -------------- | :----: | ----------------------------------- |
-| `-`            | Normal | Choose a window to edit             |
-| `<leader>`+`-` | Normal | Switch editing window with selected |
-
-### Plugin: Bookmarks
-
-| Key     |  Mode  | Action                          |
-| ------- | :----: | ------------------------------- |
-| `m`+`a` | Normal | Show list of all bookmarks      |
-| `m`+`m` | Normal | Toggle bookmark in current line |
-| `m`+`n` | Normal | Jump to next bookmark           |
-| `m`+`p` | Normal | Jump to previous bookmark       |
-| `m`+`i` | Normal | Annotate bookmark               |
 
 ### Plugin: Easygit
 
@@ -773,31 +713,10 @@ Note that,
 | `<leader>`+`hr` | Normal | Revert hunk           |
 | `<leader>`+`hp` | Normal | Preview hunk          |
 
-### Plugin: Linediff
-
-| Key      |  Mode  | Action                                         |
-| -------- | :----: | ---------------------------------------------- |
-| `,`+`df` | Visual | Mark lines and open diff if 2nd region         |
-| `,`+`da` | Visual | Mark lines for diff                            |
-| `,`+`ds` | Normal | Shows the diff between all the marked areas    |
-| `,`+`dr` | Normal | Removes the signs denoting the diff'ed regions |
-
-### Misc Plugins
-
-| Key             |  Mode  | Action                          |
-| --------------- | :----: | ------------------------------- |
-| `m`+`g`         | Normal | Open Magit                      |
-| `<leader>`+`l`  | Normal | Open sidemenu                   |
-| `<leader>`+`o`  | Normal | Open tag-bar                    |
-| `<leader>`+`G`  | Normal | Toggle distraction-free writing |
-| `<leader>`+`gu` | Normal | Open undo tree                  |
-| `<leader>`+`W`  | Normal | Wiki                            |
-| `<leader>`+`K`  | Normal | Thesaurus                       |
 
 ## Credits & Contribution
 
 Big thanks to the dark knight [Shougo].
 
 [Shougo]: https://github.com/Shougo
-[lazy-loaded]: ./config/plugins.yaml#L28
 [yaml2json]: https://github.com/bronze1man/yaml2json

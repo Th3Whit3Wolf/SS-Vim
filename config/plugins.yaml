@@ -80,6 +80,7 @@
     \ thrift, typescript, vala, verilog, vhdl, vim, vue, xhtml, xml, yaml
     \ ]
 - repo: autozimu/LanguageClient-neovim
+  if: executable('cargo')
   rev: next
   build: bash install.sh
   on_ft: [
@@ -94,6 +95,7 @@
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # Web
 #
+- { repo: dNitro/vim-pug-complete, on_ft: pug }
 - { repo: ElmCast/elm-vim, on_ft: elm }
 - { repo: hail2u/vim-css3-syntax, on_ft: css }
 - { repo: ap/vim-css-color, on_ft: [ css, scss, sass ] }
@@ -109,7 +111,7 @@
 - { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: elzr/vim-json, on_ft: json }
 - { repo: digitaltoad/vim-pug, on_ft: pug }
-- { repo: vim-scripts/vim-coffee-script, on_ft: coffeescript }
+- { repo: kchmck/vim-coffee-script, on_ft: coffeescript }
 - { repo: Quramy/tsuquyomi, on_ft: typescript }
 - { repo: ianks/vim-tsx, on_ft: typescript }
 - { repo: leafgarland/typescript-vim, on_ft: typescript }
@@ -192,13 +194,12 @@
   on_ft: asm
 
 # C Family
-- repo: octol/vim-cpp-enhanced-highlight
+- repo: bfrg/vim-cpp-modern
   on_ft: cpp
   hook_source: |
     let c_no_curly_error=1
 
 - { repo: OmniSharp/omnisharp-vim, on_ft: cs }
-- { repo: bfrg/vim-cpp-modern, on_ft: cpp }
 - { repo: vim-jp/vim-cpp, on_ft: cpp }
 
 # Cmake
@@ -215,7 +216,7 @@
   on_ft: rust
 
 # Swift
-- repo: toyamarinyon/vim-swift
+- repo: keith/swift.vim
   if: executable('swift')
   on_ft: swift
 
@@ -343,15 +344,11 @@
 - { repo: exu/pgsql.vim, on_ft: pgsql }
 - { repo: othree/nginx-contrib-vim, on_ft: nginx }
 - { repo: IN3D/vim-raml, on_ft: raml }
-- { repo: raimon49/requirements.txt.vim, on_ft: requirements }
 - { repo: tclh123/vim-thrift, on_ft: thrift }
 - { repo: kylef/apiblueprint.vim, on_ft: apiblueprint }
 - { repo: vmchale/ion-vim, on_ft: ion }
 - { repo: liuchengxu/graphviz.vim, on_ft: graphviz }
-- { repo: jparise/vim-graphql, on_ft: graphql }
 - { repo: Quramy/vison, on_ft: json }
-- { repo: elzr/vim-json, on_ft: json }
-- { repo: cespare/vim-toml, on_ft: toml }
 - { repo: mrk21/yaml-vim, on_ft: yaml }
 - { repo: stephpy/vim-yaml, on_ft: yaml }
 - repo: hashivim/vim-terraform

@@ -402,13 +402,12 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""
 set signcolumn=yes
 set noinfercase
+set complete=.,w,b,u,k
 set completeopt=longest,menuone,noselect
 let g:mucomplete#enable_auto_at_startup = 1
 let g:mucomplete#chains = {}
-let g:mucomplete#chains.default = ['omni', 'c-n', 'path', 'tags', 'dict']
-let s:cpp_cond = { t -> t =~# '\%(->\|::\|\.\)$' }
+let g:mucomplete#chains.default = ['c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
 let g:mucomplete#can_complete = {}
-let g:mucomplete#can_complete.cpp = { 'omni': s:cpp_cond }
 let g:mucomplete#completion_delay = 100
 let g:mucomplete#reopen_immediately = 0
 set shortmess+=c " Turn off completion messages

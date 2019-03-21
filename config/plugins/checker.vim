@@ -1014,12 +1014,17 @@ function! Lsp_on()
   let g:LanguageClient_autoStart = 1
   let g:airline#extensions#languageclient#enabled = 1
   let g:airline#extensions#ale#enabled = 0
+  let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
+  let g:mucomplete#chains.default = ['omni', 'c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
+  let g:mucomplete#can_complete = { 'omni': s:cond }
   call SetLSPShortcuts()
   autocmd BufEnter  *  call ncm2#enable_for_buffer()
   set completeopt=noinsert,menuone,noselect
 endfunction
 
 function! Ale_on()
+  let g:mucomplete#chains.default = ['c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
+  let g:mucomplete#can_complete = {}
   let g:LanguageClient_autoStart = 0
   let g:airline#extensions#languageclient#enabled = 1
   let g:airline#extensions#ale#enabled = 0
