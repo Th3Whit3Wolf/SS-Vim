@@ -18,7 +18,6 @@
   depends: lightline.vim
 
 - repo: chrisbra/Colorizer
-- repo: tpope/vim-fugitive
 - repo: liuchengxu/space-vim-dark
 - repo: jiangmiao/auto-pairs
 - repo: ryanoasis/vim-devicons
@@ -281,6 +280,10 @@
   if: executable('scalac')
   on_ft: scala
 
+- repo: ensime/ensime-vim
+  on_ft: [ scala, java ]
+  build: nvim -c 'call dein#remote_plugins()'
+
 - repo: udalov/kotlin-vim
   if: executable('kotlin')
   on_ft: kotlin
@@ -320,7 +323,6 @@
 # Interpreted
 # -----------
 - { repo: vim-python/python-syntax, on_ft: python }
-- { repo: timothycrosley/isort , on_ft: python }
 - { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
 - { repo: vim-scripts/python_match.vim, on_ft: python }
 - { repo: tmhedberg/SimpylFold, on_ft: python }
@@ -361,8 +363,13 @@
 - repo: FriedPandaFries/nerdtree
   on_map: { n: <Plug> }
   trusted: 1
-  on_cmd': [ NERDTree, NERDTreeVCS, NERDTreeFromBookmark, NERDTreeToggle, NERDTreeFocus, NERDTreeMirror, NERDTreeClose, NERDTreeFind, NERDTreeCWD, NERDTreeRefreshRoot ]
+  on_cmd: [ NERDTree, NERDTreeVCS, NERDTreeFromBookmark, NERDTreeToggle, NERDTreeFocus, NERDTreeMirror, NERDTreeClose, NERDTreeFind, NERDTreeCWD, NERDTreeRefreshRoot ]
   hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
+
+- repo: tpope/vim-fugitive
+  on_cmd: Gstatus
+  augroup: fugitive
+  on_source: gitv
 
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
 - { repo: tiagofumo/vim-nerdtree-syntax-highlight, on_source: nerdtree }

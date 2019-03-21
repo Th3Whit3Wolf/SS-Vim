@@ -238,102 +238,102 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 
 ### Language
 
-| Name                                 | Description                                                          |
-| ------------------------------------ | -------------------------------------------------------------------- |
-| [othree/html5.vim]                   | HTML5 omnicomplete and syntax                                        |
-| [mustache/vim-mustache-handlebars]   | Mustache and handlebars syntax                                       |
-| [pearofducks/ansible-vim]            | Improved YAML support for Ansible                                    |
-| [groenewege/vim-less]                | Syntax for LESS                                                      |
-| [hail2u/vim-css3-syntax]             | CSS3 syntax support to vim's  `syntax/css.vim`                       |
-| [othree/csscomplete.vim]             | Updated  CSS complete with latest standards                          |
-| [cakebaker/scss-syntax.vim]          | Syntax file for scss (Sassy CSS)                                     |
-| [ap/vim-css-color]                   | Preview colors in source-code while editing                          |
-| [plasticboy/vim-markdown]            | Markdown syntax highlighting                                         |
-| [rhysd/vim-gfm-syntax]               | GitHub Flavored Markdown syntax highlighting                         |
-| [pangloss/vim-javascript]            | Enhanced Javascript syntax                                           |
-| [othree/jspc.vim]                    | JavaScript Parameter Complete                                        |
-| [posva/vim-vue]                      | Syntax Highlight for Vue.js components                               |
-| [heavenshell/vim-jsdoc]              | Generate JSDoc to your JavaScript code                               |
-| [jparise/vim-graphql]                | GraphQL detection, syntax highlighting, & indentation                |
-| [moll/vim-node]                      | Superb development with Node.js                                      |
-| [elzr/vim-json]                      | Better JSON support                                                  |
-| [Quramy/vison]                       | Plugin for writing JSON with JSON Schema                             |
-| [digitaltoad/vim-pug]                | Vim syntax highlighting for Pug templates                            |
-| [dNitro/vim-pug-complete]            | Vim omni-completion support for pug template engine                  |
-| [ElmCast/elm-vim]                    | Elm syntax-hl, completion, formatting, linting, etc                  |
-| [mrk21/yaml-vim]                     | YAML syntax/indent plugin                                            |
-| [kchmck/vim-coffee-script]           | Coffescript syntax, identing, compiling, and more support            |
-| [Quramy/tsuquyomi]                   | Typescript TSServer client                                           |
-| [ianks/vim-tsx]                      | Syntax highlighting and indenting for tsx                            |
-| [leafgarland/typescript-vim]         | Syntax file and other settings for Typescript                        |
-| [aklt/plantuml-syntax]               | Syntax file for PlantUML                                             |
-| [vim-ruby/vim-ruby]                  | Syntax, indention, and compiler for ruby                             |
-| [neoclide/vim-jsx-improve]           | Syntax and indent plugin for React JSX                               |
-| [xuhdev/vim-latex-live-preview]      | Vim plugin for live previewing LaTeX PDF Output                      |
-| [skywind3000/asyncrun.vim]           | Run Async Shell Commands in (Neo)vim                                 |
-| [euclio/vim-markdown-composer]       | An Asynchronous markdown preview plugin for (Neo)vim                 |
-| [bazelbuild/vim-bazel]               | Plugin for invoking bazel and interacting with bazel artifacts       |
-| [google/vim-maktaba]                 | Vimscript plugin library                                             |
-| [Shirk/vim-gas]                      | Syntax highlighting for GNU Assmebly                                 |
-| [OmniSharp/omnisharp-vim]            | Vim Omnicompletion(intellisense) and more for C#                     |
-| [bfrg/vim-cpp-modern]                | Additional Vim syntax highlighting for C++                           |
-| [vim-jp/vim-cpp]                     | C/C++ Syntax Highlighting                                            |
-| [pboettch/vim-cmake-syntax]          | Vim syntax highlighting rules for modern CMake                       |
-| [rust-lang/rust.vim]                 | Rust lang Syntax highlighting, formatting, and file detection        |
-| [racer-rust/vim-racer]               | Rust Racer autocompletion support                                    |
-| [keith/swift.vim]                    | Swift syntax and indenting support                                   |
-| [guns/vim-clojure-highlight]         | Extend builtin syntax highlighting for Closure                       |
-| [guns/vim-clojure-static]            | Meikel Brandmeyer's excellent Clojure runtime files                  |
-| [guns/vim-slamhound]                 | Slamhound integration for vim                                        |
-| [kovisoft/paredit]                   | Maintains balanced state for matched characters(parens, quotes, etc) |
-| [tpope/vim-fireplace]                | Clojure REPL Support                                                 |
-| [venantius/vim-cljfmt]               | Vim plugin for Clojure formatting tool                               |
-| [elixir-lang/vim-elixir]             | Elixir file detectiong, automatic indentation, syntax highlighting   |
-| [slashmili/alchemist.vim]            | Elixir completion, Doc lookups, jump to def, etc                     |
-| [vim-erlang/erlang-motions.vim]      |                                                                      |
-| [vim-erlang/vim-erlang-compiler]     |                                                                      |
-| [vim-erlang/vim-erlang-omnicomplete] | Erlang omnicomplete plugin for (Neo)vim                              |
-| [vim-erlang/vim-erlang-skeletons]    |                                                                      |
-| [vim-erlang/vim-erlang-tags]         |                                                                      |
-| [derekwyatt/vim-scala]               |                                                                      |
-| [udalov/kotlin-vim]                  |                                                                      |
-| [rhysd/vim-clang-format]             |                                                                      |
-| [eagletmt/ghcmod-vim]                |                                                                      |
-| [dan-t/vim-hsimport]                 |                                                                      |
-| [neovimhaskell/haskell-vim]          |                                                                      |
-| [parsonsmatt/intero-neovim]          |                                                                      |
-| [tclh123/vim-thrift]                 |                                                                      |
-| [MaxMEllon/vim-jsx-pretty]           | React JSX syntax pretty highlighting                                 |
-| [fatih/vim-go]                       | Go development                                                       |
-| [timothycrosley/isort]               |                                                                      |
-| [vim-python/python-syntax]           | Enhanced version of the original Python syntax                       |
-| [Vimjas/vim-python-pep8-indent]      | A nicer Python indentation style                                     |
-| [vim-scripts/python_match.vim]       | Extend the % motion for Python files                                 |
-| [tmhedberg/SimpylFold]               | No-BS Python code folding                                            |
-| [raimon49/requirements.txt.vim]      | Python requirements file format                                      |
-| [StanAngeloff/php.vim]               | Up-to-date PHP syntax file (5.3 – 7.1 support)                       |
-| [shawncplus/phpcomplete.vim]         | PHP completion                                                       |
-| [osyo-manga/vim-monster]             | Ruby code completion                                                 |
-| [tbastos/vim-lua]                    | Improved Lua 5.3 syntax and indentation support                      |
-| [toyamarinyon/vim-swift]             | Swift support                                                        |
-| [vim-jp/syntax-vim-ex]               | Improved Vim syntax highlighting                                     |
-| [chrisbra/csv.vim]                   | Handling column separated data                                       |
-| [tpope/vim-git]                      | Git runtime files                                                    |
-| [ekalinin/Dockerfile.vim]            | syntax and snippets for Dockerfile                                   |
-| [tmux-plugins/vim-tmux]              | vim plugin for tmux.conf                                             |
-| [andreshazard/vim-logreview]         | Bueatify log viewing                                                 |
-| [hashivim/vim-terraform]             | Base Terraform integration                                           |
-| [cespare/vim-toml]                   | Syntax for TOML                                                      |
-| [mboughaba/i3config.vim]             | i3 window manager config syntax                                      |
-| [dag/vim-fish]                       | Fish shell edit support                                              |
-| [jstrater/mpvim]                     | Macports portfile configuration files                                |
-| [robbles/logstash.vim]               | Highlights logstash configuration files                              |
-| [exu/pgsql.vim]                      | PostgreSQL syntax                                                    |
-| [othree/nginx-contrib-vim]           | Fork official vim nginx                                              |
-| [IN3D/vim-raml]                      | Syntax and language settings for RAML                                |
-| [kylef/apiblueprint.vim]             |                                                                      |
-| [vmchale/ion-vim]                    | Syntax highlighting for ion shell                                    |
-| [liuchengxu/graphviz.vim]            |                                                                      |
+| Name                                 | Description                                                                            |
+| ------------------------------------ | -------------------------------------------------------------------------------------- |
+| [othree/html5.vim]                   | HTML5 omnicomplete and syntax                                                          |
+| [mustache/vim-mustache-handlebars]   | Mustache and handlebars syntax                                                         |
+| [pearofducks/ansible-vim]            | Improved YAML support for Ansible                                                      |
+| [groenewege/vim-less]                | Syntax for LESS                                                                        |
+| [hail2u/vim-css3-syntax]             | CSS3 syntax support to vim's  `syntax/css.vim`                                         |
+| [othree/csscomplete.vim]             | Updated  CSS complete with latest standards                                            |
+| [cakebaker/scss-syntax.vim]          | Syntax file for scss (Sassy CSS)                                                       |
+| [ap/vim-css-color]                   | Preview colors in source-code while editing                                            |
+| [plasticboy/vim-markdown]            | Markdown syntax highlighting                                                           |
+| [rhysd/vim-gfm-syntax]               | GitHub Flavored Markdown syntax highlighting                                           |
+| [pangloss/vim-javascript]            | Enhanced Javascript syntax                                                             |
+| [othree/jspc.vim]                    | JavaScript Parameter Complete                                                          |
+| [posva/vim-vue]                      | Syntax Highlight for Vue.js components                                                 |
+| [heavenshell/vim-jsdoc]              | Generate JSDoc to your JavaScript code                                                 |
+| [jparise/vim-graphql]                | GraphQL detection, syntax highlighting, & indentation                                  |
+| [moll/vim-node]                      | Superb development with Node.js                                                        |
+| [elzr/vim-json]                      | Better JSON support                                                                    |
+| [Quramy/vison]                       | Plugin for writing JSON with JSON Schema                                               |
+| [digitaltoad/vim-pug]                | Vim syntax highlighting for Pug templates                                              |
+| [dNitro/vim-pug-complete]            | Vim omni-completion support for pug template engine                                    |
+| [ElmCast/elm-vim]                    | Elm syntax-hl, completion, formatting, linting, etc                                    |
+| [mrk21/yaml-vim]                     | YAML syntax/indent plugin                                                              |
+| [kchmck/vim-coffee-script]           | Coffescript syntax, identing, compiling, and more support                              |
+| [Quramy/tsuquyomi]                   | Typescript TSServer client                                                             |
+| [ianks/vim-tsx]                      | Syntax highlighting and indenting for tsx                                              |
+| [leafgarland/typescript-vim]         | Syntax file and other settings for Typescript                                          |
+| [aklt/plantuml-syntax]               | Syntax file for PlantUML                                                               |
+| [vim-ruby/vim-ruby]                  | Syntax, indention, and compiler for ruby                                               |
+| [neoclide/vim-jsx-improve]           | Syntax and indent plugin for React JSX                                                 |
+| [xuhdev/vim-latex-live-preview]      | Vim plugin for live previewing LaTeX PDF Output                                        |
+| [skywind3000/asyncrun.vim]           | Run Async Shell Commands in (Neo)vim                                                   |
+| [euclio/vim-markdown-composer]       | An Asynchronous markdown preview plugin for (Neo)vim                                   |
+| [bazelbuild/vim-bazel]               | Plugin for invoking bazel and interacting with bazel artifacts                         |
+| [google/vim-maktaba]                 | Vimscript plugin library                                                               |
+| [Shirk/vim-gas]                      | Syntax highlighting for GNU Assmebly                                                   |
+| [OmniSharp/omnisharp-vim]            | Vim Omnicompletion(intellisense) and more for C#                                       |
+| [bfrg/vim-cpp-modern]                | Additional Vim syntax highlighting for C++                                             |
+| [vim-jp/vim-cpp]                     | C/C++ Syntax Highlighting                                                              |
+| [pboettch/vim-cmake-syntax]          | Vim syntax highlighting rules for modern CMake                                         |
+| [rust-lang/rust.vim]                 | Rust lang Syntax highlighting, formatting, and file detection                          |
+| [racer-rust/vim-racer]               | Rust Racer autocompletion support                                                      |
+| [keith/swift.vim]                    | Swift syntax and indenting support                                                     |
+| [guns/vim-clojure-highlight]         | Extend builtin syntax highlighting for Closure                                         |
+| [guns/vim-clojure-static]            | Meikel Brandmeyer's excellent Clojure runtime files                                    |
+| [guns/vim-slamhound]                 | Slamhound integration for vim                                                          |
+| [kovisoft/paredit]                   | Maintains balanced state for matched characters(parens, quotes, etc)                   |
+| [tpope/vim-fireplace]                | Clojure REPL Support                                                                   |
+| [venantius/vim-cljfmt]               | Vim plugin for Clojure formatting tool                                                 |
+| [elixir-lang/vim-elixir]             | Elixir file detectiong, automatic indentation, syntax highlighting                     |
+| [slashmili/alchemist.vim]            | Elixir completion, Doc lookups, jump to def, etc                                       |
+| [vim-erlang/erlang-motions.vim]      | Motions and text objects for erlang                                                    |
+| [vim-erlang/vim-erlang-compiler]     | Erlang syntax checking and compiler plugin for (Neo)vim                                |
+| [vim-erlang/vim-erlang-omnicomplete] | Erlang omnicomplete plugin for (Neo)vim                                                |
+| [vim-erlang/vim-erlang-skeletons]    | Erlang generic templates for vim                                                       |
+| [vim-erlang/vim-erlang-tags]         | Generate Vim tags for Erlang files                                                     |
+| [derekwyatt/vim-scala]               | Useful stuff for Scala Development                                                     |
+| [ensime/ensime-vim]                  | Brings a lot of IDE features for java & scala                                          |
+| [udalov/kotlin-vim]                  | Syntax Highlighting and indentation for kotlin                                         |  |
+| [rhysd/vim-clang-format]             | Code formatter for C, C++, Obj-C, Javascript, Java, and more                           |
+| [eagletmt/ghcmod-vim]                | Provides integration with ghcmod for haskell programmers                               |
+| [dan-t/vim-hsimport]                 | Automatically creates import statements for Haskell source files for symbol/identifier |
+| [neovimhaskell/haskell-vim]          | Syntax Highlighting and Indentation for Haskell and Cabal                              |
+| [parsonsmatt/intero-neovim]          | A neovim plugin for Intero, for haskell                                                |
+| [tclh123/vim-thrift]                 | (Neo)vim syntax file for thrift, provide vundle style bundle                           |
+| [MaxMEllon/vim-jsx-pretty]           | React JSX syntax pretty highlighting                                                   |
+| [fatih/vim-go]                       | Go development                                                                         |
+| [vim-python/python-syntax]           | Enhanced version of the original Python syntax                                         |
+| [Vimjas/vim-python-pep8-indent]      | A nicer Python indentation style                                                       |
+| [vim-scripts/python_match.vim]       | Extend the % motion for Python files                                                   |
+| [tmhedberg/SimpylFold]               | No-BS Python code folding                                                              |
+| [raimon49/requirements.txt.vim]      | Python requirements file format                                                        |
+| [StanAngeloff/php.vim]               | Up-to-date PHP syntax file (5.3 – 7.1 support)                                         |
+| [shawncplus/phpcomplete.vim]         | PHP completion                                                                         |
+| [osyo-manga/vim-monster]             | Ruby code completion                                                                   |
+| [tbastos/vim-lua]                    | Improved Lua 5.3 syntax and indentation support                                        |
+| [toyamarinyon/vim-swift]             | Swift support                                                                          |
+| [vim-jp/syntax-vim-ex]               | Improved Vim syntax highlighting                                                       |
+| [chrisbra/csv.vim]                   | Handling column separated data                                                         |
+| [tpope/vim-git]                      | Git runtime files                                                                      |
+| [ekalinin/Dockerfile.vim]            | syntax and snippets for Dockerfile                                                     |
+| [tmux-plugins/vim-tmux]              | vim plugin for tmux.conf                                                               |
+| [andreshazard/vim-logreview]         | Bueatify log viewing                                                                   |
+| [hashivim/vim-terraform]             | Base Terraform integration                                                             |
+| [cespare/vim-toml]                   | Syntax for TOML                                                                        |
+| [mboughaba/i3config.vim]             | i3 window manager config syntax                                                        |
+| [dag/vim-fish]                       | Fish shell edit support                                                                |
+| [jstrater/mpvim]                     | Macports portfile configuration files                                                  |
+| [robbles/logstash.vim]               | Highlights logstash configuration files                                                |
+| [exu/pgsql.vim]                      | PostgreSQL syntax                                                                      |
+| [othree/nginx-contrib-vim]           | Fork official vim nginx                                                                |
+| [IN3D/vim-raml]                      | Syntax and language settings for RAML                                                  |
+| [kylef/apiblueprint.vim]             | Brings syntax highlighting and linting for API Blueprint                               |
+| [vmchale/ion-vim]                    | Syntax highlighting for ion shell                                                      |
+| [liuchengxu/graphviz.vim]            | Vim plugin for graphviz w/ omnicompletion                                              |
 
 ### Commands
 
@@ -378,11 +378,10 @@ _Note_ that 95% of the plugins are **[lazy-loaded]**.
 | [junegunn/goyo]                           | Distraction-free writing                                              |
 | [junegunn/limelight]                      | Hyperfocus-writing                                                    |
 | [vimwiki/vimwiki]                         | Personal Wiki for Vim                                                 |
-| [wsdjeg/dein-ui.vim]                      |                                                                       |
+| [wsdjeg/dein-ui.vim]                      | UI for Shougo's dein.vim, detached from SpaceVim                      |
 | [FriedPandaFries/nerdtree]                | Nerd Tree where <kbd>ctrl</kbd> `+` <kbd>h</kbd> toggles hidden files |
-| [Xuyuanp/nerdtree-git-plugin]             |                                                                       |
-| [tiagofumo/vim-nerdtree-syntax-highlight] |                                                                       |
-
+| [Xuyuanp/nerdtree-git-plugin]             | A plugin of NERDTree showing git status                               |
+| [tiagofumo/vim-nerdtree-syntax-highlight] | Extra syntax and highlight for nerdtree files                         |
 
 ### Completion
 
