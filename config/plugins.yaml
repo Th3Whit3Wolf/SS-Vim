@@ -367,7 +367,8 @@
   hook_post_source: source $VIMPATH/config/plugins/nerdtree.vim
 
 - repo: tpope/vim-fugitive
-  on_cmd: Gstatus
+  on_cmd: [ Gstatus, Gedit, Gsplit, Gvsplit, Gtabedit, Gblame, Gmove, Ggrep, Glog, Gread, Gbrowse, Git ]
+  augroup: fugitive
   on_source: gitv
 
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
