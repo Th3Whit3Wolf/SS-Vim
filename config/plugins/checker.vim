@@ -3,6 +3,8 @@
 " Then checks if one is installed                         "
 " For filetypes with more than one LS it chooses the best "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {}
 function! Lint()
   let fts = ['c', 'cpp', 'cs', 'css', 'cuda', 'clojure', 'd', 'dart', 'dockerfile', 'glsl', 'go', 'elixir', 'erlang', 'fortran', 'haskell', 'html', 'java', 'javascript', 'javascript.jsx', 'julia', 'kotlin', 'less', 'lua', 'nim', 'objc', 'objcpp', 'ocaml', 'php', 'puppet', 'purescript', 'python', 'reason', 'ruby', 'rust', 'sass', 'scss', 'sh', 'typescript', 'vue' ]
   if index(fts, &filetype) == 0
@@ -22,7 +24,7 @@ function! Lint()
       endif
     elseif &filetype == 'cpp'
       if executable('ccls')
-        let g:LanguageClient_serverCommands = {'cpp': ['/usr/bin/ccls', '--log-file=/tmp/cc.log']}
+        let g:LanguageClient_serverCommands = {'cpp': ['ccls']}
         call Lsp_on()
       elseif executable('cquery')
         let g:LanguageClient_serverCommands = {'cpp': ['cquery', '--log-file=/tmp/cq.log']}
@@ -1020,6 +1022,9 @@ endfunction
 function! Lsp_on()
   let g:LanguageClient_autoStart = 1
   let g:airline#extensions#languageclient#enabled = 1
+  let Settings_path = $VIMPATH.'/json/ccls.json'
+  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+  let g:LanguageClient_settingsPath = fnameescape(Settings_path)
   let g:airline#extensions#ale#enabled = 0
   let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
   let g:mucomplete#can_complete = { 'omni': s:cond }
@@ -1083,7 +1088,6 @@ function! Ale_on()
   let g:ale_sign_warning          = '⚡'
   let g:ale_echo_msg_error_str    = 'E'
   let g:ale_echo_msg_warning_str  = 'W'
-  let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'
-  let g:ale_linter_aliases  = {'jsx': ['css', 'javascript']}
-  let g:ale_linters         = {'jsx': ['stylelint', 'eslint']}
+let g:ale_echo_msg_format         = 'ALE(%severity%): [%linter%] %s'  let g:ale_linter_aliases        = {'jsx': ['css', 'javascript']}
+  let g:ale_linters               = {'jsx': ['stylelint', 'eslint']}
 endfunction

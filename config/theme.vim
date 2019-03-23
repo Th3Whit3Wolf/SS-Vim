@@ -8,7 +8,7 @@ function! s:theme_reload(name)
 endfunction
 
 " THEME NAME
-let g:theme_name = 'spacevim-air'
+let g:theme_name = 'spacevim-ele'
 autocmd MyAutoCmd ColorScheme * call s:theme_reload(g:theme_name)
 
 " COLORSCHEME NAME

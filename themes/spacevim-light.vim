@@ -2,13 +2,9 @@ set showbreak=↪
 set fillchars=vert:│,fold:─
 set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
-"call dein#add('itchyny/lightline.vim')
-"call dein#add('FriedPandaFries/Lightline-Extras')
-
-
 colorscheme space-vim-dark
-
-"github.com/ajmwagar/vimkampf
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
+call Lint()
 
 function! LightlineBufferline()
   call bufferline#refresh_status()
@@ -50,9 +46,6 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
-
-
-
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! MaybeUpdateLightline()
   if exists('#lightline')
@@ -60,21 +53,7 @@ function! MaybeUpdateLightline()
   end
 endfunction
 
-augroup LightLineOnALE
-  autocmd!
-  autocmd User ALEFixPre   call MaybeUpdateLightline()
-  autocmd User ALEFixPost  call MaybeUpdateLightline()
-  autocmd User ALELintPre  call MaybeUpdateLightline()
-  autocmd User ALELintPost call MaybeUpdateLightline()
-augroup end
 
-" autocmd User ALELint call MaybeUpdateLightline()
-autocmd User LanguageClientDiagnosticsChanged call MaybeUpdateLightline()
-autocmd User LanguageClientStarted call LspStarted()
-autocmd User LanguageClientStopped call LspStopped()
-" autocmd User ALEJobStarted call MaybeUpdateLightline()
-" autocmd User ALELintPost call MaybeUpdateLightline()
-" autocmd User ALEFixPost call MaybeUpdateLightline()
 
 let s:indicator_warnings = 'W: '
 let s:indicator_errors = 'E: '
@@ -204,11 +183,9 @@ let g:lightline =
   \ 'subseparator': { 'left': '', 'right': '' }
   \ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Linter Specific Settings:
+" Other Settings:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 let s:MyFavIcons = "⚡"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin: Tagbar icons
@@ -230,3 +207,17 @@ highlight! GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight! GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+
+
+augroup LightLine_Linter
+  autocmd!
+  autocmd User LanguageClientDiagnosticsChanged call MaybeUpdateLightline()
+  autocmd User LanguageClientStarted call LspStarted()
+  autocmd User LanguageClientStopped call LspStopped()
+  if (g:language_client_started == 0)
+    autocmd User ALEFixPre   call MaybeUpdateLightline()
+    autocmd User ALEFixPost  call MaybeUpdateLightline()
+    autocmd User ALELintPre  call MaybeUpdateLightline()
+    autocmd User ALELintPost call MaybeUpdateLightline()
+  endif
+augroup end

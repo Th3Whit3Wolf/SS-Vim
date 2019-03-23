@@ -8,6 +8,7 @@
 #- repo: vim-airline/vim-airline-themes
 #  depends: vim-airline/vim-airline
 
+- repo: liuchengxu/eleline.vim
 - repo: itchyny/lightline.vim
 - repo: FriedPandaFries/Lightline-Extras
   depends: lightline.vim
