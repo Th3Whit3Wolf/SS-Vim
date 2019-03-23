@@ -3,19 +3,17 @@
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 - repo: Shougo/dein.vim
 
-- repo: vim-airline/vim-airline
-  depends: vim-airline/vim-airline-themes
-- repo: vim-airline/vim-airline-themes
-  depends: vim-airline/vim-airline
+#- repo: vim-airline/vim-airline
+#  depends: vim-airline/vim-airline-themes
+#- repo: vim-airline/vim-airline-themes
+#  depends: vim-airline/vim-airline
 
 - repo: itchyny/lightline.vim
-  if: exists('g:lightline')
 - repo: FriedPandaFries/Lightline-Extras
-  if: exists('g:lightline')
   depends: lightline.vim
-- repo: palpatineli/lightline-lsc-nvim
-  if: exists('g:lightline')
-  depends: lightline.vim
+#- repo: palpatineli/lightline-lsc-nvim
+#  if: exists('g:lightline')
+#  depends: lightline.vim
 
 - repo: chrisbra/Colorizer
 - repo: liuchengxu/space-vim-dark
@@ -40,7 +38,7 @@
     \ ]
 
 - repo: sbdchd/neoformat
-  hook_source: source $VIMPATH/config/plugins/format.vim
+  hook_post_source: source $VIMPATH/config/plugins/format.vim
   on_ft: [
     \ ada, ansible, apiblueprint, asciidoc, asm, awk, aws, bibtex, c,
     \ cmake, coffeescript, cpp, crystal, cs, css, cucumber, cuda,
@@ -60,10 +58,21 @@
 - { repo: roxma/vim-hug-neovim-rpc, if: ! has('nvim'), depends: nvim-yarp }
 
 - repo: mhinz/vim-startify
-  hook_source: source $VIMPATH/config/plugins/ss.vim
+  hook_post_source: source $VIMPATH/config/plugins/ss.vim
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # Linters
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- repo: autozimu/LanguageClient-neovim
+  if: executable('cargo')
+  rev: next
+  build: bash install.sh
+  on_ft: [
+    \ c, cpp, cs, css, cuda, clojure, d, dart, dockerfile,
+    \ glsl, go, elixir, erlang, fortran, haskell, html, java,
+    \ javascript, javascript.jsx, julia, kotlin, less, lua, nim,
+    \ objc, objcpp, ocaml, php, puppet, purescript, python, reason,
+    \ ruby, sass, scss, rust, sh, typescript, vue
+    \ ]
 - repo: w0rp/ale
   on_ft: [
     \ ada, ansible, apiblueprint, asciidoc, asm, awk, aws, bibtex, c,
@@ -78,17 +87,7 @@
     \ scss, sh, slim, solidity, sql, stylus, sugarss, swift, tcl, texinfo,
     \ thrift, typescript, vala, verilog, vhdl, vim, vue, xhtml, xml, yaml
     \ ]
-- repo: autozimu/LanguageClient-neovim
-  if: executable('cargo')
-  rev: next
-  build: bash install.sh
-  on_ft: [
-    \ c, cpp, cs, css, cuda, clojure, d, dart, dockerfile,
-    \ glsl, go, elixir, erlang, fortran, haskell, html, java,
-    \ javascript, javascript.jsx, julia, kotlin, less, lua, nim,
-    \ objc, objcpp, ocaml, php, puppet, purescript, python, reason,
-    \ ruby, sass, scss, rust, sh, typescript, vue
-    \ ]
+
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Lazy Load Depending on File Type
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -280,9 +279,9 @@
   if: executable('scalac')
   on_ft: scala
 
-- repo: ensime/ensime-vim
-  on_ft: [ scala, java ]
-  build: nvim -c 'call dein#remote_plugins()'
+#- repo: ensime/ensime-vim
+#  on_ft: [ scala, java ]
+#  build: nvim -c 'call dein#remote_plugins()'
 
 - repo: udalov/kotlin-vim
   if: executable('kotlin')
@@ -443,7 +442,7 @@
 - repo: junegunn/goyo.vim
   depends: limelight.vim
   on_cmd: Goyo
-  hook_source: source $VIMPATH/config/plugins/goyo.vim
+  hook_post_source: source $VIMPATH/config/plugins/goyo.vim
 
 - repo: junegunn/limelight.vim
   on_cmd: Limelight

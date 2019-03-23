@@ -1,3 +1,8 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lint checks if filetype has a Language Server (LS)      "
+" Then checks if one is installed                         "
+" For filetypes with more than one LS it chooses the best "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Lint()
   let fts = ['c', 'cpp', 'cs', 'css', 'cuda', 'clojure', 'd', 'dart', 'dockerfile', 'glsl', 'go', 'elixir', 'erlang', 'fortran', 'haskell', 'html', 'java', 'javascript', 'javascript.jsx', 'julia', 'kotlin', 'less', 'lua', 'nim', 'objc', 'objcpp', 'ocaml', 'php', 'puppet', 'purescript', 'python', 'reason', 'ruby', 'rust', 'sass', 'scss', 'sh', 'typescript', 'vue' ]
   if index(fts, &filetype) == 0
@@ -1001,85 +1006,62 @@ function! Lint()
     call All_off()
   endif
 endfunction
-
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" All_off Turns off Airline ALE & Languageclient extensions "
+" Lsp_on Establishes Language Client Neovim Settings        "
+" Ale_on Establishes ALE Settings                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! All_off()
   let g:LanguageClient_autoStart = 0
   let g:airline#extensions#languageclient#enabled = 0
   let g:airline#extensions#ale#enabled = 0
 endfunction
 
-
 function! Lsp_on()
   let g:LanguageClient_autoStart = 1
   let g:airline#extensions#languageclient#enabled = 1
   let g:airline#extensions#ale#enabled = 0
   let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
-  let g:mucomplete#chains.default = ['omni', 'c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
   let g:mucomplete#can_complete = { 'omni': s:cond }
-  call SetLSPShortcuts()
-  autocmd BufEnter  *  call ncm2#enable_for_buffer()
-  set completeopt=noinsert,menuone,noselect
-endfunction
-
-function! Ale_on()
-  let g:mucomplete#chains.default = ['c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
-  let g:mucomplete#can_complete = {}
-  let g:LanguageClient_autoStart = 0
-  let g:airline#extensions#languageclient#enabled = 1
-  let g:airline#extensions#ale#enabled = 0
-endfunction
-
-let g:LanguageClient_rootMarkers = {
+  let g:LanguageClient_rootMarkers = {
     \ 'cpp':            ['main.cpp', 'build', 'compile_commands.json'],
     \ 'cs':             ['.git', '*.csproj'],
     \ 'go':             ['.git', 'go.mod'],
     \ 'haskell':        ['*.cabal', 'stack.yaml'],
     \ 'javascript':     ['project.json'],
     \ 'rust':           ['Cargo.toml']
-\ }
+    \ }
 
-let g:LanguageClient_diagnosticsDisplay = {
-    \   1: {
-    \        "name": "Error",
-    \        "texthl": "ALEError",
-    \        "signText": "✖",
-    \        "signTexthl": "ALEErrorSign",
-    \        "virtualTexthl": "Error",
-    \    },
-    \        2: {
-    \       "name": "Warning",
-    \        "texthl": "ALEWarning",
-    \        "signText": "⚡",
-    \        "signTexthl": "ALEWarningSign",
-    \        "virtualTexthl": "Todo",
-    \    },
-    \    3: {
-    \        "name": "Information",
-    \        "texthl": "ALEInfo",
-    \        "signText": "ℹ",
-    \        "signTexthl": "ALEInfoSign",
-    \        "virtualTexthl": "Todo",
-    \    },
-    \    4: {
-    \        "name": "Hint",
-    \        "texthl": "ALEInfo",
-    \        "signText": "➤",
-    \        "signTexthl": "ALEInfoSign",
-    \        "virtualTexthl": "Todo",
-    \   },
-\}
-
-let g:ale_sign_error            = '✖'
-let g:ale_sign_warning          = '⚡'
-let g:ale_echo_msg_error_str    = 'E'
-let g:ale_echo_msg_warning_str  = 'W'
-let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'
-
-let g:ale_linter_aliases  = {'jsx': ['css', 'javascript']}
-let g:ale_linters         = {'jsx': ['stylelint', 'eslint']}
-
-function SetLSPShortcuts()
+  let g:LanguageClient_diagnosticsDisplay = {
+      \   1: {
+      \        "name": "Error",
+      \        "texthl": "ALEError",
+      \        "signText": "✖",
+      \        "signTexthl": "ALEErrorSign",
+      \        "virtualTexthl": "Error",
+      \    },
+      \        2: {
+      \       "name": "Warning",
+      \        "texthl": "ALEWarning",
+      \        "signText": "⚡",
+      \        "signTexthl": "ALEWarningSign",
+      \        "virtualTexthl": "Todo",
+      \    },
+      \    3: {
+      \        "name": "Information",
+      \        "texthl": "ALEInfo",
+      \        "signText": "ℹ",
+      \        "signTexthl": "ALEInfoSign",
+      \        "virtualTexthl": "Todo",
+      \    },
+      \    4: {
+      \        "name": "Hint",
+      \        "texthl": "ALEInfo",
+      \        "signText": "➤",
+      \        "signTexthl": "ALEInfoSign",
+      \        "virtualTexthl": "Todo",
+      \   },
+  \}
   nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
   nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
   nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
@@ -1090,4 +1072,18 @@ function SetLSPShortcuts()
   nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
   nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
   nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-endfunction()
+endfunction
+
+function! Ale_on()
+  let g:mucomplete#can_complete = {}
+  let g:LanguageClient_autoStart = 0
+  let g:airline#extensions#languageclient#enabled = 1
+  let g:airline#extensions#ale#enabled = 0
+  let g:ale_sign_error            = '✖'
+  let g:ale_sign_warning          = '⚡'
+  let g:ale_echo_msg_error_str    = 'E'
+  let g:ale_echo_msg_warning_str  = 'W'
+  let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'
+  let g:ale_linter_aliases  = {'jsx': ['css', 'javascript']}
+  let g:ale_linters         = {'jsx': ['stylelint', 'eslint']}
+endfunction

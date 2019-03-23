@@ -405,8 +405,16 @@ set noinfercase
 set complete=.,w,b,u,k
 set completeopt=longest,menuone,noselect
 let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#chains = {}
-let g:mucomplete#chains.default = ['c-n', 'path', 'tags', 'dict', 'ulti', 'uspl']
+let g:mucomplete#chains = {
+  \ 'default' : ['c-n', 'tags', 'dict', 'ulti', 'file', 'defs', 'omni', 'keyn'],
+  \ 'vim' : ['path', 'cmd', 'keyn'],
+  \ 'markdown' : ['keyn', 'dict', 'uspl']
+  \ }
+
+
+let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
+let g:UltiSnipsJumpForwardTrigger = "<c-b>" " Do not use <c-j>
+
 let g:mucomplete#can_complete = {}
 let g:mucomplete#completion_delay = 100
 let g:mucomplete#reopen_immediately = 0
@@ -414,6 +422,9 @@ set shortmess+=c " Turn off completion messages
 
 "setlocal omnifunc=LanguageClient#complete
 
+inoremap <silent> <expr> <plug>MyCR
+	    \ mucomplete#ultisnips#expand_snippet("\<cr>")
+imap <cr> <plug>MyCR
 
 "Traverse the Pop Up Menu with      Shift+Tab,Tab,Up,Down,
 inoremap <expr> <CR>        pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -426,6 +437,12 @@ inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "Escapes the Pop Up Menu
 inoremap <expr> <Esc>       pumvisible() ? "\<C-e>" : "\<Esc>"
 
-imap <c-p> <plug>(MUcompleteFwd)
-call add(g:mucomplete#chains['default'], 'ulti')
+"imap <c-j> <plug>(MUcompleteFwd)
+"imap <c-k> <plug>(MUcompleteBwd)
+
+"imap <unique> <c-e> <plug>(MUcompletePopupCancel)
+"imap <unique> <c-y> <plug>(MUcompletePopupAccept)
+"imap <unique> <cr> <plug>(MUcompleteCR)
+
 let g:NERDTreeHijackNetrw = 1
+let g:LanguageClient_autoStart = 1

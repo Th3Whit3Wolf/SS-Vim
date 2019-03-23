@@ -2,8 +2,24 @@ set showbreak=↪
 set fillchars=vert:│,fold:─
 set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
+"call dein#add('itchyny/lightline.vim')
+"call dein#add('FriedPandaFries/Lightline-Extras')
+
+
 colorscheme space-vim-dark
 
+"github.com/ajmwagar/vimkampf
+
+function! LightlineBufferline()
+  call bufferline#refresh_status()
+  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+endfunction
+
+function! Timer()
+  " return strftime("%H:%S")
+  return strftime("%H:%M") . " (GMT)" "Timer in status line
+  " return !date
+endfunction
 
 function! LightlineMode()
   return expand('%:t') ==# '__Tagbar__' ? 'Tagbar':
@@ -20,7 +36,12 @@ function! LightlineFileformat()
 endfunction
 
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  if expand('%:t') != ''
+    return expand('%:t') . " "  " .  WebDevIconsGetFileTypeSymbol()
+  else
+    return ''
+  endif
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' " . WebDevIconsGetFileTypeSymbol()  ''
 endfunction
 
 function! LightlineFilename()
@@ -29,13 +50,108 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
+
+
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+augroup LightLineOnALE
+  autocmd!
+  autocmd User ALEFixPre   call MaybeUpdateLightline()
+  autocmd User ALEFixPost  call MaybeUpdateLightline()
+  autocmd User ALELintPre  call MaybeUpdateLightline()
+  autocmd User ALELintPost call MaybeUpdateLightline()
+augroup end
+
+" autocmd User ALELint call MaybeUpdateLightline()
+autocmd User LanguageClientDiagnosticsChanged call MaybeUpdateLightline()
+autocmd User LanguageClientStarted call LspStarted()
+autocmd User LanguageClientStopped call LspStopped()
+" autocmd User ALEJobStarted call MaybeUpdateLightline()
+" autocmd User ALELintPost call MaybeUpdateLightline()
+" autocmd User ALEFixPost call MaybeUpdateLightline()
+
+let s:indicator_warnings = 'W: '
+let s:indicator_errors = 'E: '
+let s:indicator_ok = 'OK'
+let s:indicator_checking = 'Linting...'
+let s:indicator_notstarted = 'Starting...'
+
+let g:language_client_started = 0
+
+function! LspStarted() abort
+  let g:language_client_started = 1
+  call lightline#update()
+endfunction
+
+function! LspStopped() abort
+  let g:language_client_started = 0
+  call lightline#update()
+endfunction
+
+function! LsNotStarted() abort
+  return (g:language_client_started == 0) ? s:indicator_notstarted : ''
+endfunction
+
+function! AleLinted() abort
+  return get(g:, 'ale_enabled', 0) == 1
+    \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
+    \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
+endfunction
+
+function LightlineLinterWarnings() abort
+  if !AleLinted()
+    return ''
+  endif
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
+endfunction
+
+function LightlineLinterErrors() abort
+if (LanguageClient_serverStatus() == 1)
+    if !AleLinted()
+      return ''
+    endif
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
+  endif
+  let l:error_no = len(getqflist())
+  return l:error_no == 0 ? '' : printf(s:indicator_errors . " %d", error_no)
+endfunction
+
+function LightlineLinterOK() abort
+  if (LanguageClient_serverStatus() == 1) || (g:language_client_started == 0)
+    if !lightline#ale#linted()
+      return ''
+    endif
+    let l:counts = ale#statusline#Count(bufnr(''))
+    return l:counts.total == 0 ? s:indicator_ok : ''
+  endif
+  let l:error_no = len(getqflist())
+  return l:error_no == 0 ? s:indicator_ok : ''
+endfunction
+
+function! LightlineLinterChecking() abort
+  return ale#engine#IsCheckingBuffer(bufnr('')) ? s:indicator_checking : ''
+endfunction
+
+
 let g:lightline =
   \{
   \ 'colorscheme': 'evil',
   \ 'active': {
   \   'left': [ ['mode', 'paste'],
   \             ['gitbranch', 'readonly', 'filename', 'modified'] ],
-  \   'right': [['lineinfo'], ['percent'], ['fileformat', 'filetype' , 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ] ]
+  \   'right': [ ['time', 'lineinfo', 'filetype', 'percent','fileformat'],
+  \             ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok'] ]
   \ },
   \ 'inactive': {
   \   'left': [ [ 'filename' ] ],
@@ -55,6 +171,7 @@ let g:lightline =
   \   'lineinfo': ' %3l:%-2v',
   \ },
   \ 'component_function': {
+  \   'time': 'Timer',
   \   'gitbranch': 'fugitive#head',
   \   'mode': 'LightlineMode',
   \   'filename': 'LightlineFilename',
@@ -71,12 +188,12 @@ let g:lightline =
   \   'tablinesep': 'tabsep'
   \ },
   \ 'component_expand': {
-  \  'linter_checking': 'lightline#lsc#checking',
-  \  'linter_warnings': 'lightline#lsc#warnings',
-  \  'linter_errors': 'lightline#lsc#errors',
-  \  'linter_ok': 'lightline#lsc#ok',
-  \   'bufferline': 'MyBufferline',
-  \   'tablinesep': 'MyTablineSep'
+  \  'linter_checking': 'LightlineLinterChecking',
+  \  'linter_warnings': 'LightlineLinterWarnings',
+  \  'linter_errors': 'LightlineLinterErrors',
+  \  'linter_ok': 'LightlineLinterOK',
+  \  'bufferline': 'MyBufferline',
+  \  'tablinesep': 'MyTablineSep'
   \ },
   \ 'component_visible_condition': {
   \   'readonly': '(&filetype!="help"&& &readonly)',
@@ -86,19 +203,20 @@ let g:lightline =
   \ 'separator': { 'left': '', 'right': '' },
   \ 'subseparator': { 'left': '', 'right': '' }
   \ }
-
-
-let g:lightline#lsc#indicator_checking = "\uf110"
-let g:lightline#lsc#indicator_notstarted = "\ufbab"
-let g:lightline#lsc#indicator_errors = "\uf05e"
-let g:lightline#lsc#indicator_ok = "✓"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: Tagbar icons {{{
+" Linter Specific Settings:
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let s:MyFavIcons = "⚡"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin: Tagbar icons
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_width = 28
 let g:tagbar_iconchars = ['↠', '↡']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: GitGutter icons {{{
+" Plugin: GitGutter icons
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_sign_added = '▎'
 let g:gitgutter_sign_modified = '▎'
@@ -106,76 +224,9 @@ let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▋'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: vim-gitgutter {{{
+" Plugin: vim-gitgutter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight! GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight! GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: vim-operator-flashy {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight! link Flashy DiffText
-
-" Plugin: vim-bookmarks {{{
-let g:bookmark_sign = '⚐'
-highlight! BookmarkSign            ctermfg=12 guifg=#4EA9D7
-highlight! BookmarkAnnotationSign  ctermfg=11 guifg=#EACF49
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: vim-choosewin {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:choosewin_label = 'SDFJKLZXCV'
-let g:choosewin_overlay_enable = 1
-let g:choosewin_statusline_replace = 1
-let g:choosewin_overlay_clear_multibyte = 0
-let g:choosewin_blink_on_land = 0
-
-let g:choosewin_color_label = {
-	\ 'cterm': [ 236, 2 ], 'gui': [ '#555555', '#000000' ] }
-let g:choosewin_color_label_current = {
-	\ 'cterm': [ 234, 220 ], 'gui': [ '#333333', '#000000' ] }
-let g:choosewin_color_other = {
-	\ 'cterm': [ 235, 235 ], 'gui': [ '#333333' ] }
-let g:choosewin_color_overlay = {
-	\ 'cterm': [ 2, 10 ], 'gui': [ '#88A2A4' ] }
-let g:choosewin_color_overlay_current = {
-	\ 'cterm': [ 72, 64 ], 'gui': [ '#7BB292' ] }
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin: Defx {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:defx_git#indicators = {
-	\ 'Modified'  : 'M',
-	\ 'Staged'    : 'm',
-	\ 'Untracked' : '?',
-	\ 'Renamed'   : '≫',
-	\ 'Unmerged'  : 'u',
-	\ 'Ignored'   : 'i',
-	\ 'Deleted'   : '✖',
-	\ 'Unknown'   : '⁇'
-	\ }
-
-let g:defx_icons_enable_syntax_highlight = 1
-let g:defx_icons_column_length = 2
-let g:defx_icons_directory_icon = ''
-let g:defx_icons_mark_icon = '*'
-let g:defx_icons_parent_icon = ''
-let g:defx_icons_default_icon = ''
-let g:defx_icons_directory_symlink_icon = ''
-
-hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-hi Defx_git_Renamed ctermfg=214 guifg=#fabd2f
-hi Defx_git_Modified ctermfg=214 guifg=#fabd2f
-hi Defx_git_Unmerged ctermfg=167 guifg=#fb4934
-hi Defx_git_Deleted ctermfg=167 guifg=#fb4934
-hi Defx_git_Staged ctermfg=142 guifg=#b8bb26
-
-hi Defx_git_Untracked ctermfg=12 guifg=#81a2be
-hi Defx_git_Ignored   ctermfg=8  guifg=#404660
-hi Defx_git_Unknown   ctermfg=3  guifg=#f0c674
-hi Defx_git_Renamed   ctermfg=3  guifg=#de935f
-hi Defx_git_Modified  ctermfg=9  guifg=#cc6666
-hi Defx_git_Unmerged  ctermfg=14 guifg=#8abeb7
-hi Defx_git_Deleted   ctermfg=13 guifg=#b294bb
-hi Defx_git_Staged    ctermfg=10 guifg=#b5bd68
