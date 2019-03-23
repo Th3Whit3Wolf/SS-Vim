@@ -1,3 +1,94 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" All_off Turns off Airline ALE & Languageclient extensions "
+" Lsp_on Establishes Language Client Neovim Settings        "
+" Ale_on Establishes ALE Settings                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! All_off()
+  let g:LanguageClient_autoStart = 0
+  let g:airline#extensions#languageclient#enabled = 0
+  let g:airline#extensions#ale#enabled = 0
+endfunction
+
+function! Lsp_on()
+  let g:LanguageClient_autoStart = 1
+  let g:airline#extensions#languageclient#enabled = 1
+  let Settings_path = $VIMPATH.'/json/ccls.json'
+  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+  let g:LanguageClient_settingsPath = fnameescape(Settings_path)
+  let g:airline#extensions#ale#enabled = 0
+  let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
+  let g:mucomplete#can_complete = { 'omni': s:cond }
+  let g:LanguageClient_rootMarkers = {
+    \ 'cpp':            ['main.cpp', 'build', 'compile_commands.json'],
+    \ 'cs':             ['.git', '*.csproj'],
+    \ 'go':             ['.git', 'go.mod'],
+    \ 'haskell':        ['*.cabal', 'stack.yaml'],
+    \ 'javascript':     ['project.json'],
+    \ 'rust':           ['Cargo.toml']
+    \ }
+
+  let g:LanguageClient_diagnosticsDisplay = {
+      \   1: {
+      \        "name": "Error",
+      \        "texthl": "ALEError",
+      \        "signText": "✖",
+      \        "signTexthl": "ALEErrorSign",
+      \        "virtualTexthl": "Error",
+      \    },
+      \        2: {
+      \       "name": "Warning",
+      \        "texthl": "ALEWarning",
+      \        "signText": "⚡",
+      \        "signTexthl": "ALEWarningSign",
+      \        "virtualTexthl": "Todo",
+      \    },
+      \    3: {
+      \        "name": "Information",
+      \        "texthl": "ALEInfo",
+      \        "signText": "ℹ",
+      \        "signTexthl": "ALEInfoSign",
+      \        "virtualTexthl": "Todo",
+      \    },
+      \    4: {
+      \        "name": "Hint",
+      \        "texthl": "ALEInfo",
+      \        "signText": "➤",
+      \        "signTexthl": "ALEInfoSign",
+      \        "virtualTexthl": "Todo",
+      \   },
+  \}
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction
+
+function! ALE_Style()
+  highlight ALEWarning ctermbg=DarkMagenta
+  highlight ALEErrorSign ctermbg=DarkMagenta
+  let g:ale_sign_error            = '>>'
+  let g:ale_sign_warning          = '--'
+  let g:ale_sign_error            = '✖'
+  let g:ale_sign_warning          = '⚡'
+  let g:ale_echo_msg_format       = 'ALE(%severity%): [%linter%] %s'
+  let g:ale_echo_msg_error_str    = 'E'
+  let g:ale_echo_msg_warning_str  = 'W'
+endfunction
+
+function! Ale_on()
+  let g:mucomplete#can_complete = {}
+  let g:LanguageClient_autoStart = 0
+  let g:airline#extensions#languageclient#enabled = 1
+  let g:airline#extensions#ale#enabled = 0
+  let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+  ALE_Style()
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lint checks if filetype has a Language Server (LS)      "
 " Then checks if one is installed                         "
@@ -1030,89 +1121,4 @@ function! Lint()
   else
     call All_off()
   endif
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" All_off Turns off Airline ALE & Languageclient extensions "
-" Lsp_on Establishes Language Client Neovim Settings        "
-" Ale_on Establishes ALE Settings                           "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! All_off()
-  let g:LanguageClient_autoStart = 0
-  let g:airline#extensions#languageclient#enabled = 0
-  let g:airline#extensions#ale#enabled = 0
-endfunction
-
-function! Lsp_on()
-  let g:LanguageClient_autoStart = 1
-  let g:airline#extensions#languageclient#enabled = 1
-  let Settings_path = $VIMPATH.'/json/ccls.json'
-  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-  let g:LanguageClient_settingsPath = fnameescape(Settings_path)
-  let g:airline#extensions#ale#enabled = 0
-  let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
-  let g:mucomplete#can_complete = { 'omni': s:cond }
-  let g:LanguageClient_rootMarkers = {
-    \ 'cpp':            ['main.cpp', 'build', 'compile_commands.json'],
-    \ 'cs':             ['.git', '*.csproj'],
-    \ 'go':             ['.git', 'go.mod'],
-    \ 'haskell':        ['*.cabal', 'stack.yaml'],
-    \ 'javascript':     ['project.json'],
-    \ 'rust':           ['Cargo.toml']
-    \ }
-
-  let g:LanguageClient_diagnosticsDisplay = {
-      \   1: {
-      \        "name": "Error",
-      \        "texthl": "ALEError",
-      \        "signText": "✖",
-      \        "signTexthl": "ALEErrorSign",
-      \        "virtualTexthl": "Error",
-      \    },
-      \        2: {
-      \       "name": "Warning",
-      \        "texthl": "ALEWarning",
-      \        "signText": "⚡",
-      \        "signTexthl": "ALEWarningSign",
-      \        "virtualTexthl": "Todo",
-      \    },
-      \    3: {
-      \        "name": "Information",
-      \        "texthl": "ALEInfo",
-      \        "signText": "ℹ",
-      \        "signTexthl": "ALEInfoSign",
-      \        "virtualTexthl": "Todo",
-      \    },
-      \    4: {
-      \        "name": "Hint",
-      \        "texthl": "ALEInfo",
-      \        "signText": "➤",
-      \        "signTexthl": "ALEInfoSign",
-      \        "virtualTexthl": "Todo",
-      \   },
-  \}
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-endfunction
-
-function! Ale_on()
-  let g:mucomplete#can_complete = {}
-  let g:LanguageClient_autoStart = 0
-  let g:airline#extensions#languageclient#enabled = 1
-  let g:airline#extensions#ale#enabled = 0
-  let g:ale_sign_error = '>>'
-  let g:ale_sign_warning = '--'
-  let g:ale_sign_error            = '✖'
-  let g:ale_sign_warning          = '⚡'
-  let g:ale_echo_msg_error_str    = 'E'
-  let g:ale_echo_msg_warning_str  = 'W'
-  let g:ale_echo_msg_format       = 'ALE(%severity%): [%linter%] %s'  let g:ale_linter_aliases        = {'jsx': ['css', 'javascript']}
-  let g:ale_linters               = {'jsx': ['stylelint', 'eslint']}
 endfunction
