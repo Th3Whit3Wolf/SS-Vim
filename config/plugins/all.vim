@@ -418,30 +418,8 @@ let g:mucomplete#can_complete = {}
 let g:mucomplete#completion_delay = 100
 let g:mucomplete#reopen_immediately = 0
 set shortmess+=c " Turn off completion messages
-
-setlocal omnifunc=LanguageClient#complete
-
-inoremap <silent> <expr> <plug>MyCR
-	    \ mucomplete#ultisnips#expand_snippet("\<cr>")
-imap <cr> <plug>MyCR
-
-"Traverse the Pop Up Menu with      Shift+Tab,Tab,Up,Down,
-inoremap <expr> <CR>        pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
-
-"Selects the Highlighted item
-inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-"Escapes the Pop Up Menu
-inoremap <expr> <Esc>       pumvisible() ? "\<C-e>" : "\<Esc>"
-
-"imap <c-j> <plug>(MUcompleteFwd)
-"imap <c-k> <plug>(MUcompleteBwd)
-
-"imap <unique> <c-e> <plug>(MUcompletePopupCancel)
-"imap <unique> <c-y> <plug>(MUcompletePopupAccept)
-"imap <unique> <cr> <plug>(MUcompleteCR)
+"setlocal omnifunc=LanguageClient#complete
 
 let g:NERDTreeHijackNetrw = 1
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {'~/.cargo/bin/rustup': ['rustup', 'run', 'beta', 'rls']}

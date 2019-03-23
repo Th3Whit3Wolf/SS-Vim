@@ -4,17 +4,9 @@ set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
 colorscheme space-vim-dark
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
-
-function! LightlineBufferline()
-  call bufferline#refresh_status()
-  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
-endfunction
-
-function! Timer()
-  " return strftime("%H:%S")
-  return strftime("%H:%M") . " (GMT)" "Timer in status line
-  " return !date
-endfunction
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/linters.vim')))
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/git.vim')))
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/misc.vim')))
 
 function! LightlineMode()
   return expand('%:t') ==# '__Tagbar__' ? 'Tagbar':
@@ -26,123 +18,34 @@ function! LightlineMode()
         \ lightline#mode()
 endfunction
 
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightlineFiletype()
-  if expand('%:t') != ''
-    return expand('%:t') . " "  " .  WebDevIconsGetFileTypeSymbol()
-  else
-    return ''
-  endif
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' " . WebDevIconsGetFileTypeSymbol()  ''
-endfunction
-
-function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
-
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
 function! MaybeUpdateLightline()
   if exists('#lightline')
+    call g:GitBranch(1)
     call lightline#update()
   end
 endfunction
-
-
-
-let s:indicator_warnings = 'W: '
-let s:indicator_errors = 'E: '
-let s:indicator_ok = 'OK'
-let s:indicator_checking = 'Linting...'
-let s:indicator_notstarted = 'Starting...'
-
-let g:language_client_started = 0
-
-function! LspStarted() abort
-  let g:language_client_started = 1
-  call lightline#update()
-endfunction
-
-function! LspStopped() abort
-  let g:language_client_started = 0
-  call lightline#update()
-endfunction
-
-function! LsNotStarted() abort
-  return (g:language_client_started == 0) ? s:indicator_notstarted : ''
-endfunction
-
-function! AleLinted() abort
-  return get(g:, 'ale_enabled', 0) == 1
-    \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
-    \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
-endfunction
-
-function LightlineLinterWarnings() abort
-if (LanguageClient_serverStatus() == 1)
-  if !AleLinted()
-    return ''
-  endif
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
-endfunction
-
-function LightlineLinterErrors() abort
-if (LanguageClient_serverStatus() == 1)
-    if !AleLinted()
-      return ''
-    endif
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
-  endif
-  let l:error_no = len(getqflist())
-  return l:error_no == 0 ? '' : printf(s:indicator_errors . " %d", error_no)
-endfunction
-
-function LightlineLinterOK() abort
-  if (LanguageClient_serverStatus() == 1) || (g:language_client_started == 0)
-    if !lightline#ale#linted()
-      return ''
-    endif
-    let l:counts = ale#statusline#Count(bufnr(''))
-    return l:counts.total == 0 ? s:indicator_ok : ''
-  endif
-  let l:error_no = len(getqflist())
-  return l:error_no == 0 ? s:indicator_ok : ''
-endfunction
-
-function! LightlineLinterChecking() abort
-  return ale#engine#IsCheckingBuffer(bufnr('')) ? s:indicator_checking : ''
-endfunction
-
 
 let g:lightline =
   \{
   \ 'colorscheme': 'evil',
   \ 'active': {
-  \   'left': [ ['mode', 'paste'],
-  \             ['gitbranch', 'readonly', 'filename', 'modified'] ],
-  \   'right': [ ['time', 'lineinfo', 'filetype', 'percent','fileformat'],
-  \             ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok'] ]
+  \   'left': [ ['bn', 'mode', 'paste'],
+  \             ['git', 'lcn', 'readonly', 'filename'] ],
+  \   'right': [ ['time', 'lineinfo', 'percent','fileformat'],
+  \             ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok']]
   \ },
   \ 'inactive': {
   \   'left': [ [ 'filename' ] ],
   \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
   \ },
   \ 'tabline': {
-  \   'left': [ [ 'tabs', 'tablinesep', 'bufferline'] ],
+  \   'left': [ [ 'bn', 'tabs', 'tablinesep', 'bufferline'] ],
   \   'right': [ [ 'folder' ] ]
   \ },
   \ 'tab': {
-  \   'active': [ 'tabnum' ],
-  \   'inactive': [ 'tabnum' ]
+  \   'active': [ '' ],
+  \   'inactive': [ '' ]
   \ },
   \ 'component': {
   \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
@@ -150,42 +53,40 @@ let g:lightline =
   \   'lineinfo': ' %3l:%-2v',
   \ },
   \ 'component_function': {
+  \   'bn': 'BufnrWinnr',
   \   'time': 'Timer',
-  \   'gitbranch': 'fugitive#head',
+  \   'git': 'GitBranch',
   \   'mode': 'LightlineMode',
-  \   'filename': 'LightlineFilename',
-  \   'fileformat': 'LightlineFileformat',
-  \   'filetype': 'LightlineFiletype',
+  \   'filename': 'Filename',
+  \   'fileformat': 'Fileformat',
+  \   'filetype': 'Filetype',
   \ },
   \ 'component_type': {
   \   'readonly': 'error',
   \   'linter_checking': 'left',
   \   'linter_warnings': 'warning',
   \   'linter_errors': 'error',
-  \   'linter_ok': 'left',
   \   'bufferline': 'bufsel',
   \   'tablinesep': 'tabsep'
   \ },
   \ 'component_expand': {
-  \  'linter_checking': 'LightlineLinterChecking',
-  \  'linter_warnings': 'LightlineLinterWarnings',
-  \  'linter_errors': 'LightlineLinterErrors',
-  \  'linter_ok': 'LightlineLinterOK',
+  \  'linter_checking': 'LinterChecking',
+  \  'linter_warnings': 'LinterWarnings',
+  \  'linter_errors': 'LinterErrors',
+  \  'linter_ok': 'LinterOK',
   \  'bufferline': 'MyBufferline',
   \  'tablinesep': 'MyTablineSep'
   \ },
   \ 'component_visible_condition': {
   \   'readonly': '(&filetype!="help"&& &readonly)',
   \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-  \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
   \ },
   \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' }
+  \ 'subseparator': { 'left': '>', 'right': '<' }
   \ }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let s:MyFavIcons = "⚡"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin: Tagbar icons
@@ -207,17 +108,21 @@ highlight! GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight! GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight! GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto Update Lightline when not in goyo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup LightLine_Linter
   autocmd!
+  autocmd BufEnter * call MaybeUpdateLightline()
   autocmd User LanguageClientDiagnosticsChanged call MaybeUpdateLightline()
   autocmd User LanguageClientStarted call LspStarted()
   autocmd User LanguageClientStopped call LspStopped()
-  if (g:language_client_started == 0)
-    autocmd User ALEFixPre   call MaybeUpdateLightline()
-    autocmd User ALEFixPost  call MaybeUpdateLightline()
-    autocmd User ALELintPre  call MaybeUpdateLightline()
-    autocmd User ALELintPost call MaybeUpdateLightline()
-  endif
+  autocmd User ALEFixPre   call MaybeUpdateLightline()
+  autocmd User ALEFixPost  call MaybeUpdateLightline()
+  autocmd User ALELintPre  call MaybeUpdateLightline()
+  autocmd User ALELintPost call MaybeUpdateLightline()
+  autocmd User GitGutter,Startified,LanguageClientStarted call MaybeUpdateLightline()
+  autocmd BufWinEnter,ShellCmdPost,BufWritePost * call MaybeUpdateLightline()
+  autocmd FileChangedShellPost,ColorScheme * call MaybeUpdateLightline()
+  autocmd FileReadPre,ShellCmdPost,FileWritePost * call MaybeUpdateLightline()
 augroup end

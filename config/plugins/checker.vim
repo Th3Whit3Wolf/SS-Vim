@@ -12,9 +12,6 @@ endfunction
 function! Lsp_on()
   let g:LanguageClient_autoStart = 1
   let g:airline#extensions#languageclient#enabled = 1
-  let Settings_path = $VIMPATH.'/json/ccls.json'
-  let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-  let g:LanguageClient_settingsPath = fnameescape(Settings_path)
   let g:airline#extensions#ale#enabled = 0
   let s:cond = { t -> (t =~# '\m\(\k\|)\|]\)\%\(->\|::\|\.\)$') || (g:mucomplete_with_key && t =~# '\m\k\k$') }
   let g:mucomplete#can_complete = { 'omni': s:cond }
@@ -102,6 +99,9 @@ let g:LanguageClient_serverCommands = {'cpp': ['ccls', '--log-file=/tmp/cc.log']
 if &filetype == 'c'
   if executable('ccls')
     let g:LanguageClient_serverCommands = {'c': ['ccls', '--log-file=/tmp/cc.log']}
+    let Settings_path = $VIMPATH.'/json/ccls.json'
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = fnameescape(Settings_path)
     call Lsp_on()
   elseif executable('cquery')
     let g:LanguageClient_serverCommands = {'c': ['cquery', '--log-file=/tmp/cq.log']}
@@ -117,10 +117,9 @@ elseif &filetype == 'cpp'
   if executable('ccls')
     let g:LanguageClient_serverCommands = {'cpp': ['ccls', '--log-file=/tmp/cc.log']}
     call Lsp_on()
-    nn <silent> xh :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
-    nn <silent> xj :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
-    nn <silent> xk :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
-    nn <silent> xl :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+    let Settings_path = $VIMPATH.'/json/ccls.json'
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = fnameescape(Settings_path)<cr>
   elseif executable('cquery')
     let g:LanguageClient_serverCommands = {'cpp': ['cquery', '--log-file=/tmp/cq.log']}
     call Lsp_on()
@@ -160,6 +159,9 @@ elseif &filetype == 'cuda'
   if executable('ccls')
     let g:LanguageClient_serverCommands = {'cuda': ['ccls', '--log-file=/tmp/cc.log']}
     call Lsp_on()
+    let Settings_path = $VIMPATH.'/json/ccls.json'
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = fnameescape(Settings_path)
   elseif executable('nvcc')
     let b:ale_linters = {'cuda': ['nvcc']}
     call Ale_on()
@@ -409,6 +411,9 @@ elseif &filetype == 'objc'
   if executable('ccls')
     let g:LanguageClient_serverCommands = {'objc': ['ccls', '--log-file=/tmp/cc.log']}
     call Lsp_on()
+    let Settings_path = $VIMPATH.'/json/ccls.json'
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = fnameescape(Settings_path)
   elseif executable('cquery')
     let g:LanguageClient_serverCommands = {'objc': ['cquery', '--log-file=/tmp/cq.log']}
     call Lsp_on()
@@ -513,8 +518,11 @@ elseif &filetype == 'ruby'
   endif
 elseif &filetype == 'rust'
   if executable('rls')
-    let g:LanguageClient_serverCommands = {'rust': ['rustup', 'run', 'stable', 'rls']}
+    let g:LanguageClient_serverCommands = {'~/.cargo/bin/rustup': ['rustup', 'run', 'beta', 'rls']}
     call Lsp_on()
+    let Settings_path = $VIMPATH.'/json/rust.json'
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = fnameescape(Settings_path)
   elseif executable('cargo') || executable('rustc') || executable('rustfmt')
     let b:ale_linters = {'rust': ['cargo', 'rustc', 'rustfmt']}
     call Ale_on()

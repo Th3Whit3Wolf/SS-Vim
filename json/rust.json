@@ -1,0 +1,5 @@
+{
+	"rust": {
+		"wait_to_build": 2000
+	}
+}

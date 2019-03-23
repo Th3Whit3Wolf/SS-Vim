@@ -8,10 +8,9 @@
 #- repo: vim-airline/vim-airline-themes
 #  depends: vim-airline/vim-airline
 
-- repo: liuchengxu/eleline.vim
+#- repo: liuchengxu/eleline.vim
 - repo: itchyny/lightline.vim
 - repo: FriedPandaFries/Lightline-Extras
-  depends: lightline.vim
 #- repo: palpatineli/lightline-lsc-nvim
 #  if: exists('g:lightline')
 #  depends: lightline.vim
@@ -690,10 +689,9 @@
       Gread,
       Gbrowse,
       Git,
-    ]
-  augroup: fugitive
-  on_source: gitv
-
+  ]
+  # augroup: fugitive
+  # on_source: gitv
 - { repo: Xuyuanp/nerdtree-git-plugin, on_source: nerdtree }
 - { repo: tiagofumo/vim-nerdtree-syntax-highlight, on_source: nerdtree }
 - { repo: mbbill/undotree, on_cmd: UndotreeToggle }
