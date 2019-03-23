@@ -24,8 +24,12 @@ function! Lint()
       endif
     elseif &filetype == 'cpp'
       if executable('ccls')
-        let g:LanguageClient_serverCommands = {'cpp': ['ccls']}
+        let g:LanguageClient_serverCommands = {'cpp': ['ccls', '--log-file=/tmp/cc.log']}
         call Lsp_on()
+        nn <silent> xh :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
+        nn <silent> xj :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
+        nn <silent> xk :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
+        nn <silent> xl :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
       elseif executable('cquery')
         let g:LanguageClient_serverCommands = {'cpp': ['cquery', '--log-file=/tmp/cq.log']}
         call Lsp_on()
