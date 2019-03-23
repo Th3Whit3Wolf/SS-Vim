@@ -406,11 +406,10 @@ set complete=.,w,b,u,k
 set completeopt=longest,menuone,noselect
 let g:mucomplete#enable_auto_at_startup = 1
 let g:mucomplete#chains = {
-  \ 'default' : ['c-n', 'tags', 'dict', 'ulti', 'file', 'defs', 'omni', 'keyn'],
+  \ 'default' : ['c-n', 'tags', 'dict', 'ulti', 'file', 'omni'],
   \ 'vim' : ['path', 'cmd', 'keyn'],
   \ 'markdown' : ['keyn', 'dict', 'uspl']
   \ }
-
 
 let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
 let g:UltiSnipsJumpForwardTrigger = "<c-b>" " Do not use <c-j>
@@ -420,7 +419,7 @@ let g:mucomplete#completion_delay = 100
 let g:mucomplete#reopen_immediately = 0
 set shortmess+=c " Turn off completion messages
 
-"setlocal omnifunc=LanguageClient#complete
+setlocal omnifunc=LanguageClient#complete
 
 inoremap <silent> <expr> <plug>MyCR
 	    \ mucomplete#ultisnips#expand_snippet("\<cr>")
