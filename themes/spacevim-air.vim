@@ -21,7 +21,6 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.maxlinenr = ''
 
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
-call Lint()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin: Tagbar icons {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""

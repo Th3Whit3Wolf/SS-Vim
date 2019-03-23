@@ -4,7 +4,6 @@ set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
 colorscheme space-vim-dark
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
-call Lint()
 
 function! LightlineBufferline()
   call bufferline#refresh_status()
@@ -84,6 +83,7 @@ function! AleLinted() abort
 endfunction
 
 function LightlineLinterWarnings() abort
+if (LanguageClient_serverStatus() == 1)
   if !AleLinted()
     return ''
   endif
