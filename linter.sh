@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STARTTIME=$(date +%s)
+STARTTIME=$(date +%s.%6N)
 
 linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
@@ -597,7 +597,7 @@ EOL
   echo "-----------------------------------------"
 fi
 
-ENDTIME=$(date +%s)
+ENDTIME=$(date +%s.%6N)
 echo "It takes $(($ENDTIME - $STARTTIME)) seconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
