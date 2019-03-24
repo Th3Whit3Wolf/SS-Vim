@@ -598,7 +598,8 @@ EOL
 fi
 
 ENDTIME=$(date +%s.%6N)
-echo "It takes $(($ENDTIME - $STARTTIME)) seconds to complete this task..."
+DIFF=$(echo "scale=3; ($ENDTIME - $STARTTIME)/$var*1000"| bc -l )
+echo "It takes $(($ENDTIME - $STARTTIME)) milliseconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
 # let Settings_path = $VIMPATH.'/json/rust.json'
