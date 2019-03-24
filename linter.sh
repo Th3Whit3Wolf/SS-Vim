@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+STARTTIME=$(date +%s)
+
 linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
 lacksString() {
@@ -410,7 +412,7 @@ if [ $? -eq 0 ]; then
 fi
 
 echo "-----------------------------------------"
-echo "              * Finished *               "
+echo "     * Found All Language Servers *      "
 echo "-----------------------------------------"
 
 cat > "$linter_list_loc" << EOL
@@ -589,9 +591,9 @@ EOL
 EOL
 fi
 
-echo "------------------"
-echo "    END      "
-echo "------------------"
+ENDTIME=$(date +%s)
+echo "Finished in $(($ENDTIME - $STARTTIME)) seconds..."
+
 #for i in "${Installed[@]}"
 #    do
 #        echo "${i}"
