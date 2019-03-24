@@ -421,5 +421,4 @@ set shortmess+=c " Turn off completion messages
 "setlocal omnifunc=LanguageClient#complete
 
 let g:NERDTreeHijackNetrw = 1
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {'~/.cargo/bin/rustup': ['rustup', 'run', 'beta', 'rls']}
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
