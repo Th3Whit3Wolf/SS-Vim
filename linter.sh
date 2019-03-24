@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-linter_list_loc="${HOME}.config/nvim/config/plugins/checker.vim"
+linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
 lacksString() {
   local e match="$1"
