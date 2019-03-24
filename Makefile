@@ -7,18 +7,18 @@ CHECKER=~/.config/nvim/config/plugins/checker.vim
 default: install
 
 install:
+	mkdir ~/.config/nvim/config/plugins
+	touch ~/.config/nvim/config/plugins/checker.vim
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
-	mkdir ~/.config/nvim/config/plugins \
-	touch ~/.config/nvim/config/plugins/checker.vim \
 	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
 		-c "try | call dein#update() | finally | call confirm('') | qall! | endtry"
 	./venv.sh
 	./linter.sh
 
 update:
-	@git pull --ff --ff-only;
-	-rm $(CHECKER)
-	touch ~/.config/nvim/config/plugins/checker.vim
+	rm -rf $(CHECKER)
+	touch $(CHECKER)
+	@git pull --ff --ff-only; \
 	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
 		-c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
 	./venv.sh
