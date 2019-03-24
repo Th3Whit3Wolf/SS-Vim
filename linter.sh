@@ -598,8 +598,8 @@ EOL
 fi
 
 END=$(date +%s.%6N)
-DIFF=$(echo "scale=3; ($END - $START)* 1000"| bc -l )
-X=$(printf "%.0f" $DIFF)
+DIFF=$(echo "scale=3; ($END - $START) * 1000"| bc -l )
+X=$(printf "%.3f" $DIFF)
 echo "It takes ${X%.*} miloseconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
