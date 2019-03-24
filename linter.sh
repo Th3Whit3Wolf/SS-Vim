@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-START=$(date +%s.%3N)
+START=$(date +%s.%6N)
 
 linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
@@ -597,9 +597,10 @@ EOL
   echo "-----------------------------------------"
 fi
 
-END=$(date +%s.%3N)
-DIFF=$(echo "scale=3; ($END - $START)*1000"| bc -l )
-echo "It takes $DIFF milliseconds to complete this task..."
+END=$(date +%s.%6N)
+DIFF=$(echo "scale=3; ($END - $START)* 1000"| bc -l )
+X=$(printf "%.0f" $DIFF)
+echo "It takes ${X%.*} miloseconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
 # let Settings_path = $VIMPATH.'/json/rust.json'
