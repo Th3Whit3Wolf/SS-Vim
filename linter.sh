@@ -24,147 +24,147 @@ getLCNSC() {
     case "${lsp}" in
         ccls)
             cat >> "$linter_list_loc" << EOL
-  \ c': ['${lsp}', '--log-file=/tmp/cc.log'],
-  \ cpp': ['${lsp}', '--log-file=/tmp/cc.log'],
-  \ cuda': ['${lsp}', '--log-file=/tmp/cc.log'],
-  \ objc': ['${lsp}', '--log-file=/tmp/cc.log'],
+  \ 'c': ['${lsp}', '--log-file=/tmp/cc.log'],
+  \ 'cpp': ['${lsp}', '--log-file=/tmp/cc.log'],
+  \ 'cuda': ['${lsp}', '--log-file=/tmp/cc.log'],
+  \ 'objc': ['${lsp}', '--log-file=/tmp/cc.log'],
 EOL
         ;;
         'ccls-clangd')
             cat >> "$linter_list_loc" << EOL
-  \ c': ['ccls}', '--log-file=/tmp/cc.log'],
-  \ cpp': ['ccls', '--log-file=/tmp/cc.log'],
-  \ cuda': ['ccls', '--log-file=/tmp/cc.log'],
-  \ objc': ['ccls', '--log-file=/tmp/cc.log'],
-  \ objcpp': ['clangd'],
+  \ 'c': ['ccls}', '--log-file=/tmp/cc.log'],
+  \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'objcpp': ['clangd'],
 EOL
         ;;
         'ccls-cquery')
             cat >> "$linter_list_loc" << EOL
-  \ c': ['ccls}', '--log-file=/tmp/cc.log'],
-  \ cpp': ['ccls', '--log-file=/tmp/cc.log'],
-  \ cuda': ['ccls', '--log-file=/tmp/cc.log'],
-  \ objc': ['ccls', '--log-file=/tmp/cc.log'],
-  \ objcpp': ['cquery}', '--log-file=/tmp/cq.log'],
+  \ 'c': ['ccls}', '--log-file=/tmp/cc.log'],
+  \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
+  \ 'objcpp': ['cquery}', '--log-file=/tmp/cq.log'],
 EOL
         ;;
         cquery)
             cat >> "$linter_list_loc" << EOL
-  \ c': ['${lsp}', '--log-file=/tmp/cq.log'],
-  \ cpp': ['${lsp}', '--log-file=/tmp/cq.log'],
-  \ objc': ['${lsp}', '--log-file=/tmp/cq.log'],
-  \ objcpp': ['${lsp}', '--log-file=/tmp/cq.log'],
+  \ 'c': ['${lsp}', '--log-file=/tmp/cq.log'],
+  \ 'cpp': ['${lsp}', '--log-file=/tmp/cq.log'],
+  \ 'objc': ['${lsp}', '--log-file=/tmp/cq.log'],
+  \ 'objcpp': ['${lsp}', '--log-file=/tmp/cq.log'],
 EOL
         ;;
         clangd)
             cat >> "$linter_list_loc" << EOL
-  \ cpp': ['${lsp}'],
-  \ objcpp': ['${lsp}', '--log-file=/tmp/cq.log'],
+  \ 'cpp': ['${lsp}'],
+  \ 'objcpp': ['${lsp}', '--log-file=/tmp/cq.log'],
 EOL
         ;;
         'OmniSharp.exe')
             cat >> "$linter_list_loc" << EOL
-  \ cs': ['mono', '/opt/omnisharp-roslyn/OmniSharp.exe', '--languageserver'],
+  \ 'cs': ['mono', '/opt/omnisharp-roslyn/OmniSharp.exe', '--languageserver'],
 EOL
         ;;
         'css-languageserver')
             cat >> "$linter_list_loc" << EOL
-  \ css': ['${lsp}', '--stdio'],
-  \ less': ['${lsp}', '--stdio'],
-  \ sass': ['${lsp}', '--stdio'],
-  \ scss': ['${lsp}', '--stdio'],
+  \ 'css': ['${lsp}', '--stdio'],
+  \ 'less': ['${lsp}', '--stdio'],
+  \ 'sass': ['${lsp}', '--stdio'],
+  \ 'scss': ['${lsp}', '--stdio'],
 EOL
         ;;
         'clojure-lsp')
             cat >> "$linter_list_loc" << EOL
-  \ clojure': ['${lsp}'],
+  \ 'clojure': ['${lsp}'],
 EOL
         ;;
         'serve-d')
             cat >> "$linter_list_loc" << EOL
-  \ d': ['${lsp}', '--stdio'],
+  \ 'd': ['${lsp}', '--stdio'],
 EOL
         ;;
         dls)
             cat >> "$linter_list_loc" << EOL
-  \ d': ['${lsp}', '--stdio'],
+  \ 'd': ['${lsp}', '--stdio'],
 EOL
         ;;
         '~/.pub-cache/bin/dart_language_server')
             cat >> "$linter_list_loc" << EOL
-  \ dart': ['${lsp}'],
+  \ 'dart': ['${lsp}'],
 EOL
         ;;
         'docker-langserver')
             cat >> "$linter_list_loc" << EOL
-  \ docker': ['${lsp}', '--stdio'],
+  \ 'docker': ['${lsp}', '--stdio'],
 EOL
         ;;
         'elixir-ls')
             cat >> "$linter_list_loc" << EOL
-  \ elixir': ['mix.exs'],
+  \ 'elixir': ['mix.exs'],
 EOL
         ;;
         sourcer)
             cat >> "$linter_list_loc" << EOL
-  \ erlang': ['erlang_ls', '--symbol_skip_mem', '--incrmental_sync', '--autocomplete_no_prefix'],
+  \ 'erlang': ['erlang_ls', '--symbol_skip_mem', '--incrmental_sync', '--autocomplete_no_prefix'],
 EOL
         ;;
         fortls)
             cat >> "$linter_list_loc" << EOL
-  \ fortran': ['${lsp}', '--symbol_skip_mem', '--incrmental_sync', '--autocomplete_no_prefix'],
+  \ 'fortran': ['${lsp}', '--symbol_skip_mem', '--incrmental_sync', '--autocomplete_no_prefix'],
 EOL
         ;;
         glslls)
             cat >> "$linter_list_loc" << EOL
-  \ glsl': ['${lsp}', '--stdin'],
+  \ 'glsl': ['${lsp}', '--stdin'],
 EOL
         ;;
         bingo)
             cat >> "$linter_list_loc" << EOL
-  \ go': ['${lsp}'],
+  \ 'go': ['${lsp}'],
 EOL
         ;;
         'go-langserver')
             cat >> "$linter_list_loc" << EOL
-  \ go': ['${lsp}'],
+  \ 'go': ['${lsp}'],
 EOL
         ;;
         hie)
             cat >> "$linter_list_loc" << EOL
-  \ haskell': ['${lsp}', '--lsp'],
+  \ 'haskell': ['${lsp}', '--lsp'],
 EOL
         ;;
         'html-languageserver')
             cat >> "$linter_list_loc" << EOL
-  \ html': ['${lsp}'],
+  \ 'html': ['${lsp}'],
 EOL
         ;;
         vsce)
             cat >> "$linter_list_loc" << EOL
-  \ java': ['${lsp}'],
+  \ 'java': ['${lsp}'],
 EOL
         ;;
         'java-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ java': ['${lsp}', '--quiet'],
+  \ 'java': ['${lsp}', '--quiet'],
 EOL
         ;;
         'typescript-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ javascript': ['javascript-typescript-stdio'],
-  \ typescript': ['${lsp}', 'start'],
-  \ typescript.jsx': ['${lsp}', 'start'],
+  \ 'javascript': ['javascript-typescript-stdio'],
+  \ 'typescript': ['${lsp}', 'start'],
+  \ 'typescript.jsx': ['${lsp}', 'start'],
 EOL
         ;;
         'flow-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ javascript': ['${lsp}'],
+  \ 'javascript': ['${lsp}'],
 EOL
         ;;
         'json-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ json': ['${lsp}', '--stdio'],
+  \ 'json': ['${lsp}', '--stdio'],
 EOL
         ;;
         julia)
@@ -185,93 +185,93 @@ EOL
         ;;
         'kotlin-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ kotlin': ['${lsp}', '--quiet'],
+  \ 'kotlin': ['${lsp}', '--quiet'],
 EOL
         ;;
         'lua-lsp')
             cat >> "$linter_list_loc" << EOL
-  \ lua': ['${lsp}'],
+  \ 'lua': ['${lsp}'],
 EOL
         ;;
         'ocaml-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ ocaml': ['${lsp}', '--stdio'],
-  \ reason': ['${lsp}', '--stdio'],
+  \ 'ocaml': ['${lsp}', '--stdio'],
+  \ 'reason': ['${lsp}', '--stdio'],
 EOL
         ;;
         'php-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ php': ['${lsp}'],
+  \ 'php': ['${lsp}'],
 EOL
         ;;
         'puppet-languageserver')
             cat >> "$linter_list_loc" << EOL
-  \ puppet': ['${lsp}', '--stdio'],
+  \ 'puppet': ['${lsp}', '--stdio'],
 EOL
         ;;
         'purescript-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ purescript': ['${lsp}', '--stdio'],
+  \ 'purescript': ['${lsp}', '--stdio'],
 EOL
         ;;
         pyls)
             cat >> "$linter_list_loc" << EOL
-  \ python': ['${lsp}'],
+  \ 'python': ['${lsp}'],
 EOL
         ;;
         orbaclerun)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', 'file-server'],
+  \ 'ruby': ['${lsp}', 'file-server'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', 'stdio'],
+  \ 'ruby': ['${lsp}', 'stdio'],
 EOL
         ;;
         rls)
             cat >> "$linter_list_loc" << EOL
-  \ rust': ['~/.cargo/bin/rustup', 'run', 'beta', '${lsp}'],
+  \ 'rust': ['~/.cargo/bin/rustup', 'run', 'beta', '${lsp}'],
 EOL
         ;;
         'bash-language-server')
             cat >> "$linter_list_loc" << EOL
-  \ sh': ['${lsp}', 'start'],
+  \ 'sh': ['${lsp}', 'start'],
 EOL
         ;;
         vls)
             cat >> "$linter_list_loc" << EOL
-  \ vue': ['${lsp}'],
+  \ 'vue': ['${lsp}'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         solargraph)
             cat >> "$linter_list_loc" << EOL
-  \ ruby': ['${lsp}', '--stdio'],
+  \ 'ruby': ['${lsp}', '--stdio'],
 EOL
         ;;
         *)
@@ -514,7 +514,7 @@ let g:ale_linters = {
   \ 'vhdl': ['ghdl', 'vcom', 'xvhdl'],
   \ 'vim': ['vint'],
   \ 'vue': ['prettier'],
-  \ 'xhtml': ['alex', 'proselint', 'write-good']
+  \ 'xhtml': ['alex', 'proselint', 'write-good'],
   \ 'xml': ['xmllint'],
   \ 'yaml': ['prettier', 'swaglint', 'yamllint'],
   \ }
