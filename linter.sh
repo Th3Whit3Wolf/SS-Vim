@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-START=$(date +%s.%6N)
+START=$(date +%s.%3N)
 
 linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
@@ -597,7 +597,7 @@ EOL
   echo "-----------------------------------------"
 fi
 
-END=$(date +%s.%6N)
+END=$(date +%s.%3N)
 DIFF=$(echo "scale=3; ($END - $START)*1000"| bc -l )
 echo "It takes $DIFF milliseconds to complete this task..."
 

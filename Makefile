@@ -16,8 +16,6 @@ install:
 	./linter.sh
 
 update:
-	rm -rf $(CHECKER)
-	touch $(CHECKER)
 	@git pull --ff --ff-only; \
 	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
 		-c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
