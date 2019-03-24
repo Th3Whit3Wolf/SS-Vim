@@ -315,32 +315,33 @@ LSP[34]='vsce'
 
 Installed=()
 
-  #\ 'scala': ['node', expand('/usr/local/bin/sbt-server-stdio.js')]
-   # \ }
+echo "-----------------------------------------"
+echo "    * Looking For Language Servers *     "
+echo "-----------------------------------------"
 
 for lsp in "${LSP[@]}"
 do
     hash $lsp 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo $lsp "is installed"
+        echo "Found" $lsp
         Installed+=("${lsp}")
     fi
 done
 
-echo "-----------------------------------"
-echo "Looking for backup Language Servers"
-echo "-----------------------------------"
+echo "-----------------------------------------"
+echo " * Looking for Backup Language Servers * "
+echo "-----------------------------------------"
 
 lacksString "ccls" "${Installed[@]}"
 if [ $? -eq 0 ]; then
     hash "cquery" 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo  "cquery"
+        echo  "Found cquery"
         Installed+=("cquery")
     else
         hash "clangd" 2>/dev/null
         if [ $? -eq 0 ]; then
-            echo  "clangd"
+            echo  "clangd is installed"
             Installed+=("clangd")
         fi
     fi
@@ -350,7 +351,7 @@ lacksString "serve-d" "${Installed[@]}"
 if [ $? -eq 0 ]; then
     hash "dls" 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo  "dls"
+        echo  "Found dls"
         Installed+=("dls")
     fi
 fi
@@ -359,7 +360,7 @@ lacksString "typescript-language-server" "${Installed[@]}"
 if [ $? -eq 0 ]; then
     hash "flow-language-server" 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo  "flow-language-server"
+        echo  "Found flow language server"
         Installed+=("flow-language-server")
     fi
 fi
@@ -368,7 +369,7 @@ lacksString "bingo" "${Installed[@]}"
 if [ $? -eq 0 ]; then
     hash "go-langserver" 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo  "go-langserver"
+        echo  "Found go language server"
         Installed+=("go-langserver")
     fi
 fi
@@ -377,7 +378,7 @@ lacksString "vsce" "${Installed[@]}"
 if [ $? -eq 0 ]; then
     hash "java-language-server" 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo  "java-language-server"
+        echo  "Found java language server"
         Installed+=("java-language-server")
     fi
 fi
@@ -389,6 +390,7 @@ if [ $? -eq 0 ]; then
         for i in "${!Installed[@]}"; do
             if [[ ${Installed[$i]} == "ccls" ]]; then
                 Installed[$i]="ccls-clangd"
+                echo "Found clangd"
             fi
         done
     fi
@@ -401,14 +403,15 @@ if [ $? -eq 0 ]; then
         for i in "${!Installed[@]}"; do
             if [[ ${Installed[$i]} == "ccls" ]]; then
                 Installed[$i]="ccls-cquery"
+                echo "Found cquery"
             fi
         done
     fi
 fi
 
-echo "-----------------------------------"
-echo "             Finished              "
-echo "-----------------------------------"
+echo "-----------------------------------------"
+echo "              * Finished *               "
+echo "-----------------------------------------"
 
 cat > "$linter_list_loc" << EOL
 let g:ale_linters = {
