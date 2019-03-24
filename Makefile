@@ -16,7 +16,7 @@ install:
 
 update:
 	@git pull --ff --ff-only; \
-	rm -f ~/.config/nvim/config/plugins/checker.vim \
+	rm ~/.config/nvim/config/plugins/checker.vim \
 	touch ~/.config/nvim/config/plugins/checker.vim \
 	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
 		-c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
