@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STARTTIME=$(date +%s.%6N)
+START=$(date +%s.%6N)
 
 linter_list_loc="${HOME}/.config/nvim/config/plugins/checker.vim"
 
@@ -597,8 +597,8 @@ EOL
   echo "-----------------------------------------"
 fi
 
-ENDTIME=$(date +%s.%6N)
-DIFF=$(echo "scale=3; ($ENDTIME - $STARTTIME)/$var*1000"| bc -l )
+END=$(date +%s.%6N)
+DIFF=$(echo "scale=3; ($END - $START)*1000"| bc -l )
 echo "It takes $DIFF milliseconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
