@@ -541,12 +541,12 @@ else
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_rootMarkers = {
-  \ cpp':            ['main.cpp', 'build', 'compile_commands.json'],
-  \ cs':             ['.git', '*.csproj'],
-  \ go':             ['.git', 'go.mod'],
-  \ haskell':        ['*.cabal', 'stack.yaml'],
-  \ javascript':     ['project.json'],
-  \ rust':           ['Cargo.toml']
+  \ 'cpp':            ['main.cpp', 'build', 'compile_commands.json'],
+  \ 'cs':             ['.git', '*.csproj'],
+  \ 'go':             ['.git', 'go.mod'],
+  \ 'haskell':        ['*.cabal', 'stack.yaml'],
+  \ 'javascript':     ['project.json'],
+  \ 'rust':           ['Cargo.toml']
   \ }
 
 let g:LanguageClient_diagnosticsDisplay = {
