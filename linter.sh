@@ -594,10 +594,6 @@ fi
 ENDTIME=$(date +%s)
 echo "Finished in $(($ENDTIME - $STARTTIME)) seconds..."
 
-#for i in "${Installed[@]}"
-#    do
-#        echo "${i}"
-#    done
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
 # let Settings_path = $VIMPATH.'/json/rust.json'
