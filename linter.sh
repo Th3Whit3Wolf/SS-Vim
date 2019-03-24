@@ -539,7 +539,6 @@ else
     echo "This file only contains info about ALE and LanguageClient Neovim."
     echo "Please create an issue if there's something you'd like to see in there that isn't currently."
     echo "https://github.com/TheWhiteWolf1337/SS-Vim/issues/new"
-    echo $linter_list_loc
     cat >> "$linter_list_loc" << EOL
 
 
