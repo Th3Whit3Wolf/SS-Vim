@@ -589,11 +589,13 @@ EOL
     cat >> "$linter_list_loc" << EOL
   \ }
 EOL
+  echo "-----------------------------------------"
+  echo "   * Adding Language Servers to Vim *    "
+  echo "-----------------------------------------"
 fi
 
 ENDTIME=$(date +%s)
-echo "Finished in $(($ENDTIME - $STARTTIME)) seconds..."
-
+echo "It takes $(($ENDTIME - $STARTTIME)) seconds to complete this task..."
 
 # let Settings_path = $VIMPATH.'/json/ccls.json'
 # let Settings_path = $VIMPATH.'/json/rust.json'
