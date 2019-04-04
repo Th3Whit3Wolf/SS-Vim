@@ -7,7 +7,6 @@ CHECKER=~/.config/nvim/config/plugins/checker.vim
 default: install
 
 install:
-	mkdir ~/.config/nvim/config/plugins
 	touch ~/.config/nvim/config/plugins/checker.vim
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
 	$(vim) --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE \
