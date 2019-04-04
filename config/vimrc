@@ -65,7 +65,7 @@ function! s:dein_load_yaml(filename) abort
 	python3 << endpython
 import vim, yaml
 with open(vim.eval('a:filename'), 'r') as f:
-	vim.vars['denite_plugins'] = yaml.load(f.read())
+	vim.vars['denite_plugins'] = yaml.load(f.read(), Loader=yaml.FullLoader)
 endpython
 	endif
 
