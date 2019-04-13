@@ -422,3 +422,7 @@ set shortmess+=c " Turn off completion messages
 
 let g:NERDTreeHijackNetrw = 1
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
+
+if executable('surfer')
+  let g:markdown_composer_browser = 'surfer'
+endif
