@@ -41,7 +41,7 @@ we'll also symlink it for Vim:
 
 ```sh
 mkdir ~/.config
-git clone git://github.com/TheWhiteWolf1337/SS-Vim.git ~/.config/nvim
+git clone git://github.com/Th3Whit3Wolf/SS-Vim.git ~/.config/nvim
 ln -s ~/.config/nvim ~/.vim
 ```
 
