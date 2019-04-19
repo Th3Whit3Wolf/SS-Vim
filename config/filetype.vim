@@ -61,16 +61,16 @@ augroup MyAutoCmd
 
 	autocmd FileType json setlocal equalprg=python\ -c\ json.tool
 
-	autocmd FileType markdown
-		\ set expandtab
-		\ | setlocal spell autoindent formatoptions=tcroqn2 comments=n:>
+	"autocmd FileType markdown
+	"	\ set expandtab
+	"	\ | setlocal spell autoindent formatoptions=tcroqn2 comments=n:>
 
 	autocmd FileType apache setlocal path+=./;/
 
 	autocmd FileType cam setlocal nonumber synmaxcol=10000
 
-	" autocmd FileType go highlight default link goErr WarningMsg |
-	" 	\ match goErr /\<err\>/
+	autocmd FileType go highlight default link goErr WarningMsg |
+		\ match goErr /\<err\>/
 
 	autocmd FileType xml
 		\ setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null

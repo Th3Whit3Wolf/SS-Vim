@@ -32,7 +32,5 @@ function! s:goyo_leave()
 endfunction
 
 " Goyo Commands
-autocmd! User GoyoEnter
-autocmd! User GoyoLeave
-autocmd  User GoyoEnter nested call <SID>goyo_enter()
-autocmd  User GoyoLeave nested call <SID>goyo_leave()
+autocmd  User GoyoEnter call <SID>goyo_enter()
+autocmd  User GoyoLeave call <SID>goyo_leave()

@@ -423,6 +423,36 @@ set shortmess+=c " Turn off completion messages
 let g:NERDTreeHijackNetrw = 1
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
 
+" specify browser to open preview page
+" default: ''
 if executable('surfer')
-  let g:markdown_composer_browser = 'surfer'
+  let g:mkdp_browser = 'surfer'
 endif
+
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1
+    \ }
+
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" use a custom markdown style must be absolute path
+let g:mkdp_markdown_css = $TMPPATH.'/misc/markdown.css'
+
+" use a custom highlight style must absolute path
+let g:mkdp_highlight_css = $TMPPATH.'/misc/highlight.css'
+
+
+let g:mkdp_page_title = '「${name}」'

@@ -602,7 +602,7 @@ DIFF=$(echo "scale=3; ($END - $START) * 1000"| bc -l )
 X=$(printf "%.3f" $DIFF)
 echo "It takes ${X%.*} miloseconds to complete this task..."
 
-# let Settings_path = $VIMPATH.'/json/ccls.json'
-# let Settings_path = $VIMPATH.'/json/rust.json'
+# let Settings_path = $VIMPATH.'/misc/ccls.json'
+# let Settings_path = $VIMPATH.'/misc/rust.json'
 # let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 # let g:LanguageClient_settingsPath = fnameescape(Settings_path)

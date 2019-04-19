@@ -348,3 +348,4 @@ nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
 nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
 nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+autocmd BufNewFile,BufRead *.md					set noro

@@ -71,7 +71,6 @@
       less,
       lua,
       make,
-      markdown,
       matlab,
       nim,
       nix,
@@ -175,7 +174,6 @@
       less,
       lua,
       make,
-      markdown,
       matlab,
       nim,
       nix,
@@ -284,6 +282,7 @@
       typescript,
       vue,
     ]
+
 - repo: w0rp/ale
   on_ft:
     [
@@ -333,7 +332,6 @@
       less,
       lua,
       make,
-      markdown,
       matlab,
       nim,
       nix,
@@ -420,10 +418,12 @@
 - { repo: neoclide/vim-jsx-improve, on_ft: javascript }
 - { repo: xuhdev/vim-latex-live-preview, on_ft: latex }
 - { repo: skywind3000/asyncrun.vim, on ft: [c, cpp, java, sh, python] }
+
 - repo: MaxMEllon/vim-jsx-pretty
   on_ft: [javascript, jsx, javascript.jsx]
   depends: vim-javascript
   hook_source: let g:vim_jsx_pretty_colorful_config = 1
+
 - { repo: posva/vim-vue, on_ft: vue }
 
 - repo: othree/html5.vim
@@ -457,18 +457,9 @@
       \ 'py=python'
       \ ]
 
-- repo: euclio/vim-markdown-composer
-  if: executable('cargo')
-  build: cargo build --release
-  on_ft: markdown
-
-- repo: rhysd/vim-gfm-syntax
-  depends: vim-markdown
-  on_ft: markdown
-  hook_source: |
-    let g:gfm_syntax_enable_always = 0
-    let g:gfm_syntax_highlight_emoji = 0
-    let g:gfm_syntax_enable_filetypes = ['markdown']
+- repo: iamcco/markdown-preview.nvim
+  build: cd app & yarn install
+  on_ft: [markdown, pandoc.markdown, rmd]
 
 - repo: pangloss/vim-javascript
   on_ft: [javascript, jsx, javascript.jsx]
