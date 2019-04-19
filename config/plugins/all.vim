@@ -408,7 +408,6 @@ let g:mucomplete#enable_auto_at_startup = 1
 let g:mucomplete#chains = {
   \ 'default' : ['c-n', 'tags', 'dict', 'ulti', 'file', 'omni'],
   \ 'vim' : ['path', 'cmd', 'keyn'],
-  \ 'markdown' : ['keyn', 'dict', 'uspl']
   \ }
 
 let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
