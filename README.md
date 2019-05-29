@@ -28,6 +28,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Python 3
 - Python 2
 - Neovim (Recommended)
+- [Just](https://github.com/casey/just)
 - virtualenv for both python3 and python2:
   ```
   pip2 install virtualenv
@@ -160,7 +161,7 @@ sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
 
 ## Upgrade
 
-Run `make update`
+Run `just update`
 
 ## Structure
 
