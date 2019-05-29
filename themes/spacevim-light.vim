@@ -31,7 +31,7 @@ let g:lightline =
   \ 'colorscheme': 'evil',
   \ 'active': {
   \   'left': [ ['bn', 'mode', 'paste'],
-  \             ['git', 'lcn', 'readonly', 'filename'] ],
+  \             ['git', 'readonly', 'filename'] ],
   \   'right': [ ['time', 'lineinfo', 'percent','fileformat'],
   \             ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok']]
   \ },
