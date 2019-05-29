@@ -27,7 +27,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 - Python 3
 - Python 2
-- Neovim (Optional)
+- Neovim (Recommended)
 - virtualenv for both python3 and python2:
   ```
   pip2 install virtualenv
@@ -57,9 +57,8 @@ cd ~/.config/nvim
 ./venv.sh
 ```
 
-**_3._** Run `make test` to test your nvim/vim version and compatibility.
+**_3._** Run `just` to install all plugins.
 
-**_4._** Run `make` to install all plugins.
 
 Enjoy!
 
