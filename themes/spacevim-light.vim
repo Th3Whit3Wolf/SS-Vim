@@ -3,8 +3,8 @@ set fillchars=vert:│,fold:─
 set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 
 colorscheme space-vim-dark
-" execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
-" execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/linters.vim')))
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
+execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/linters.vim')))
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/git.vim')))
 execute 'source' fnameescape(resolve(expand($VIMPATH.'/themes/statusline/misc.vim')))
 
