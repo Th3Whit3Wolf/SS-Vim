@@ -84,14 +84,14 @@ body {
 .markdown-body h3 {
     font-size: 1.5em;
     line-height: 1.43;
-    color: #b1951d;
+    color: #4f97d7;
 }
 .markdown-body h4 {
     color: #a3a3a3;
     font-size: 1.25em;
 }
 .markdown-body h5 {
-    color: #a3a3a3;
+    color: #b1951d;
     font-size: 1em;
 }
 .markdown-body h6 {

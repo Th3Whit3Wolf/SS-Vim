@@ -39,5 +39,6 @@ augroup filetypedetect
 	autocmd BufNewFile,BufRead *.go 			    setfiletype go
 	autocmd BufNewFile,BufRead *.ion       		    setfiletype ion
 	autocmd BufNewFile,BufRead *.py            		setfiletype python call <SID>python_version()
+	autocmd BufNewFile,BufRead Justfile,justfile 	setfiletype make
 
 augroup END
