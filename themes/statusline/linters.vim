@@ -3,8 +3,8 @@ let s:indicator_errors = 'E: '
 let s:indicator_ok = 'OK'
 let s:indicator_checking = 'Linting...'
 let s:indicator_notstarted = 'Starting...'
-let current_buf_number = bufnr('%')
-let qflist = getqflist()
+let s:current_buf_number = bufnr('%')
+let s:qflist = getqflist()
 
 let g:language_client_started = 0
 
@@ -34,9 +34,9 @@ if (LanguageClient_serverStatus() == 1)
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
 endif
-  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'W'})
-  let count = len(current_buf_diagnostics)
-  return count > 0 && g:LanguageClient_loaded ? printf(s:indicator_warnings . " %d", count)
+  let l:current_buf_diagnostics = filter(s:qflist, {index, dict -> dict['bufnr'] == s:current_buf_number && dict['type'] == 'W'})
+  let l:count = len(l:current_buf_diagnostics)
+  return l:count > 0 && g:LanguageClient_loaded ? '' :  printf(s:indicator_warnings . " %d", l:count)
 endfunction
 
 function! LinterErrors() abort
@@ -48,9 +48,9 @@ if (LanguageClient_serverStatus() == 1)
   let l:all_errors = l:counts.error + l:counts.style_error
   return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
 endif
-  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'E'})
-  let count = len(current_buf_diagnostics)
-  return count > 0 && g:LanguageClient_loaded ? printf(s:indicator_errors . " %d", count)
+  let l:current_buf_diagnostics = filter(s:qflist, {index, dict -> dict['bufnr'] == s:current_buf_number && dict['type'] == 'E'})
+  let l:count = len(l:current_buf_diagnostics)
+  return l:count > 0 && g:LanguageClient_loaded ? '' :  printf(s:indicator_errors . " %d", l:count)
 endfunction
 
 function! LinterOK() abort

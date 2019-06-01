@@ -16,7 +16,11 @@ uninstall:
 
 
 _initital:
-	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/{backup,session,swap,tags,undo}; {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#update() | finally | call confirm('') | qall! | endtry"
+	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/backup
+	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/session
+	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/swap
+	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/tags
+	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/undo; {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#update() | finally | call confirm('') | qall! | endtry"
 
 _git:
     @git pull --ff --ff-only; {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
