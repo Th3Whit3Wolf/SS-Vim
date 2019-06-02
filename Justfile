@@ -54,7 +54,11 @@ _venv:
     echo ':: PYTHON 2'
     "$venv/neovim2/bin/pip" install -U pynvim PyYAML
     echo -e '\n:: PYTHON 3'
-    "$venv/neovim3/bin/pip" install -U pynvim PyYAML Send2Trash
+    if [ -x "venv/neovim3/bin/pip3" ]; then
+        "$venv/neovim3/bin/pip3" install -U pynvim PyYAML Send2Trash
+    else 
+        "$venv/neovim3/bin/pip3" install -U pynvim PyYAML Send2Trash
+    fi
 
 # Check for Language Servers and Configure (neo)vim for them
 _linter:
