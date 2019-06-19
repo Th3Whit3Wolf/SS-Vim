@@ -28,7 +28,7 @@ endfunction
 
 let g:lightline =
   \{
-  \ 'colorscheme': 'evil',
+  \ 'colorscheme': 'spacemacs',
   \ 'active': {
   \   'left': [ ['bn', 'mode', 'paste'],
   \             ['git', 'readonly', 'filename'] ],

@@ -10,7 +10,8 @@
 
 #- repo: liuchengxu/eleline.vim
 - repo: itchyny/lightline.vim
-- repo: Th3Whit3Wolf/SS-Vim
+- repo: Th3Whit3Wolf/Vim-Space-Lightline
+
 
 #- repo: palpatineli/lightline-lsc-nvim
 #  if: exists('g:lightline')
