@@ -648,7 +648,7 @@
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Commands
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-- repo: FriedPandaFries/nerdtree
+- repo:  scrooloose/nerdtree
   on_map: { n: <Plug> }
   trusted: 1
   on_cmd:
