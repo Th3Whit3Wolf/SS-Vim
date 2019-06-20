@@ -459,8 +459,12 @@
       \ 'py=python'
       \ ]
 
-- repo: iamcco/markdown-preview.nvim
-  build: cd app & yarn install
+#- repo: iamcco/markdown-preview.nvim
+#  build: cd app & yarn install
+#  on_ft: [markdown, pandoc.markdown, rmd]
+
+- repo: euclio/vim-markdown-composer
+  build: cargo build --release
   on_ft: [markdown, pandoc.markdown, rmd]
 
 - repo: pangloss/vim-javascript

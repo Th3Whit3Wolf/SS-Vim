@@ -424,6 +424,15 @@ execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vi
 
 " specify browser to open preview page
 " default: ''
+" specify browser to open preview page
+" default: ''
+" if executable('surfer')
+""  let g:mkdp_browser = 'surfer'
+" elseif executable('firefox-developer-edition')
+""  let g:mkdp_browser = 'firefox-developer-edition'
+" endif
+
+
 if executable('surfer')
   let g:mkdp_browser = 'surfer'
 endif
