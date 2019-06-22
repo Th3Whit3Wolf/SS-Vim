@@ -24,6 +24,8 @@
 - repo: SirVer/ultisnips
 - repo: lifepillar/vim-mucomplete
 
+-repo: wakatime/vim-wakatime
+
 - repo: godlygeek/tabular
   on_ft:
     [
