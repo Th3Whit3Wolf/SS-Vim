@@ -16,7 +16,7 @@ let s:cache = $VARPATH.'/theme.txt'
 if ! exists('g:colors_name')
 	set background=dark
 	execute 'colorscheme'
-		\ filereadable(s:cache) ? readfile(s:cache)[0] : 'spacemacs_theme'
+		\ filereadable(s:cache) ? readfile(s:cache)[0] : 'spacemacs-theme'
 endif
 
 set termguicolors
