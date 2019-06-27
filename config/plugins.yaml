@@ -3,22 +3,13 @@
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 - repo: Shougo/dein.vim
 
-#- repo: vim-airline/vim-airline
-#  depends: vim-airline/vim-airline-themes
-#- repo: vim-airline/vim-airline-themes
-#  depends: vim-airline/vim-airline
-
-#- repo: liuchengxu/eleline.vim
 - repo: itchyny/lightline.vim
+
 - repo: Th3Whit3Wolf/Vim-Space-Lightline
-
-
-#- repo: palpatineli/lightline-lsc-nvim
-#  if: exists('g:lightline')
-#  depends: lightline.vim
+- repo: Th3Whit3Wolf/Vim-Spacemacs-Theme
 
 - repo: chrisbra/Colorizer
-- repo: liuchengxu/space-vim-dark
+# - repo: liuchengxu/space-vim-dark
 - repo: jiangmiao/auto-pairs
 - repo: ryanoasis/vim-devicons
 - repo: SirVer/ultisnips
