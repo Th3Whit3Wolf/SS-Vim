@@ -1,5 +1,5 @@
-VIM = `which nvim || which vim`
-VIM_VERSION = `$(which nvim || which vim) --version`
+VIM := `which nvim || which vim`
+VIM_VERSION := `$(which nvim || which vim) --version`
 
 # Install Super Sayain Vim
 install: _initital _venv _linter
@@ -56,7 +56,7 @@ _venv:
     echo -e '\n:: PYTHON 3'
     if [ -x "venv/neovim3/bin/pip3" ]; then
         "$venv/neovim3/bin/pip3" install -U pynvim PyYAML Send2Trash
-    else 
+    else
         "$venv/neovim3/bin/pip3" install -U pynvim PyYAML Send2Trash
     fi
 
