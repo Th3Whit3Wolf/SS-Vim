@@ -304,6 +304,11 @@ _linter:
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'beta', '${lsp}'],
     EOL
             ;;
+            ra_lsp_server)
+                cat >> "$linter_list_loc" << EOL
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'beta', '${lsp}'],
+    EOL
+            ;;
             'bash-language-server')
                 cat >> "$linter_list_loc" << EOL
     \ 'sh': ['${lsp}', 'start'],
@@ -314,11 +319,6 @@ _linter:
     \ 'vue': ['${lsp}'],
     EOL
             ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
             *)
             echo "$lsp" "found"
             ;;
@@ -326,40 +326,39 @@ _linter:
     }
 
     LSP[1]='bash-language-server'
-    LSP[2]='bingo'
-    LSP[3]='ccls'
-    LSP[4]='clojure-lsp'
-    LSP[5]='css-languageserver'
-    LSP[6]='dart_language_server'
-    LSP[7]='~/.pub-cache/bin/dart_language_server'
-    LSP[8]='docker-langserver'
-    LSP[9]='elixir-ls'
-    LSP[10]='fortls'
-    LSP[11]='glslls'
-    LSP[12]='gopls'
-    LSP[13]='hie'
-    LSP[14]='html-languageserver'
-    LSP[15]='json-language-server'
-    LSP[16]='julia'
-    LSP[17]='kotlin-language-server'
-    LSP[18]='lua-lsp'
-    LSP[19]='merlin'
-    LSP[20]='nimlsp'
-    LSP[21]='ocaml-language-server'
-    LSP[22]='OmniSharp.exe'
-    LSP[23]='orbaclerun'
-    LSP[24]='php-language-server'
-    LSP[25]='puppet-languageserver'
-    LSP[26]='purescript-language-server'
-    LSP[27]='pyls'
-    LSP[28]='rls'
-    LSP[29]='sbtserver'
-    LSP[30]='serve-d'
-    LSP[31]='solargraph'
-    LSP[32]='sourcer'
-    LSP[33]='typescript-language-server'
-    LSP[34]='vls'
-    LSP[35]='vsce'
+    LSP[2]='ccls'
+    LSP[3]='clojure-lsp'
+    LSP[4]='css-languageserver'
+    LSP[5]='dart_language_server'
+    LSP[6]='~/.pub-cache/bin/dart_language_server'
+    LSP[7]='docker-langserver'
+    LSP[8]='elixir-ls'
+    LSP[9]='fortls'
+    LSP[10]='glslls'
+    LSP[11]='gopls'
+    LSP[12]='hie'
+    LSP[13]='html-languageserver'
+    LSP[14]='json-language-server'
+    LSP[15]='julia'
+    LSP[16]='kotlin-language-server'
+    LSP[17]='lua-lsp'
+    LSP[18]='merlin'
+    LSP[19]='nimlsp'
+    LSP[20]='ocaml-language-server'
+    LSP[21]='OmniSharp.exe'
+    LSP[22]='orbaclerun'
+    LSP[23]='php-language-server'
+    LSP[24]='puppet-languageserver'
+    LSP[25]='purescript-language-server'
+    LSP[26]='pyls'
+    LSP[27]='ra_lsp_server'
+    LSP[28]='sbtserver'
+    LSP[29]='serve-d'
+    LSP[30]='solargraph'
+    LSP[31]='sourcer'
+    LSP[32]='typescript-language-server'
+    LSP[33]='vls'
+    LSP[34]='vsce'
 
     Installed=()
 
@@ -404,6 +403,15 @@ _linter:
         fi
     fi
 
+    lacksString "ra_lsp_server" "${Installed[@]}"
+    if [ $? -eq 0 ]; then
+        hash "rls" 2>/dev/null
+        if [ $? -eq 0 ]; then
+            echo  "Found dls"
+            Installed+=("dls")
+        fi
+    fi
+
     lacksString "typescript-language-server" "${Installed[@]}"
     if [ $? -eq 0 ]; then
         hash "flow-language-server" 2>/dev/null
@@ -413,12 +421,15 @@ _linter:
         fi
     fi
 
-    lacksString "bingo" "${Installed[@]}"
-    if [ $? -eq 0 ]; then
-        hash "go-langserver" 2>/dev/null
+    lacksString "gopls" "${Installed[@]}"
         if [ $? -eq 0 ]; then
-            echo  "Found go language server"
-            Installed+=("go-langserver")
+            hash "bingo" 2>/dev/null
+        if [ $? -eq 0 ]; then
+            hash "go-langserver" 2>/dev/null
+            if [ $? -eq 0 ]; then
+                echo  "Found go language server"
+                Installed+=("go-langserver")
+            fi
         fi
     fi
 
