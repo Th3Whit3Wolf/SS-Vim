@@ -646,7 +646,7 @@ _linter:
     END=$(date +%s.%6N)
     DIFF=$(echo "scale=3; ($END - $START) * 1000"| bc -l )
     X=$(printf "%.3f" $DIFF)
-    echo "It takes ${X%.*} miloseconds to complete this task..."
+    echo "It took ${X%.*} miloseconds to complete this task..."
 
     # let Settings_path = $VIMPATH.'/misc/ccls.json'
     # let Settings_path = $VIMPATH.'/misc/rust.json'
