@@ -3,9 +3,11 @@ VIM_VERSION := `$(which nvim || which vim) --version`
 
 # Install Super Sayain Vim
 install: _initital _venv _linter
+	{{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"	
 
 # Update Super Sayain Vim
 update: _git _venv _linter
+	{{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
 
 # Same as Update
 @upgrade: update
@@ -23,8 +25,7 @@ _initital:
 	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/undo; {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#update() | finally | call confirm('') | qall! | endtry"
 
 _git:
-    @git pull --ff --ff-only; {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
-
+    @git pull --ff --ff-only;
 # Declare a base path for both virtual environments
 _venv:
     #!/usr/bin/env bash
