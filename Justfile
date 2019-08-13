@@ -26,7 +26,7 @@ _initital:
 
 _git:
     @git pull --ff --ff-only;
-# Declare a base path for both virtual environments
+
 _venv:
     #!/usr/bin/env bash
     venv="${XDG_CACHE_HOME:-$HOME/.cache}/vim/venv"
@@ -194,7 +194,7 @@ _linter:
     \ 'go': ['${lsp}'],
     EOL
             ;;
-						'gopls')
+            'gopls')
                 cat >> "$linter_list_loc" << EOL
     \ 'go': ['${lsp}'],
     EOL
@@ -334,31 +334,31 @@ _linter:
     LSP[8]='docker-langserver'
     LSP[9]='elixir-ls'
     LSP[10]='fortls'
-	LSP[11]='glslls'
-	LSP[12]='gopls'
-    LSP[14]='hie'
-    LSP[15]='html-languageserver'
-    LSP[16]='json-language-server'
-    LSP[17]='julia'
-    LSP[18]='kotlin-language-server'
-    LSP[19]='lua-lsp'
-    LSP[20]='merlin'
-    LSP[21]='nimlsp'
-    LSP[22]='ocaml-language-server'
-    LSP[23]='OmniSharp.exe'
-    LSP[24]='orbaclerun'
-    LSP[25]='php-language-server'
-    LSP[26]='puppet-languageserver'
-    LSP[27]='purescript-language-server'
-    LSP[28]='pyls'
-    LSP[29]='rls'
-    LSP[30]='sbtserver'
-    LSP[31]='serve-d'
-    LSP[32]='solargraph'
-    LSP[33]='sourcer'
-    LSP[34]='typescript-language-server'
-    LSP[35]='vls'
-    LSP[36]='vsce'
+    LSP[11]='glslls'
+    LSP[12]='gopls'
+    LSP[13]='hie'
+    LSP[14]='html-languageserver'
+    LSP[15]='json-language-server'
+    LSP[16]='julia'
+    LSP[17]='kotlin-language-server'
+    LSP[18]='lua-lsp'
+    LSP[19]='merlin'
+    LSP[20]='nimlsp'
+    LSP[21]='ocaml-language-server'
+    LSP[22]='OmniSharp.exe'
+    LSP[23]='orbaclerun'
+    LSP[24]='php-language-server'
+    LSP[25]='puppet-languageserver'
+    LSP[26]='purescript-language-server'
+    LSP[27]='pyls'
+    LSP[28]='rls'
+    LSP[29]='sbtserver'
+    LSP[30]='serve-d'
+    LSP[31]='solargraph'
+    LSP[32]='sourcer'
+    LSP[33]='typescript-language-server'
+    LSP[34]='vls'
+    LSP[35]='vsce'
 
     Installed=()
 
