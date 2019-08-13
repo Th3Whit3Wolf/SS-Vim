@@ -2,12 +2,11 @@ VIM := `which nvim || which vim`
 VIM_VERSION := `$(which nvim || which vim) --version`
 
 # Install Super Sayain Vim
-install: _initital _venv _linter
-	{{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"	
+install: _initital _venv _linter _dein-update
+	
 
 # Update Super Sayain Vim
-update: _git _venv _linter
-	{{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"
+update: _git _venv _linter _dein-update
 
 # Same as Update
 @upgrade: update
@@ -16,6 +15,8 @@ update: _git _venv _linter
 uninstall:
 	rm -rf {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim
 
+_dein-update:
+    {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"	
 
 _initital:
 	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/backup
