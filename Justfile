@@ -317,31 +317,6 @@ _linter:
     \ 'ruby': ['${lsp}', '--stdio'],
     EOL
             ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
-            solargraph)
-                cat >> "$linter_list_loc" << EOL
-    \ 'ruby': ['${lsp}', '--stdio'],
-    EOL
-            ;;
             *)
             echo "$lsp" "found"
             ;;
