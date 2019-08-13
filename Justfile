@@ -193,6 +193,11 @@ _linter:
     \ 'go': ['${lsp}'],
     EOL
             ;;
+						'gopls')
+                cat >> "$linter_list_loc" << EOL
+    \ 'go': ['${lsp}'],
+    EOL
+            ;;
             hie)
                 cat >> "$linter_list_loc" << EOL
     \ 'haskell': ['${lsp}', '--lsp'],
@@ -352,31 +357,32 @@ _linter:
     LSP[7]='~/.pub-cache/bin/dart_language_server'
     LSP[8]='docker-langserver'
     LSP[9]='elixir-ls'
-    LSP[10]='glslls'
-    LSP[11]='fortls'
-    LSP[12]='hie'
-    LSP[13]='html-languageserver'
-    LSP[14]='json-language-server'
-    LSP[15]='julia'
-    LSP[16]='kotlin-language-server'
-    LSP[17]='lua-lsp'
-    LSP[18]='merlin'
-    LSP[19]='nimlsp'
-    LSP[20]='ocaml-language-server'
-    LSP[21]='OmniSharp.exe'
-    LSP[22]='orbaclerun'
-    LSP[23]='php-language-server'
-    LSP[24]='puppet-languageserver'
-    LSP[25]='purescript-language-server'
-    LSP[26]='pyls'
-    LSP[27]='rls'
-    LSP[28]='sbtserver'
-    LSP[29]='serve-d'
-    LSP[30]='solargraph'
-    LSP[31]='sourcer'
-    LSP[32]='typescript-language-server'
-    LSP[33]='vls'
-    LSP[34]='vsce'
+    LSP[10]='fortls'
+		LSP[11]='glslls'
+		LSP[12]='gopls'
+    LSP[14]='hie'
+    LSP[15]='html-languageserver'
+    LSP[16]='json-language-server'
+    LSP[17]='julia'
+    LSP[18]='kotlin-language-server'
+    LSP[19]='lua-lsp'
+    LSP[20]='merlin'
+    LSP[21]='nimlsp'
+    LSP[22]='ocaml-language-server'
+    LSP[23]='OmniSharp.exe'
+    LSP[24]='orbaclerun'
+    LSP[25]='php-language-server'
+    LSP[26]='puppet-languageserver'
+    LSP[27]='purescript-language-server'
+    LSP[28]='pyls'
+    LSP[29]='rls'
+    LSP[30]='sbtserver'
+    LSP[31]='serve-d'
+    LSP[32]='solargraph'
+    LSP[33]='sourcer'
+    LSP[34]='typescript-language-server'
+    LSP[35]='vls'
+    LSP[36]='vsce'
 
     Installed=()
 

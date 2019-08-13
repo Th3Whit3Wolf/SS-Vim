@@ -15,8 +15,8 @@ autocmd MyAutoCmd ColorScheme * call s:theme_reload(g:theme_name)
 let s:cache = $VARPATH.'/theme.txt'
 if ! exists('g:colors_name')
 	set background=dark
+	set termguicolors
 	execute 'colorscheme'
 		\ filereadable(s:cache) ? readfile(s:cache)[0] : 'spacemacs-theme'
 endif
 
-set termguicolors
