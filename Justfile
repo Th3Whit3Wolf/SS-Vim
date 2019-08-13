@@ -16,7 +16,7 @@ uninstall:
 	rm -rf {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim
 
 _dein-update:
-    {{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"	
+    @{{VIM}} --cmd 'set t_ti= t_te= nomore' -N -U NONE -i NONE -c "try | call dein#clear_state() | call dein#update() | call dein#recache_runtimepath() | finally | call confirm('') | qall! | endtry"	
 
 _initital:
 	mkdir -vp {{env_var_or_default('XDG_CACHE_HOME', '$HOME/.cache')}}/vim/backup
