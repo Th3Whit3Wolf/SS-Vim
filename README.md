@@ -2,7 +2,7 @@
 
 Vim with Super Sayain Performance
 
-Lean mean Neo/vim machine, 30-45ms startup time.
+Lean mean Neo/vim machine, 50-65ms startup time.
 
 Best with Neovim or Vim 8 with +python3 extensions enabled.
 
@@ -19,9 +19,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Premium color-schemes
 - Central location for tags
 
-## Screenshot
-
-#### Coming Soon
+## Warning this version is old
 
 ## Pre-requisites
 
