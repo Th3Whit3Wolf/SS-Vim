@@ -24,7 +24,7 @@ function! PackInit() abort
 	call minpac#add('taigacute/spaceline.vim')
 	call minpac#add('ryanoasis/vim-devicons')
 	call minpac#add('tyru/open-browser.vim')
-	call minpac#add('neoclide/coc.nvim', {'branch': 'release'}, {'do': { -> coc#util#install()}}, {'depth': 1})
+	call minpac#add('neoclide/coc.nvim', {'branch': 'release'}, {'do': 'yarn install --frozen-lockfile'})
 	call minpac#add('honza/vim-snippets')
 	call minpac#add('SirVer/ultisnips')
 	call minpac#add('w0rp/ale')
