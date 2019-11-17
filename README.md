@@ -18,6 +18,9 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Excellent linting and language support
 - Central location for tags
 
+## Screenshot
+![](./img/ss-screenshot.png)
+
 ## Pre-requisites
 
 - Python 3
@@ -25,7 +28,6 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Neovim (Recommended)
 - [Just](https://github.com/casey/just)
 - yarn (for coc.vim)
-
 
 ## Install
 
@@ -44,79 +46,9 @@ just install
   use that instead of `~/.config` in the code above.
   Nvim follows the XDG base-directories convention.
 
-**_2._** Install completion sources from below
+**_2._** Install extensions from below to get better autocompletion and linting
 
 Enjoy!
-
-## Preinstalled Completion Sources
-###### These are installed with `just install`
-
-Install what you need by command `:CocInstall {name}`
-
-- coc-dictionary
-
-Words from files in `&dictionary`.
-
-```vim
-:CocInstall coc-dictionary
-```
-
-- coc-tag
-
-Words from `tagfiles()`
-
-```vim
-:CocInstall coc-tag
-```
-
-- coc-word
-
-Words from google 10000 english repo.
-
-```vim
-:CocInstall coc-word
-```
-
-- coc-syntax
-
-Words from syntax list, see `:help ft-syntax-omni` in your vim.
-
-```vim
-:CocInstall coc-syntax
-```
-
-- coc-snippets
-
-Load many different snippets
-
-```vim
-:CocInstall coc-snippets
-```
-
-- coc-git
-
-Offers async git integration
-Required for statusline to function properly
-
-```vim
-:CocInstall coc-git
-```
-
-- coc-pairs
-
-Auto pair extension for coc.nvim
-
-```vim
-:CocInstall coc-pairs
-```
-
-- coc-explorer
-
-File explorer extension for coc.nvim
-
-```vim
-:CocInstall coc-explorer
-```
 
 ## Coc Extensions
 You can find available coc extensions by searching[ coc.nvim on npm](https://www.npmjs.com/search?q=keywords%3Acoc.nvim), or use [coc-marketplace](https://github.com/fannheyward/coc-marketplace), which can search and install extensions in coc.nvim directly.
@@ -161,3 +93,6 @@ You can find available coc extensions by searching[ coc.nvim on npm](https://www
 * **[coc-ecdict](https://github.com/fannheyward/coc-ecdict)** ECDICT extension
 
 **Tips:** use `:CocConfig` to edit the configuration file. Completion & validation are supported after `coc-json` is installed.
+
+## Custom Mapping
+Coming soon . . .
