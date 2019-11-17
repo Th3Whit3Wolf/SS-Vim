@@ -1,0 +1,36 @@
+{
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "go",
+        "markdown",
+        "Markdown",
+        "javascript", 
+        "javascriptreact",
+        "json", 
+        "jsonc",
+        "typescript", 
+        "typescriptreact"
+    ],
+    "prettier.printWidth": 160,
+    "prettier.singleQuote": true,
+    "codeLens.enable": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.checkCurrentLine": true,
+    "git.addGBlameToVirtualText": true,
+    "suggest.noselect": false,
+    "signature.target": "echo",
+    "snippets.extends": {
+      "javascriptreact": ["javascript"],
+      "typescript": ["javascript"]
+    },
+    "list.normalMappings": {
+      "<C-c>": "do:exit"
+    },
+    "list.insertMappings": {
+      "<C-c>": "do:exit"
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": ["javascript", "typescript", "javascriptreact"],
+    "languageserver": { }
+  }

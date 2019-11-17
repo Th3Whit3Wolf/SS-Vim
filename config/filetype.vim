@@ -1,6 +1,6 @@
 " Reload vim config automatically
 execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/config/*,vimrc nested'
-	\ .' source $MYVIMRC | redraw | silent doautocmd ColorScheme'
+	\ .' source $MYVIMRC | redraw'
 
 augroup MyAutoCmd
 
@@ -77,34 +77,6 @@ augroup MyAutoCmd
 
 augroup END " }}}
 
-" Internal Plugin Settings  {{{
-" ------------------------
-
-" PHP {{{
-let g:PHP_removeCRwhenUnix = 0
-
-" }}}
-" Python {{{
-let g:python_highlight_all = 1
-
-" }}}
-" Bash {{{
-let g:is_bash = 1
-
-" }}}
-" Java {{{
-let g:java_highlight_functions = 'style'
-let g:java_highlight_all = 1
-let g:java_highlight_debug = 1
-let g:java_allow_cpp_keywords = 1
-let g:java_space_errors = 1
-let g:java_highlight_functions = 1
-
-" }}}
-" JavaScript {{{
-let g:SimpleJsIndenter_BriefMode = 1
-let g:SimpleJsIndenter_CaseIndentLevel = -1
-
 " }}}
 " Markdown {{{
 let g:markdown_fenced_languages = [
@@ -126,15 +98,4 @@ let g:markdown_fenced_languages = [
 " }}}
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
-" }}}
 
-" }}}
-" Folding {{{
-" augroup: a
-" function: f
-let g:vimsyn_folding = 'af'
-let g:tex_fold_enabled = 1
-let g:xml_syntax_folding = 1
-let g:php_folding = 2
-let g:php_phpdoc_folding = 1
-let g:perl_fold = 1

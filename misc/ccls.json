@@ -1,9 +1,0 @@
-{
-	"initializationOptions": {
-		"cache": {
-			"directory": "/tmp/ccls-cache"
-		},
-		"index": { "threads": 2 },
-		"diagnostics": { "onChange": 1 }
-	}
-}

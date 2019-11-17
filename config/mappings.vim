@@ -1,3 +1,61 @@
+"""""""""""""""""""""""
+" CoC
+"""""""""""""""""""""""
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>f  :<C-u>CocCommand explorer<CR>
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
+
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Terminal Function
 let g:term_buf = 0
 let g:term_win = 0
@@ -61,7 +119,6 @@ vnoremap <expr> <leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
 nnoremap <leader>cp yap<S-}>p
 nnoremap <leader>a =ip
-
 """""""""""""""""""""""
 " Global niceties
 """""""""""""""""""""""
@@ -150,15 +207,13 @@ function! s:MakeExec()
 endfunction
 
 " Fast saving
-nnoremap <silent><Leader>w :write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-vnoremap <silent><Leader>w <Esc>:write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-cnoremap <silent><C-s> <C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+nnoremap <silent><Leader>w :write \| call <SID>MakeExec() \| write<CR>
+vnoremap <silent><Leader>w <Esc>:write \| call <SID>MakeExec() \| write<CR>
+nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
+vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
+cnoremap <silent><C-s> <C-u>write \| call <SID>MakeExec() \| write<CR>
 
-" Save a file with sudo
-" http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN
-nnoremap <silent><Leader>fw :w suda://%
+
 
 " I like to :quit with 'q', shrug.
 nnoremap <silent> q :<C-u>:quit<CR>
@@ -329,23 +384,7 @@ vnoremap <Leader>: :Tabularize symbol<CR>
 nnoremap <Leader>, :Tabularize comma<CR>
 vnoremap <Leader>, :Tabularize comma<CR>
 
-nnoremap <C-z> :DeinUpdate<CR>           " Update Plugins
+nnoremap <C-z> :PackUpdate<CR>           " Update Plugins
 nnoremap <C-x> :qa!<CR>                 " Exit
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
 nnoremap <silent> <leader><leader> <leader>t<leader>f
-
-nnoremap <silent> <Leader>f :NERDTreeToggle<CR>
-
-
-" Plugin: Language Client Neovim
-nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
-autocmd BufNewFile,BufRead *.md					set noro

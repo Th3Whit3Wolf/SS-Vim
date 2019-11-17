@@ -1,94 +1,154 @@
+color space-vim-dark
+set termguicolors
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+set encoding=UTF-8
 set mouse=a " Enable mouse if possible
 
-if dein#tap('tagbar')
-	nnoremap <silent> <Leader>t :<C-u>TagbarOpenAutoClose<CR>
-	" Also use h/l to open/close folds
-	let g:tagbar_map_closefold = ['h', '-', 'zc']
-	let g:tagbar_map_openfold = ['l', '+', 'zo']
-endif
+let g:spaceline_colorscheme = 'space'
+let g:spaceline_line_symbol = 0
+let g:spaceline_seperate_style= 'slant'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Goyo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable visual candy in Goyo mode
+function! s:goyo_enter()
+	if has('gui_running')
+		" Gui fullscreen
+		set fullscreen
+		set background=light
+		set linespace=7
+	elseif exists('$TMUX')
+		" Hide tmux status
+		silent !tmux set status off
+	endif
 
+	" Activate Limelight
+	Limelight
+endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File Explorer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Defx Toggle
-" if dein#tap('defx.nvim')
-" 	nnoremap <silent> <Leader>f
-" 		\ :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-" endif
-"nnoremap <silent> <Leader>f :<C-u>Defx -resume -toggle -buffer-name=tab`tabpagenr()`<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File Explorer
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if dein#tap('vim-go')
-	autocmd MyAutoCmd FileType go
-		\   nmap <C-]> <Plug>(go-def)
-		\ | nmap <Leader>god  <Plug>(go-describe)
-		\ | nmap <Leader>goc  <Plug>(go-callees)
-		\ | nmap <Leader>goC  <Plug>(go-callers)
-		\ | nmap <Leader>goi  <Plug>(go-info)
-		\ | nmap <Leader>gom  <Plug>(go-implements)
-		\ | nmap <Leader>gos  <Plug>(go-callstack)
-		\ | nmap <Leader>goe  <Plug>(go-referrers)
-		\ | nmap <Leader>gor  <Plug>(go-run)
-		\ | nmap <Leader>gov  <Plug>(go-vet)
-endif
+" s:goyo_leave()
+" Enable visuals when leaving Goyo mode
+function! s:goyo_leave()
+	if has('gui_running')
+		" Gui exit fullscreen
+		set nofullscreen
+		set background=dark
+		set linespace=0
+	elseif exists('$TMUX')
+		" Show tmux status
+		silent !tmux set status on
+	endif
 
+	" De-activate Limelight
+	Limelight!
+endfunction
 
-if dein#tap('open-browser.vim')
-	nmap gx <Plug>(openbrowser-smart-search)
-	vmap gx <Plug>(openbrowser-smart-search)
-endif
+" Goyo Commands
+autocmd  User GoyoEnter call <SID>goyo_enter()
+autocmd  User GoyoLeave call <SID>goyo_leave()
 
-if dein#tap('undotree')
-	nnoremap <Leader>gu :UndotreeToggle<CR>
-endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Shebang
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:shell_shebang()
+  let options  = [
+      \ 'bash',
+      \ 'csh',
+      \ 'dash',
+      \ 'ksh',
+      \ 'fish',
+      \ 'tcsh',
+      \ 'zsh',
+      \ 'none'
+      \ ]
 
-if dein#tap('emmet-vim')
-	autocmd MyAutoCmd FileType html,css,jsx,javascript,javascript.jsx
-		\ EmmetInstall
-		\ | imap <buffer> <C-Return> <Plug>(emmet-expand-abbr)
-endif
+  let choice = inputlist([ 'Select your shell:' ]
+          \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
 
-if dein#tap('vim-operator-surround')
-	map <silent>sa <Plug>(operator-surround-append)
-	map <silent>sd <Plug>(operator-surround-delete)
-	map <silent>sr <Plug>(operator-surround-replace)
-endif
+  if choice >= 1 && choice <= (len(copy(options)) - 2)
+    0put = '#!/usr/bin/env ' . (options)[choice - 1]
+	endif
+endfunction
 
-if dein#tap('fzf.vim')
-  if executable('rg')
-    set grepprg=rg\ -i\ --vimgrep
+function! s:python_shebang()
+	 if getline(1)[0:1] !=# "#!"
+    let options  = [
+        \ 'python2',
+        \ 'python3',
+        \ 'pypy',
+        \ 'pypy3',
+        \ 'jython',
+        \ 'none'
+        \ ]
 
-    " Ripgrep on /
-    command! -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
-    nnoremap <leader>/ :Rg<SPACE>
-  endif
+    let choice = inputlist([ 'Select your shell:' ]
+            \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
 
-  " FZF
-  let g:fzf_command_prefix = 'Fzf'
-  if executable('fzf')
-    nnoremap <leader>v :FzfFiles<cr>
-    nnoremap <leader>u :FzfTags<cr>
-    nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'))<cr>
-    nnoremap <silent> <F12> :<C-u>Buffers<cr>
-
-    if executable('rg')
-      " :Find <term> runs `rg <term>` and passes it to fzf
-      command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-      nnoremap <C-f> :Find
-      nnoremap <leader>' :execute "Find " . expand("<cword>")<cr>
+    if choice >= 1 && choice <= (len(copy(options)) - 2)
+			0put = '#!/usr/bin/env ' . (options)[choice - 1]
     endif
-  else
-    nnoremap <leader>v :CtrlP<Space><cr>
-  endif
+	endif
+endfunction
 
-  " FZF
-  if executable('rg')
-    let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages "" .'
-    set grepprg=rg\ --vimgrep
-  endif
+" Autoprompt Add Shebang
+if has("autocmd")
+	autocmd BufNewFile *.sh call <SID>shell_shebang()
+  autocmd BufNewFile *.py call <SID>python_shebang()
+ 	autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby"
+  autocmd BufNewFile *.pl 0put =\"#!/usr/bin/env perl"
+	autocmd BufNewFile *.php 0put =\"#!/usr/bin/env php
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Change Shebang
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap  <buffer><F6> :call <SID>change_bang()<CR>
+function! s:change_bang()
+	if &filetype == 'shell'
+   if getline(1)[0:1] !=# "#!"
+    let shell_options  = [
+        \ 'bash',
+        \ 'csh',
+        \ 'dash',
+        \ 'ksh',
+        \ 'fish',
+        \ 'tcsh',
+        \ 'zsh',
+        \ 'none'
+        \ ]
+
+    let choice = inputlist([ 'Select your shell:' ]
+            \ + map(copy(shell_options), '"[".(v:key+1)."] ".v:val'))
+
+    if choice >= 1 && choice <= (len(copy(shell_options)) - 2)
+			1d
+			0put = '#!/usr/bin/env ' . (shell_options)[choice - 1]
+      endif
+    endif
+	elseif &filetype == 'python'
+   if getline(1)[0:1] !=# "#!"
+
+    let python_options  = [
+        \ 'python2',
+        \ 'python3',
+        \ 'pypy',
+        \ 'pypy3',
+        \ 'jython',
+        \ 'none'
+        \ ]
+
+    let choice = inputlist([ 'Select your shell:' ]
+            \ + map(copy(python_options), '"[".(v:key+1)."] ".v:val'))
+
+    if choice >= 1 && choice <= (len(copy(python_options)) - 2)
+			1d
+			0put = '#!/usr/bin/env ' . (python_options)[choice - 1]
+      endif
+    endif
+	endif
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Async Test
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -293,137 +353,7 @@ function! s:compile()
   endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Shebang
+" => Sk | Fuzzing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:shell_shebang()
-  let options  = [
-      \ 'bash',
-      \ 'csh',
-      \ 'dash',
-      \ 'ksh',
-      \ 'fish',
-      \ 'tcsh',
-      \ 'zsh',
-      \ 'none'
-      \ ]
-
-  let choice = inputlist([ 'Select your shell:' ]
-          \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
-
-  if choice >= 1 && choice <= (len(copy(options)) - 2)
-    0put = '#!/usr/bin/env ' . (options)[choice - 1]
-	endif
-endfunction
-
-function! s:python_shebang()
-	 if getline(1)[0:1] !=# "#!"
-    let options  = [
-        \ 'python2',
-        \ 'python3',
-        \ 'pypy',
-        \ 'pypy3',
-        \ 'jython',
-        \ 'none'
-        \ ]
-
-    let choice = inputlist([ 'Select your shell:' ]
-            \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
-
-    if choice >= 1 && choice <= (len(copy(options)) - 2)
-			0put = '#!/usr/bin/env ' . (options)[choice - 1]
-    endif
-	endif
-endfunction
-
-" Autoprompt Add Shebang
-if has("autocmd")
-	autocmd BufNewFile *.sh call <SID>shell_shebang()
-  autocmd BufNewFile *.py call <SID>python_shebang()
- 	autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby"
-  autocmd BufNewFile *.pl 0put =\"#!/usr/bin/env perl"
-	autocmd BufNewFile *.php 0put =\"#!/usr/bin/env php
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Change Shebang
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap  <buffer><F6> :call <SID>change_bang()<CR>
-function! s:change_bang()
-	if &filetype == 'shell'
-   if getline(1)[0:1] !=# "#!"
-    let shell_options  = [
-        \ 'bash',
-        \ 'csh',
-        \ 'dash',
-        \ 'ksh',
-        \ 'fish',
-        \ 'tcsh',
-        \ 'zsh',
-        \ 'none'
-        \ ]
-
-    let choice = inputlist([ 'Select your shell:' ]
-            \ + map(copy(shell_options), '"[".(v:key+1)."] ".v:val'))
-
-    if choice >= 1 && choice <= (len(copy(shell_options)) - 2)
-			1d
-			0put = '#!/usr/bin/env ' . (shell_options)[choice - 1]
-      endif
-    endif
-	elseif &filetype == 'python'
-   if getline(1)[0:1] !=# "#!"
-
-    let python_options  = [
-        \ 'python2',
-        \ 'python3',
-        \ 'pypy',
-        \ 'pypy3',
-        \ 'jython',
-        \ 'none'
-        \ ]
-
-    let choice = inputlist([ 'Select your shell:' ]
-            \ + map(copy(python_options), '"[".(v:key+1)."] ".v:val'))
-
-    if choice >= 1 && choice <= (len(copy(python_options)) - 2)
-			1d
-			0put = '#!/usr/bin/env ' . (python_options)[choice - 1]
-      endif
-    endif
-	endif
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Search
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ripgrep for search
-
-""""""""""""""""""""""""""""""""""""""""
-" Autocompletion
-""""""""""""""""""""""""""""""""""""""""
-set signcolumn=yes
-set noinfercase
-set complete=.,w,b,u,k
-set completeopt=longest,menuone,noselect
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#chains = {
-  \ 'default' : ['c-n', 'tags', 'dict', 'ulti', 'file', 'omni'],
-  \ 'vim' : ['path', 'cmd', 'keyn'],
-  \ }
-
-let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
-let g:UltiSnipsJumpForwardTrigger = "<c-b>" " Do not use <c-j>
-
-let g:mucomplete#can_complete = {}
-let g:mucomplete#completion_delay = 100
-let g:mucomplete#reopen_immediately = 0
-set shortmess+=c " Turn off completion messages
-"setlocal omnifunc=LanguageClient#complete
-
-let g:NERDTreeHijackNetrw = 1
-execute 'source' fnameescape(resolve(expand($VIMPATH.'/config/plugins/checker.vim')))
-
-" use a custom markdown style must be absolute path
-" let g:markdown_composer_syntax_theme = 'file://'.$TMPPATH.'/misc/highlight.css'
-" use a custom highlight style must absolute path
-" let g:mkdp_highlight_css = $TMPPATH.'/misc/highlight.css'
-" let g:markdown_composer_syntax_theme = 'atom-one-dark'
+" let $SKIM_DEFAULT_COMMAND = "rg --files || fd ."
+let $SKIM_DEFAULT_COMMAND = "fd --type f || rg --files"
