@@ -2,7 +2,6 @@ if &runtimepath !~# '/minipac.vim'
 	let s:minipac_dir = expand('$VARPATH/pack').'/minpac/opt/minpac'
 	if ! isdirectory(s:minipac_dir)
 		execute '!git clone https://github.com/k-takata/minpac' s:minipac_dir
-        execute 'curl -fLo ~/.vim/autoload/plugpac.vim --create-dirs https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim'
     endif
 
 	execute 'set runtimepath+='.substitute(
