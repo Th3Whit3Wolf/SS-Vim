@@ -31,7 +31,7 @@ augroup filetypedetect
 	autocmd BufNewFile,BufRead Jenkinsfile              setfiletype groovy
 	autocmd BufNewFile,BufRead Tmuxfile,tmux/config     setfiletype tmux
 	autocmd BufNewFile,BufRead Brewfile                 setfiletype ruby
+	autocmd BufNewFile,BufRead Justfile,justfile        setfiletype make
 	autocmd BufNewFile,BufRead *.ion                    setfiletype ion
 	autocmd BufNewFile,BufRead *.py                     setfiletype python call <SID>python_version()
-	autocmd BufNewFile,BufRead Justfile,justfile        setfiletype make
 augroup END

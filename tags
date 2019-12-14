@@ -1,0 +1,259 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/f17ca773/
+$SKIM_DEFAULT_COMMAND	config/plugins/all.vim	/^let $SKIM_DEFAULT_COMMAND = "fd --type f || rg --files"/;"	v
+$VARPATH	config/.vimrc	/^let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~\/.cache').'\/vim')$/;"	v
+$VIMPATH	config/.vimrc	/^let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')$/;"	v
+,<Space>	config/mappings.vim	/^nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute\/\\s\\+$\/\/e<CR>$/;"	m
+0	coc-settings.json	/^        "css",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+0	coc-settings.json	/^      "javascriptreact": ["javascript"],$/;"	s	array:snippets.extends.javascriptreact
+0	coc-settings.json	/^      "typescript": ["javascript"]$/;"	s	array:snippets.extends.typescript
+1	coc-settings.json	/^        "go",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+2	coc-settings.json	/^        "markdown",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+3	coc-settings.json	/^        "Markdown",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+4	coc-settings.json	/^        "javascript", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
+5	coc-settings.json	/^        "javascriptreact",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+6	coc-settings.json	/^        "json", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
+7	coc-settings.json	/^        "jsonc",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+8	coc-settings.json	/^        "typescript", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
+9	coc-settings.json	/^        "typescriptreact"$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+<	config/mappings.vim	/^xnoremap < <gv$/;"	m
+<A-j>	config/mappings.vim	/^nnoremap <silent> <A-j> :<C-U>tabnext<CR>$/;"	m
+<A-k>	config/mappings.vim	/^nnoremap <silent> <A-k> :<C-U>tabprevious<CR>$/;"	m
+<C-S-Tab>	config/mappings.vim	/^nnoremap <silent> <C-S-Tab> :<C-U>tabprevious<CR>$/;"	m
+<C-T>	config/mappings.vim	/^inoremap <C-T> <Esc>:call TermToggle(10)<CR>$/;"	m
+<C-T>	config/mappings.vim	/^nnoremap <C-T> :call TermToggle(10)<CR>$/;"	m
+<C-Tab>	config/mappings.vim	/^nnoremap <silent> <C-Tab> :<C-U>tabnext<CR>$/;"	m
+<C-b>	config/mappings.vim	/^cnoremap <C-b> <Left>$/;"	m
+<C-b>	config/mappings.vim	/^noremap <expr> <C-b> max([winheight(0) - 2, 1])$/;"	m
+<C-c>	coc-settings.json	/^      "<C-c>": "do:exit"$/;"	s	object:list.insertMappings
+<C-c>	coc-settings.json	/^      "<C-c>": "do:exit"$/;"	s	object:list.normalMappings
+<C-d>	config/mappings.vim	/^cnoremap <C-d> <C-w>$/;"	m
+<C-d>	config/mappings.vim	/^nmap <silent> <C-d> <Plug>(coc-range-select)$/;"	m
+<C-d>	config/mappings.vim	/^xmap <silent> <C-d> <Plug>(coc-range-select)$/;"	m
+<C-e>	config/mappings.vim	/^noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\\<C-e>")$/;"	m
+<C-f>	config/mappings.vim	/^cnoremap <C-f> <Right>$/;"	m
+<C-f>	config/mappings.vim	/^noremap <expr> <C-f> max([winheight(0) - 2, 1])$/;"	m
+<C-h>	config/mappings.vim	/^cnoremap <C-h> <Home>$/;"	m
+<C-l>	config/mappings.vim	/^cnoremap <C-l> <End>$/;"	m
+<C-n>	config/mappings.vim	/^cnoremap <C-n>  <Down>$/;"	m
+<C-p>	config/mappings.vim	/^cnoremap <C-p>  <Up>$/;"	m
+<C-q>	config/mappings.vim	/^nnoremap <C-q> <C-w>$/;"	m
+<C-r>	config/mappings.vim	/^xnoremap <C-r> :<C-u>call <SID>get_selection('\/')<CR>:%s\/\\V<C-R>=@\/<CR>\/\/gc<Left><Left><Le/;"	m
+<C-s>	config/mappings.vim	/^cnoremap <silent><C-s> <C-u>write \\| call <SID>MakeExec() \\| write<CR>$/;"	m
+<C-s>	config/mappings.vim	/^nnoremap <silent><C-s> :<C-u>write \\| call <SID>MakeExec() \\| write<CR>$/;"	m
+<C-s>	config/mappings.vim	/^vnoremap <silent><C-s> :<C-u>write \\| call <SID>MakeExec() \\| write<CR>$/;"	m
+<C-w>z	config/mappings.vim	/^nnoremap <silent><C-w>z :vert resize<CR>:resize<CR>:normal! ze<CR>$/;"	m
+<C-x>	config/mappings.vim	/^nnoremap <C-x> :qa!<CR>                 " Exit$/;"	m
+<C-x>	config/mappings.vim	/^nnoremap <C-x> <C-w>x<C-w>w$/;"	m
+<C-y>	config/mappings.vim	/^noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\\<C-y>")$/;"	m
+<C-z>	config/mappings.vim	/^nnoremap <C-z> :PackUpdate<CR>           " Update Plugins$/;"	m
+<Down>	config/mappings.vim	/^	nnoremap <Down>  :resize -2<CR>$/;"	m
+<Down>	config/mappings.vim	/^cnoremap <Down> <C-n>$/;"	m
+<F10>	config/plugins/all.vim	/^nnoremap  <buffer><F10> :call <SID>compile_and_run()<CR>$/;"	m
+<F6>	config/plugins/all.vim	/^nnoremap  <buffer><F6> :call <SID>change_bang()<CR>$/;"	m
+<F9>	config/plugins/all.vim	/^nnoremap <F9> :call <SID>compile()<CR>$/;"	m
+<Leader>,	config/mappings.vim	/^nnoremap <Leader>, :Tabularize comma<CR>$/;"	m
+<Leader>,	config/mappings.vim	/^vnoremap <Leader>, :Tabularize comma<CR>$/;"	m
+<Leader>:	config/mappings.vim	/^nnoremap <Leader>: :Tabularize symbol<CR>$/;"	m
+<Leader>:	config/mappings.vim	/^vnoremap <Leader>: :Tabularize symbol<CR>$/;"	m
+<Leader><Leader>	config/mappings.vim	/^nmap <silent> <Leader><Leader> V$/;"	m
+<Leader><Leader>	config/mappings.vim	/^vmap <Leader><Leader> <Esc>$/;"	m
+<Leader>=	config/mappings.vim	/^nnoremap <Leader>= :Tabularize assignment<CR>$/;"	m
+<Leader>=	config/mappings.vim	/^vnoremap <Leader>= :Tabularize assignment<CR>$/;"	m
+<Leader>?	config/mappings.vim	/^	nmap <Leader>? :!open dict:\/\/<cword><CR><CR>$/;"	m
+<Leader>S	config/mappings.vim	/^nnoremap <Leader>S ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>$/;"	m
+<Leader>S	config/mappings.vim	/^vnoremap <Leader>S y:execute @@<CR>:echo 'Sourced selection.'<CR>$/;"	m
+<Leader>Y	config/mappings.vim	/^nnoremap <Leader>Y :let @+=expand("%:p")<CR>:echo 'Absolute path copied to clipboard.'<CR>$/;"	m
+<Leader>cd	config/mappings.vim	/^map <Leader>cd :lcd %:p:h<CR>:pwd<CR>$/;"	m
+<Leader>d	config/mappings.vim	/^nnoremap <Leader>d m`YP``$/;"	m
+<Leader>d	config/mappings.vim	/^vnoremap <Leader>d YPgv$/;"	m
+<Leader>j	config/mappings.vim	/^nmap <Leader>j :lnext<CR>$/;"	m
+<Leader>k	config/mappings.vim	/^nmap <Leader>k :lprev<CR>$/;"	m
+<Leader>ml	config/mappings.vim	/^nnoremap <silent> <Leader>ml :call <SID>append_modeline()<CR>$/;"	m
+<Leader>os	config/mappings.vim	/^nmap <silent> <Leader>os :<C-u>execute 'source '.g:session_directory.'\/'.fnamemodify(resolve(ge/;"	m
+<Leader>se	config/mappings.vim	/^nmap <silent> <Leader>se :<C-u>execute 'SessionSave' fnamemodify(resolve(getcwd()), ':p:gs?\/?_?/;"	m
+<Leader>th	config/mappings.vim	/^nmap <silent> <Leader>th :nohlsearch<CR>$/;"	m
+<Leader>tl	config/mappings.vim	/^nmap <silent> <Leader>tl :setlocal nolist!<CR>$/;"	m
+<Leader>tn	config/mappings.vim	/^nmap <silent> <Leader>tn :setlocal nonumber!<CR>$/;"	m
+<Leader>ts	config/mappings.vim	/^nmap <silent> <Leader>ts :setlocal spell!<cr>$/;"	m
+<Leader>tw	config/mappings.vim	/^nmap <silent> <Leader>tw :setlocal wrap! breakindent!<CR>$/;"	m
+<Leader>w	config/mappings.vim	/^nnoremap <silent><Leader>w :write \\| call <SID>MakeExec() \\| write<CR>$/;"	m
+<Leader>w	config/mappings.vim	/^vnoremap <silent><Leader>w <Esc>:write \\| call <SID>MakeExec() \\| write<CR>$/;"	m
+<Leader>y	config/mappings.vim	/^nnoremap <Leader>y :let @+=expand("%")<CR>:echo 'Relative path copied to clipboard.'<CR>$/;"	m
+<Left>	config/mappings.vim	/^	nnoremap <Left>  :vertical resize +2<CR>$/;"	m
+<Nul>	config/mappings.vim	/^map <Nul> <C-Space>$/;"	m
+<Nul>	config/mappings.vim	/^map! <Nul> <C-Space>$/;"	m
+<Right>	config/mappings.vim	/^	nnoremap <Right> :vertical resize -2<CR>$/;"	m
+<S-Return>	config/mappings.vim	/^inoremap <S-Return> <C-o>o$/;"	m
+<S-Tab>	config/mappings.vim	/^inoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"$/;"	m
+<S-Tab>	config/mappings.vim	/^nmap <S-Tab> <<_$/;"	m
+<S-Tab>	config/mappings.vim	/^vnoremap <S-Tab> <gv$/;"	m
+<Tab>	config/mappings.vim	/^inoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"$/;"	m
+<Tab>	config/mappings.vim	/^inoremap <silent><expr> <Tab>$/;"	m
+<Tab>	config/mappings.vim	/^nmap <Tab>   >>_$/;"	m
+<Tab>	config/mappings.vim	/^vnoremap <Tab> >gv|$/;"	m
+<Up>	config/mappings.vim	/^	nnoremap <Up>    :resize +2<CR>$/;"	m
+<Up>	config/mappings.vim	/^cnoremap <Up>   <C-p>$/;"	m
+<c-space>	config/mappings.vim	/^inoremap <silent><expr> <c-space> coc#refresh()$/;"	m
+<cr>	config/mappings.vim	/^inoremap <expr> <cr> pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"$/;"	m
+<cr>	config/mappings.vim	/^inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\\<C-g>u\\<CR>\\<c-r>=coc#o/;"	m
+<leader><leader>	config/mappings.vim	/^nnoremap <silent> <leader><leader> <leader>t<leader>f$/;"	m
+<leader>a	config/mappings.vim	/^nmap <leader>a  <Plug>(coc-codeaction-selected)$/;"	m
+<leader>a	config/mappings.vim	/^nnoremap <leader>a =ip$/;"	m
+<leader>a	config/mappings.vim	/^xmap <leader>a  <Plug>(coc-codeaction-selected)$/;"	m
+<leader>ac	config/mappings.vim	/^nmap <leader>ac  <Plug>(coc-codeaction)$/;"	m
+<leader>cN	config/mappings.vim	/^nnoremap <leader>cN *``cgN$/;"	m
+<leader>cN	config/mappings.vim	/^vnoremap <expr> <leader>cN "y\/\\\\V\\<C-r>=escape(@\\", '\/')\\<CR>\\<CR>" . "``cgN"$/;"	m
+<leader>cn	config/mappings.vim	/^nnoremap <leader>cn *``cgn$/;"	m
+<leader>cn	config/mappings.vim	/^vnoremap <expr> <leader>cn "y\/\\\\V\\<C-r>=escape(@\\", '\/')\\<CR>\\<CR>" . "``cgn"$/;"	m
+<leader>cp	config/mappings.vim	/^nnoremap <leader>cp yap<S-}>p$/;"	m
+<leader>d	config/mappings.vim	/^nnoremap <silent> <leader>d :GitGutterToggle<cr>$/;"	m
+<leader>f	config/mappings.vim	/^nmap <leader>f  <Plug>(coc-format-selected)$/;"	m
+<leader>f	config/mappings.vim	/^xmap <leader>f  <Plug>(coc-format-selected)$/;"	m
+<leader>qf	config/mappings.vim	/^nmap <leader>qf  <Plug>(coc-fix-current)$/;"	m
+<leader>rn	config/mappings.vim	/^nmap <leader>rn <Plug>(coc-rename)$/;"	m
+<space>a	config/mappings.vim	/^nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>$/;"	m
+<space>c	config/mappings.vim	/^nnoremap <silent> <space>c  :<C-u>CocList commands<cr>$/;"	m
+<space>f	config/mappings.vim	/^nnoremap <silent> <space>f  :<C-u>CocCommand explorer<CR>$/;"	m
+<space>j	config/mappings.vim	/^nnoremap <silent> <space>j  :<C-u>CocNext<CR>$/;"	m
+<space>k	config/mappings.vim	/^nnoremap <silent> <space>k  :<C-u>CocPrev<CR>$/;"	m
+<space>o	config/mappings.vim	/^nnoremap <silent> <space>o  :<C-u>CocList outline<cr>$/;"	m
+<space>p	config/mappings.vim	/^nnoremap <silent> <space>p  :<C-u>CocListResume<CR>$/;"	m
+<space>s	config/mappings.vim	/^nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>$/;"	m
+>	config/mappings.vim	/^xnoremap > >gv|$/;"	m
+Coc Extensions	README.md	/^## Coc Extensions$/;"	s
+CocBuildUpdate	config/the-shelf.vim	/^function! CocBuildUpdate()$/;"	f
+Custom Mapping	README.md	/^## Custom Mapping$/;"	s
+Features	README.md	/^## Features$/;"	s
+Fold	config/plugins/coc.vim	/^command! -nargs=? Fold :call     CocAction('fold', <f-args>)$/;"	c
+FoldText	config/general.vim	/^function! FoldText()$/;"	f
+Format	config/plugins/coc.vim	/^command! -nargs=0 Format :call CocAction('format')$/;"	c
+Install	README.md	/^## Install$/;"	s
+InstallCoc	config/the-shelf.vim	/^function! InstallCoc(plugin) abort$/;"	f
+K	config/mappings.vim	/^nnoremap <silent> K :call <SID>show_documentation()<CR>$/;"	m
+MyAutoCmd	config/.vimrc	/^augroup MyAutoCmd$/;"	a
+MyAutoCmd	config/filetype.vim	/^augroup MyAutoCmd$/;"	a
+OR	config/plugins/coc.vim	/^command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')$/;"	c
+OpenChangedFiles	config/mappings.vim	/^function! OpenChangedFiles()$/;"	f
+PackClean	config/pack.vim	/^command! PackClean  call PackInit() | source $MYVIMRC | call minpac#clean()$/;"	c
+PackInit	config/pack.vim	/^function! PackInit() abort$/;"	f
+PackList	config/pack.vim	/^function! PackList(...)$/;"	f
+PackOpenDir	config/pack.vim	/^      \\ PackOpenDir call PackInit() | call term_start(&shell,$/;"	c
+PackOpenUrl	config/pack.vim	/^      \\ PackOpenUrl call PackInit() | call openbrowser#open($/;"	c
+PackStatus	config/pack.vim	/^command! PackStatus call PackInit() | source $MYVIMRC | call minpac#status()$/;"	c
+PackUpdate	config/pack.vim	/^command! PackUpdate call PackInit() | source $MYVIMRC | call minpac#update('', {'do': 'call minp/;"	c
+Pre-requisites	README.md	/^## Pre-requisites$/;"	s
+Q	config/mappings.vim	/^nnoremap Q q$/;"	m
+Screenshot	README.md	/^## Screenshot$/;"	s
+Super Sayain Vim Config	README.md	/^# Super Sayain Vim Config$/;"	c
+TermToggle	config/mappings.vim	/^function! TermToggle(height)$/;"	f
+WipeHiddenBuffers	config/mappings.vim	/^function! WipeHiddenBuffers()$/;"	f
+[Window]	config/mappings.vim	/^nnoremap  [Window]   <Nop>$/;"	m
+[Window]b	config/mappings.vim	/^nnoremap <silent> [Window]b  :b#<CR>$/;"	m
+[Window]c	config/mappings.vim	/^nnoremap <silent> [Window]c  :close<CR>$/;"	m
+[Window]g	config/mappings.vim	/^nnoremap <silent> [Window]g  :<C-u>vsplit<CR>$/;"	m
+[Window]o	config/mappings.vim	/^nnoremap <silent> [Window]o  :<C-u>only<CR>$/;"	m
+[Window]sg	config/mappings.vim	/^nnoremap <silent> [Window]sg :vsplit<CR>:wincmd p<CR>:e#<CR>$/;"	m
+[Window]sv	config/mappings.vim	/^nnoremap <silent> [Window]sv :split<CR>:wincmd p<CR>:e#<CR>$/;"	m
+[Window]t	config/mappings.vim	/^nnoremap <silent> [Window]t  :tabnew<CR>$/;"	m
+[Window]v	config/mappings.vim	/^nnoremap <silent> [Window]v  :<C-u>split<CR>$/;"	m
+[Window]x	config/mappings.vim	/^nnoremap <silent> [Window]x  :<C-u>call <SID>BufferEmpty()<CR>$/;"	m
+[g	config/mappings.vim	/^nmap <silent> [g <Plug>(coc-diagnostic-prev)$/;"	m
+\\\\	config/mappings.vim	/^nmap <silent> \\\\ :execute 'tabn '.g:lasttab<CR>$/;"	m
+\x21	config/mappings.vim	/^nnoremap ! :!$/;"	m
+]g	config/mappings.vim	/^nmap <silent> ]g <Plug>(coc-diagnostic-next)$/;"	m
+af	config/mappings.vim	/^omap af <Plug>(coc-funcobj-a)$/;"	m
+af	config/mappings.vim	/^xmap af <Plug>(coc-funcobj-a)$/;"	m
+coc.preferences.formatOnSaveFiletypes	coc-settings.json	/^    "coc.preferences.formatOnSaveFiletypes": [$/;"	a
+coc.preferences.formatOnType	coc-settings.json	/^    "coc.preferences.formatOnType": true,$/;"	b
+codeLens.enable	coc-settings.json	/^    "codeLens.enable": true,$/;"	b
+diagnostic.checkCurrentLine	coc-settings.json	/^    "diagnostic.checkCurrentLine": true,$/;"	b
+diagnostic.virtualText	coc-settings.json	/^    "diagnostic.virtualText": true,$/;"	b
+filetypedetect	config/ft.vim	/^augroup filetypedetect$/;"	a
+g$	config/mappings.vim	/^nnoremap <silent> g$ :<C-u>tablast<CR>$/;"	m
+g0	config/mappings.vim	/^nnoremap <silent> g0 :<C-u>tabfirst<CR>$/;"	m
+g:asyncrun_open	config/plugins/all.vim	/^let g:asyncrun_open = 12$/;"	v
+g:asyncrun_rootmarks	config/plugins/all.vim	/^let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']$/;"	v
+g:clipboard	config/general.vim	/^	let g:clipboard = {$/;"	v
+g:coc_global_extensions	config/the-shelf.vim	/^    let g:coc_global_extensions = [$/;"	v
+g:coc_snippet_next	config/mappings.vim	/^let g:coc_snippet_next = '<tab>'$/;"	v
+g:lasttab	config/mappings.vim	/^let g:lasttab = 1$/;"	v
+g:markdown_fenced_languages	config/filetype.vim	/^let g:markdown_fenced_languages = [$/;"	v
+g:pymode_python	config/ft.vim	/^        let g:pymode_python = 'python3'$/;"	v
+g:spaceline_colorscheme	config/plugins/all.vim	/^let g:spaceline_colorscheme = 'space'$/;"	v
+g:spaceline_line_symbol	config/plugins/all.vim	/^let g:spaceline_line_symbol = 0$/;"	v
+g:spaceline_seperate_style	config/plugins/all.vim	/^let g:spaceline_seperate_style= 'slant'$/;"	v
+g:startify_bookmarks	config/plugins/ss.vim	/^let g:startify_bookmarks = [{'z': '~\/.zshrc'}]$/;"	v
+g:startify_custom_header	config/plugins/ss.vim	/^let g:startify_custom_header = 'startify#pad(g:vegeta + startify#fortune#boxed())'$/;"	v
+g:startify_files_number	config/plugins/ss.vim	/^let g:startify_files_number = 4$/;"	v
+g:startify_lists	config/plugins/ss.vim	/^let g:startify_lists = [$/;"	v
+g:startify_session_dir	config/plugins/ss.vim	/^let g:startify_session_dir =  $VARPATH.'\/session'$/;"	v
+g:startify_skiplist	config/plugins/ss.vim	/^let g:startify_skiplist = [$/;"	v
+g:term_buf	config/mappings.vim	/^            let g:term_buf = bufnr("")$/;"	v
+g:term_buf	config/mappings.vim	/^let g:term_buf = 0$/;"	v
+g:term_win	config/mappings.vim	/^        let g:term_win = win_getid()$/;"	v
+g:term_win	config/mappings.vim	/^let g:term_win = 0$/;"	v
+g:vegeta	config/plugins/ss.vim	/^let g:vegeta = [$/;"	v
+gQ	config/mappings.vim	/^nnoremap gQ @q$/;"	m
+gd	config/mappings.vim	/^nmap <silent> gd <Plug>(coc-definition)$/;"	m
+gh	config/mappings.vim	/^nmap <silent> gh :echo 'hi<'.synIDattr(synID(line('.'), col('.'), 1), 'name')$/;"	m
+gi	config/mappings.vim	/^nmap <silent> gi <Plug>(coc-implementation)$/;"	m
+git.addGBlameToVirtualText	coc-settings.json	/^    "git.addGBlameToVirtualText": true,$/;"	b
+gp	config/mappings.vim	/^nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'$/;"	m
+gr	config/mappings.vim	/^nmap <silent> gr <Plug>(coc-references)$/;"	m
+gr	config/mappings.vim	/^nnoremap <silent> gr :<C-u>tabprevious<CR>$/;"	m
+gy	config/mappings.vim	/^nmap <silent> gy <Plug>(coc-type-definition)$/;"	m
+if	config/mappings.vim	/^omap if <Plug>(coc-funcobj-i)$/;"	m
+if	config/mappings.vim	/^xmap if <Plug>(coc-funcobj-i)$/;"	m
+javascriptreact	coc-settings.json	/^      "javascriptreact": ["javascript"],$/;"	a	object:snippets.extends
+list.insertMappings	coc-settings.json	/^    "list.insertMappings": {$/;"	o
+list.normalMappings	coc-settings.json	/^    "list.normalMappings": {$/;"	o
+mj	config/mappings.vim	/^noremap  mj :m+<CR>$/;"	m
+mj	config/mappings.vim	/^vnoremap mj :m'>+<CR>gv=gv$/;"	m
+mk	config/mappings.vim	/^noremap  mk :m-2<CR>$/;"	m
+mk	config/mappings.vim	/^vnoremap mk :m-2<CR>gv=gv$/;"	m
+mygroup	config/plugins/coc.vim	/^augroup mygroup$/;"	a
+packager_filetype	config/pack.vim	/^augroup packager_filetype$/;"	a
+packager_filetype	config/the-shelf.vim	/^augroup packager_filetype$/;"	a
+prettier.printWidth	coc-settings.json	/^    "prettier.printWidth": 160,$/;"	n
+prettier.singleQuote	coc-settings.json	/^    "prettier.singleQuote": true,$/;"	b
+q	config/mappings.vim	/^nnoremap <silent> q :<C-u>:quit<CR>$/;"	m
+s	config/mappings.vim	/^nmap      s [Window]$/;"	m
+s	config/mappings.vim	/^xnoremap s :s\/\/g<Left><Left>$/;"	m
+s:BufferEmpty	config/mappings.vim	/^function! s:BufferEmpty()$/;"	f
+s:MakeExec	config/mappings.vim	/^function! s:MakeExec()$/;"	f
+s:SweepBuffers	config/mappings.vim	/^function! s:SweepBuffers()$/;"	f
+s:append_modeline	config/mappings.vim	/^function! s:append_modeline() "{{{$/;"	f
+s:change_bang	config/plugins/all.vim	/^function! s:change_bang()$/;"	f
+s:check_back_space	config/mappings.vim	/^function! s:check_back_space() abort$/;"	f
+s:coc_cb	config/the-shelf.vim	/^function! s:coc_cb(hooktype, name) abort$/;"	f
+s:coc_extensions	config/the-shelf.vim	/^let s:coc_extensions = [$/;"	v
+s:coc_plugins	config/the-shelf.vim	/^function! s:coc_plugins() abort$/;"	f
+s:compile	config/plugins/all.vim	/^function! s:compile()$/;"	f
+s:compile_and_run	config/plugins/all.vim	/^function! s:compile_and_run()$/;"	f
+s:get_selection	config/mappings.vim	/^function! s:get_selection(cmdtype) "{{{$/;"	f
+s:goyo_enter	config/plugins/all.vim	/^function! s:goyo_enter()$/;"	f
+s:goyo_enter	config/plugins/goyo.vim	/^function! s:goyo_enter()$/;"	f
+s:goyo_leave	config/plugins/all.vim	/^function! s:goyo_leave()$/;"	f
+s:goyo_leave	config/plugins/goyo.vim	/^function! s:goyo_leave()$/;"	f
+s:is_sudo	config/.vimrc	/^let s:is_sudo = $SUDO_USER !=# '' && $USER !=# $SUDO_USER$/;"	v
+s:minipac_dir	config/pack.vim	/^	let s:minipac_dir = expand('$VARPATH\/pack').'\/minpac\/opt\/minpac'$/;"	v
+s:python_shebang	config/plugins/all.vim	/^function! s:python_shebang()$/;"	f
+s:python_version	config/ft.vim	/^function! s:python_version()$/;"	f
+s:shell_shebang	config/plugins/all.vim	/^function! s:shell_shebang()$/;"	f
+s:show_documentation	config/mappings.vim	/^function! s:show_documentation()$/;"	f
+s:source_file	config/.vimrc	/^function! s:source_file(path, ...) abort$/;"	f
+signature.target	coc-settings.json	/^    "signature.target": "echo",$/;"	s
+snippets.extends	coc-settings.json	/^    "snippets.extends": {$/;"	o
+suggest.minTriggerInputLength	coc-settings.json	/^    "suggest.minTriggerInputLength": 2,$/;"	n
+suggest.noselect	coc-settings.json	/^    "suggest.noselect": false,$/;"	b
+typescript	coc-settings.json	/^      "typescript": ["javascript"]$/;"	a	object:snippets.extends
+zh	config/mappings.vim	/^nnoremap zh z5h$/;"	m
+zl	config/mappings.vim	/^nnoremap zl z5l$/;"	m
+zz	config/mappings.vim	/^nnoremap <expr> zz (winline() == (winheight(0)+1) \/ 2) ?$/;"	m

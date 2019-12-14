@@ -11,9 +11,6 @@ endif
 " Set pathe for minpac
 set packpath^=~/.cache/vim/
 
-" For skim
-set rtp+=~/.skim
-
 function! PackInit() abort
 	packadd minpac
 	call minpac#init()
@@ -30,7 +27,13 @@ function! PackInit() abort
 	call minpac#add('sheerun/vim-polyglot')
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
-	call minpac#add('lotabout/skim', { 'dir': '~/.skim'}, {'do': './install' })
+	call minpac#add('sbdchd/neoformat')
+
+	if executable('fzy') && executable('sk')
+		call minpac#add('liuchengxu/vim-clap', { 'do': ':call clap#helper#build_maple()'})
+	else
+		call minpac#add('liuchengxu/vim-clap', { 'do': ':call clap#helper#build_rust_ext()'})
+	endif
 
 	"Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('oknozor/illumination', {'dir': '~/.illumination'}, {'do': './install.sh' }, {'type': 'opt'})

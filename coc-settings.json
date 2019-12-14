@@ -9,6 +9,7 @@
         "javascriptreact",
         "json", 
         "jsonc",
+        "rust",
         "typescript", 
         "typescriptreact"
     ],
@@ -19,6 +20,7 @@
     "diagnostic.checkCurrentLine": true,
     "git.addGBlameToVirtualText": true,
     "suggest.noselect": false,
+    "suggest.minTriggerInputLength": 2,
     "signature.target": "echo",
     "snippets.extends": {
       "javascriptreact": ["javascript"],
@@ -30,7 +32,5 @@
     "list.insertMappings": {
       "<C-c>": "do:exit"
     },
-    "eslint.autoFixOnSave": true,
-    "eslint.filetypes": ["javascript", "typescript", "javascriptreact"],
-    "languageserver": { }
+    "suggest.triggerAfterInsertEnter": true
   }
