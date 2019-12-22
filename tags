@@ -14,14 +14,15 @@ $VIMPATH	config/.vimrc	/^let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p'))
 0	coc-settings.json	/^      "javascriptreact": ["javascript"],$/;"	s	array:snippets.extends.javascriptreact
 0	coc-settings.json	/^      "typescript": ["javascript"]$/;"	s	array:snippets.extends.typescript
 1	coc-settings.json	/^        "go",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+10	coc-settings.json	/^        "typescriptreact"$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 2	coc-settings.json	/^        "markdown",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 3	coc-settings.json	/^        "Markdown",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 4	coc-settings.json	/^        "javascript", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
 5	coc-settings.json	/^        "javascriptreact",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
 6	coc-settings.json	/^        "json", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
 7	coc-settings.json	/^        "jsonc",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
-8	coc-settings.json	/^        "typescript", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
-9	coc-settings.json	/^        "typescriptreact"$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+8	coc-settings.json	/^        "rust",$/;"	s	array:coc.preferences.formatOnSaveFiletypes
+9	coc-settings.json	/^        "typescript", $/;"	s	array:coc.preferences.formatOnSaveFiletypes
 <	config/mappings.vim	/^xnoremap < <gv$/;"	m
 <A-j>	config/mappings.vim	/^nnoremap <silent> <A-j> :<C-U>tabnext<CR>$/;"	m
 <A-k>	config/mappings.vim	/^nnoremap <silent> <A-k> :<C-U>tabprevious<CR>$/;"	m
@@ -170,12 +171,14 @@ WipeHiddenBuffers	config/mappings.vim	/^function! WipeHiddenBuffers()$/;"	f
 ]g	config/mappings.vim	/^nmap <silent> ]g <Plug>(coc-diagnostic-next)$/;"	m
 af	config/mappings.vim	/^omap af <Plug>(coc-funcobj-a)$/;"	m
 af	config/mappings.vim	/^xmap af <Plug>(coc-funcobj-a)$/;"	m
+b:neoformat_basic_format_retab	config/plugins/format.vim	/^let b:neoformat_basic_format_retab = 0/;"	v
 coc.preferences.formatOnSaveFiletypes	coc-settings.json	/^    "coc.preferences.formatOnSaveFiletypes": [$/;"	a
 coc.preferences.formatOnType	coc-settings.json	/^    "coc.preferences.formatOnType": true,$/;"	b
 codeLens.enable	coc-settings.json	/^    "codeLens.enable": true,$/;"	b
 diagnostic.checkCurrentLine	coc-settings.json	/^    "diagnostic.checkCurrentLine": true,$/;"	b
 diagnostic.virtualText	coc-settings.json	/^    "diagnostic.virtualText": true,$/;"	b
 filetypedetect	config/ft.vim	/^augroup filetypedetect$/;"	a
+fmt	config/plugins/format.vim	/^augroup fmt$/;"	a
 g$	config/mappings.vim	/^nnoremap <silent> g$ :<C-u>tablast<CR>$/;"	m
 g0	config/mappings.vim	/^nnoremap <silent> g0 :<C-u>tabfirst<CR>$/;"	m
 g:asyncrun_open	config/plugins/all.vim	/^let g:asyncrun_open = 12$/;"	v
@@ -185,10 +188,10 @@ g:coc_global_extensions	config/the-shelf.vim	/^    let g:coc_global_extensions =
 g:coc_snippet_next	config/mappings.vim	/^let g:coc_snippet_next = '<tab>'$/;"	v
 g:lasttab	config/mappings.vim	/^let g:lasttab = 1$/;"	v
 g:markdown_fenced_languages	config/filetype.vim	/^let g:markdown_fenced_languages = [$/;"	v
+g:neoformat_basic_format_trim	config/plugins/format.vim	/^let g:neoformat_basic_format_trim = 1$/;"	v
 g:pymode_python	config/ft.vim	/^        let g:pymode_python = 'python3'$/;"	v
 g:spaceline_colorscheme	config/plugins/all.vim	/^let g:spaceline_colorscheme = 'space'$/;"	v
-g:spaceline_line_symbol	config/plugins/all.vim	/^let g:spaceline_line_symbol = 0$/;"	v
-g:spaceline_seperate_style	config/plugins/all.vim	/^let g:spaceline_seperate_style= 'slant'$/;"	v
+g:spaceline_seperate_style	config/plugins/all.vim	/^let g:spaceline_seperate_style= 'arrow-fade'$/;"	v
 g:startify_bookmarks	config/plugins/ss.vim	/^let g:startify_bookmarks = [{'z': '~\/.zshrc'}]$/;"	v
 g:startify_custom_header	config/plugins/ss.vim	/^let g:startify_custom_header = 'startify#pad(g:vegeta + startify#fortune#boxed())'$/;"	v
 g:startify_files_number	config/plugins/ss.vim	/^let g:startify_files_number = 4$/;"	v
@@ -253,6 +256,7 @@ signature.target	coc-settings.json	/^    "signature.target": "echo",$/;"	s
 snippets.extends	coc-settings.json	/^    "snippets.extends": {$/;"	o
 suggest.minTriggerInputLength	coc-settings.json	/^    "suggest.minTriggerInputLength": 2,$/;"	n
 suggest.noselect	coc-settings.json	/^    "suggest.noselect": false,$/;"	b
+suggest.triggerAfterInsertEnter	coc-settings.json	/^    "suggest.triggerAfterInsertEnter": true$/;"	b
 typescript	coc-settings.json	/^      "typescript": ["javascript"]$/;"	a	object:snippets.extends
 zh	config/mappings.vim	/^nnoremap zh z5h$/;"	m
 zl	config/mappings.vim	/^nnoremap zl z5l$/;"	m
