@@ -56,13 +56,13 @@ syntax enable
 call s:source_file('init.vim')
 call s:source_file('pack.vim')
 
+" Loading plugin specific configuration modules
+call s:source_file('plugins/all.vim')
+call s:source_file('plugins/coc.vim')
+call s:source_file('plugins/ss.vim')
+
 " Loading configuration modules
 call s:source_file('general.vim')
 call s:source_file('filetype.vim')
 call s:source_file('ft.vim')
 call s:source_file('mappings.vim')
-
-" Loading plugin specific configuration modules
-call s:source_file('plugins/all.vim')
-call s:source_file('plugins/coc.vim')
-call s:source_file('plugins/ss.vim')
