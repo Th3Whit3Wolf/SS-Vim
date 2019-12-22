@@ -7,8 +7,7 @@ set encoding=UTF-8
 set mouse=a " Enable mouse if possible
 
 let g:spaceline_colorscheme = 'space'
-let g:spaceline_line_symbol = 0
-let g:spaceline_seperate_style= 'slant'
+let g:spaceline_seperate_style= 'arrow-fade'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
