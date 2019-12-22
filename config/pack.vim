@@ -28,6 +28,8 @@ function! PackInit() abort
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
 	call minpac#add('sbdchd/neoformat')
+	call minpac#add('junegunn/goyo.vim')
+	call minpac#add('junegunn/limelight.vim')
 
 	if executable('fzy') && executable('sk')
 		call minpac#add('liuchengxu/vim-clap', { 'do': ':call clap#helper#build_maple()'})
@@ -41,8 +43,6 @@ function! PackInit() abort
 	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
 	call minpac#add('vmchale/ion-vim', {'type': 'opt' })
 	call minpac#add('python-mode/python-mode', {'type': 'opt' })
-	call minpac#add('junegunn/goyo.vim', {'type': 'opt' })
-	call minpac#add('junegunn/limelight.vim', {'type': 'opt' })
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt' })
 endfunction
 
