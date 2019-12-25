@@ -548,3 +548,6 @@ augroup mygroup
 augroup end
 " To not interfere with coc
 let g:UltiSnipsExpandTrigger="s<Tab>"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Clap
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
