@@ -1,6 +1,3 @@
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -23,6 +20,8 @@ set signcolumn=yes
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -31,13 +30,5 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" To not interfere with coc
+let g:UltiSnipsExpandTrigger="s<Tab>"
