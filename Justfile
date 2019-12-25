@@ -1,7 +1,7 @@
 VIM := `which nvim || which vim`
 
 # Install Super Sayain Vim
-install: venv initialize
+install: initialize venv vimclap
 	echo "Super Saiyan Vim Installed Sucessfully"
 
 initialize: 
