@@ -22,15 +22,20 @@
     "suggest.noselect": false,
     "suggest.minTriggerInputLength": 2,
     "signature.target": "echo",
-    "snippets.extends": {
-      "javascriptreact": ["javascript"],
-      "typescript": ["javascript"]
-    },
     "list.normalMappings": {
       "<C-c>": "do:exit"
     },
     "list.insertMappings": {
       "<C-c>": "do:exit"
     },
-    "suggest.triggerAfterInsertEnter": true
+    "suggest.triggerAfterInsertEnter": true,
+    "snippets.extends" : {
+      "cpp": ["c"],
+      "javascriptreact": ["javascript"],
+      "typescript": ["javascript"]
+    },
+    "snippets.ultisnips.directories": [
+      "UltiSnips",
+      "gosnippets/UltiSnips"
+    ]
   }
