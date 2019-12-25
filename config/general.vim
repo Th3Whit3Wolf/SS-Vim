@@ -51,7 +51,7 @@ if has('wildmenu')
 	set wildmode=list:longest,full
 	set wildoptions=tagfile
 	set wildignorecase
-	set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
+	set wildignore+=*.so,.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
 	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
 	set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
 	set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
@@ -107,6 +107,7 @@ set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
 set incsearch       " Incremental search
 set hlsearch        " Highlight search results
+set grepprg=rg\ --vimgrep\ $*
 set wrapscan        " Searches wrap around the end of the file
 set showmatch       " Jump to matching bracket
 set matchpairs+=<:> " Add HTML brackets to pair matching
@@ -123,6 +124,7 @@ set whichwrap+=h,l,<,>,[,],~    " Move to following line on certain keys
 set splitbelow splitright       " Splits open bottom right
 set switchbuf=useopen,usetab    " Jump to the first open window in any tab
 set switchbuf+=vsplit           " Switch buffer behavior to vsplit
+set backspace=2
 set backspace=indent,eol,start  " Intuitive backspacing in insert mode
 set diffopt=filler,iwhite       " Diff mode: show fillers, ignore whitespace
 set showfulltag                 " Show tag and tidy search in completion
@@ -143,6 +145,7 @@ set sidescrolloff=5     " Keep at least 5 lines left/right
 set number              " Don't show line numbers
 set ruler               " Disable default status ruler
 set list                " Show hidden characters
+set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 set signcolumn=yes		" Always show signcolumns
 set laststatus=2        " Always show a status line
