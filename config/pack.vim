@@ -30,12 +30,13 @@ function! PackInit() abort
 	call minpac#add('junegunn/limelight.vim')
 	call minpac#add('liuchengxu/vista.vim')
 	call minpac#add('bagrat/vim-buffet')
-	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
+	call minpac#add('Th3Whit3Wolf/vim-shebang')
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
 	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
 
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
+	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
 	call minpac#add('mhinz/vim-crates', {'type': 'opt'})

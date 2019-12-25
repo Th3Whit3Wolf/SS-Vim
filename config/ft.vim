@@ -2,32 +2,6 @@ if exists('did_load_filetypes')
 	finish
 endif
 
-function! s:noFileExt() abort
-	if getline(1)[0:18] ==# "#!/usr/bin/env bash" || getline(1)[0:14] ==# "#!/usr/bin/bash" || getline(1)[0:18] ==# "#!/usr/bin/env dash" || getline(1)[0:14] ==# "#!/usr/bin/dash"
-		setfiletype sh
-	elseif getline(1)[0:18] ==# "#!/usr/bin/env fish" || getline(1)[0:14] ==# "#!/usr/bin/fish"
-		setfiletype fish
-	elseif getline(1)[0:17] ==# "#!/usr/bin/env ion" || getline(1)[0:13] ==# "#!/usr/bin/ion"
-		setfiletype ion
-	elseif getline(1)[0:18] ==# "#!/usr/bin/env perl" || getline(1)[0:14] ==# "#!/usr/bin/perl"
-		setfiletype perl
-	elseif getline(1)[0:21] ==# "#!/usr/bin/env python3" || getline(1)[0:17] ==# "#!/usr/bin/python3" || getline(1)[0:20] ==# "#!/usr/bin/env python" || getline(1)[0:16] ==# "#!/usr/bin/python" || getline(1)[0:19] ==# "#!/usr/bin/env pypy3" || getline(1)[0:15] ==# "#!/usr/bin/pypy3
-		setfiletype python
-		let g:pymode_python = 'python3'
-		packadd python-mode
-	elseif getline(1)[0:21] ==# "#!/usr/bin/env python2" || getline(1)[0:17] ==# "#!/usr/bin/python2" || getline(1)[0:18] ==# "#!/usr/bin/env pypy" || getline(1)[0:14] ==# "#!/usr/bin/pypy" getline(1)[0:20] ==# "#!/usr/bin/env jython" || getline(1)[0:16] ==# "#!/usr/bin/jython"
-		setfiletype python
-		let g:pymode_python = 'disabled'
-	elseif getline(1)[0:18] ==# "#!/usr/bin/env ruby" || getline(1)[0:14] ==# "#!/usr/bin/ruby"
-		setfiletype ruby
-	elseif getline(1)[0:17] ==# "#!/usr/bin/env zsh" || getline(1)[0:13] ==# "#!/usr/bin/zsh"
-		setfiletype zsh
-	else
-		setfiletype sh
-	endif
-endfunction
-
-
 augroup filetypedetect
 	autocmd BufNewFile,BufRead */playbooks/*.{yml,yaml} setfiletype yaml.ansible
 	autocmd BufNewFile,BufRead */inventory/*            setfiletype ansible_hosts
@@ -51,7 +25,6 @@ augroup filetypedetect
 	autocmd BufNewFile,BufRead Brewfile                 setfiletype ruby
 	autocmd BufNewFile,BufRead Justfile,justfile        setfiletype make
 	autocmd BufNewFile,BufRead *.ion                    setfiletype ion
-	autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | call <SID>noFileExt() | endif
 augroup END
 =" Reload vim config automatically
 execute 'autocmd MyAutoCmd BufWritePost '.$VIMPATH.'/config/*,vimrc nested'
