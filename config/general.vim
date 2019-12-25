@@ -43,9 +43,9 @@ endif
 if has('clipboard')
 	set clipboard& clipboard+=unnamedplus
 endif
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " Wildmenu
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 if has('wildmenu')
 	set nowildmenu
 	set wildmode=list:longest,full
@@ -57,14 +57,14 @@ if has('wildmenu')
 	set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
 	set wildignore+=__pycache__,*.egg-info
 endif
-""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " Vim Directories
-""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 set undofile swapfile nobackup
-set directory=$VARPATH/swap//,$VARPATH,~/tmp,/var/tmp,/tmp
-set undodir=$VARPATH/undo//,$VARPATH,~/tmp,/var/tmp,/tmp
-set backupdir=$VARPATH/backup/,$VARPATH,~/tmp,/var/tmp,/tmp
-set viewdir=$VARPATH/view/
+set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
+set viewdir=$DATA_PATH/view/
 set nospell spellfile=$VIMPATH/spell/en.utf-8.add
 
 " History saving
@@ -78,11 +78,11 @@ if has('nvim')
 	"   h - Disable the effect of 'hlsearch' when loading the shada
 	set shada='300,<50,@100,s10,h
 else
-	set viminfo='300,<10,@50,h,n$VARPATH/viminfo
+	set viminfo='300,<10,@50,h,n$DATA_PATH/viminfo
 endif
-"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " Tabs and Indents
-"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 set textwidth=80    " Text width maximum chars before wrapping
 set noexpandtab     " Don't expand tabs to spaces.
 set tabstop=2       " The number of spaces a tab is
@@ -92,15 +92,13 @@ set smarttab        " Tab insert blanks according to 'shiftwidth'
 set autoindent      " Use same indenting on new lines
 set smartindent     " Smart autoindenting on new lines
 set shiftround      " Round indent to multiple of 'shiftwidth'
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " Timing
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 set timeout ttimeout
-set timeoutlen=750  " Time out on mappings
-set updatetime=1000 " Idle time to write swap and trigger CursorHold
-
-" Time out on key codes
-set ttimeoutlen=10
+set timeoutlen=500  " Time out on mappings
+set ttimeoutlen=10  " Time out on key codes
+set updatetime=100  " Idle time to write swap and trigger CursorHold
 """""""""""""""""""""""""""""
 "         Searching         "
 """""""""""""""""""""""""""""
@@ -145,7 +143,6 @@ set sidescrolloff=5     " Keep at least 5 lines left/right
 set number              " Don't show line numbers
 set ruler               " Disable default status ruler
 set list                " Show hidden characters
-
 
 set signcolumn=yes		" Always show signcolumns
 set laststatus=2        " Always show a status line
@@ -210,8 +207,8 @@ endfunction
 
 " Specify the behavior when switching between buffers 
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+	set switchbuf=useopen,usetab,newtab
+	set stal=2
 catch
 endtry
 
