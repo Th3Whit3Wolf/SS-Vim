@@ -32,7 +32,7 @@ function! PackInit() abort
 	call minpac#add('bagrat/vim-buffet')
 	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
-	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release; call ca'})
+	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
 
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -41,9 +41,6 @@ function! PackInit() abort
 	call minpac#add('mhinz/vim-crates', {'type': 'opt'})
 	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
 	call minpac#add('python-mode/python-mode', {'type': 'opt' })
-	if executable('ion')
-		call minpac#add('vmchale/ion-vim', {'type': 'opt' })
-	endif
 	if executable('go')
 		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
 	endif
@@ -161,7 +158,7 @@ augroup lazy_load_coc_ft
 	if has('nvim')
 		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
 	endif
-	autocmd! FileType c,cpp,go,haskell,ion,java,javascript,lhaskell,markdown,python,php,sh,tex		packadd vim-asyncrun
+	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh	packadd asyncrun.vim
 augroup END
 
 function! SetUpMk()
