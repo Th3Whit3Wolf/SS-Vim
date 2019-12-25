@@ -408,7 +408,7 @@ function! s:compile()
   endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => markdown preview plugin for (neo)vim 
+" => Vim Markdown Composer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:markdown_composer_syntax_theme = 'atom-one-dark'
 let g:markdown_composer_custom_css = ['file://' . expand('~/.config/nvim/config/plugins/markdown/markdown.css')]
@@ -462,7 +462,6 @@ let g:ale_sign_warning = '😃'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
 let g:ale_lintetrs = {
 	\'javascript': ['eslint', 'stylelint'],
 	\'jsx': ['eslint', 'stylelint'],
