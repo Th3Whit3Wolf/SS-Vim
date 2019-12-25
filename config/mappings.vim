@@ -256,11 +256,11 @@ function! s:MakeExec()
 endfunction
 
 " Fast saving
-nnoremap <silent><Leader>w :write \| call <SID>MakeExec() \| write<CR>
-vnoremap <silent><Leader>w <Esc>:write \| call <SID>MakeExec() \| write<CR>
-nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
-vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
-cnoremap <silent><C-s> <C-u>write \| call <SID>MakeExec() \| write<CR>
+nnoremap <silent><Leader>w :write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+vnoremap <silent><Leader>w <Esc>:write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+cnoremap <silent><C-s> <C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
 
 
 
