@@ -43,15 +43,17 @@ let g:startify_session_dir =  $DATA_PATH.'/session'
 let g:startify_files_number = 4
 
 let g:startify_bookmarks = [{'z': '~/.zshrc'}]
-
+let g:startify_enable_special = 0
 let g:startify_commands = [
-        \ {'h': 'h ref'},
+        \ {'e': ['Open Empty Buffer', ':tabnew']},
+        \ {'h': ['Read the Manual', 'h ref']},
         \ {'f': ['List Files', 'Clap files']},
-        \ {'u': ['Install or Update Plugins', 'PackUpdate']},
+        \ {'u': ['Update Plugins', 'PackUpdate']},
         \ {'c': ['Uninstall Unused Plugins', 'PackClean']},
         \ {'s': ['View Status of Plugins', 'PackStatus']},
         \ {'t': ['View Startup Time', 'packadd startuptime.vim | StartupTime']},
         \ {'m': ['View Coc Extensions Marketplace', 'CocList marketplace']},
+        \ {'q': ['Quit', ':q!']},
         \ ]
 
 let g:startify_lists = [
