@@ -47,9 +47,24 @@ venv:
 		[ -d "$venv/neovim3" ] || python3 -m venv "$venv/neovim3"
 	fi
 	echo ":: PYTHON 2"
-	"$venv/neovim2/bin/pip" install -U pynvim yapf autopep8 pylint prospector flake8 pylama
+	"$venv/neovim2/bin/pip" install -U \
+		pynvim \
+		yapf \
+		autopep8 \
+		pylint \
+		prospector \
+		flake8 \
+		pylama
 	echo -e '\n:: PYTHON 3'
-	"$venv/neovim3/bin/pip" install -U pynvim yapf autopep8 pylint prospector flake8 pylama mypy
+	"$venv/neovim3/bin/pip" install -U \
+		pynvim \
+		yapf \
+		autopep8 \
+		pylint \
+		prospector \
+		flake8 \
+		pylama \
+		mypy
 
 vimclap:
 	#!/usr/bin/env bash
