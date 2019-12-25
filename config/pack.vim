@@ -1,33 +1,24 @@
-if &compatible
-  " `:set nocp` has many side effects. Therefore this should be done
-  " only when 'compatible' is set.
-  set nocompatible
-endif
-
-
-if &runtimepath !~# '/minipac.vim'
-	let s:minipac_dir = expand('$VARPATH/pack').'/minpac/opt/minpac'
-	if ! isdirectory(s:minipac_dir)
-		execute '!git clone https://github.com/k-takata/minpac' s:minipac_dir
+if &runtimepath !~# '/minpac.vim'
+	let s:minpac_dir = expand('$DATA_PATH/pack').'/minpac/opt/minpac'
+	if ! isdirectory(s:minpac_dir)
+		execute '!git clone https://github.com/k-takata/minpac' s:minpac_dir
     endif
 
 	execute 'set runtimepath+='.substitute(
-		\ fnamemodify(s:minipac_dir, ':p') , '/$', '', '')
+		\ fnamemodify(s:minpac_dir, ':p') , '/$', '', '')
     
 endif
-" Set pathe for minpac
+" Set path for minpac
 set packpath^=~/.cache/vim/
 
 function! PackInit() abort
 	packadd minpac
 	call minpac#init()
-	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('liuchengxu/space-vim-dark')
 	call minpac#add('lambdalisue/gina.vim')
 	call minpac#add('taigacute/spaceline.vim')
 	call minpac#add('ryanoasis/vim-devicons')
 	call minpac#add('tyru/open-browser.vim')
-	call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 	call minpac#add('honza/vim-snippets')
 	call minpac#add('SirVer/ultisnips')
 	call minpac#add('w0rp/ale')
@@ -35,58 +26,148 @@ function! PackInit() abort
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
 	call minpac#add('sbdchd/neoformat')
-
-	if executable('fzy') && executable('sk')
-		call minpac#add('liuchengxu/vim-clap', { 'do': ':call clap#helper#build_maple()'})
-	else
-		call minpac#add('liuchengxu/vim-clap', { 'do': ':call clap#helper#build_rust_ext()'})
-	endif
-
-	"Loaded only for specific filetypes on demand. Requires autocommands below.
-	if has('nvim')
-		call minpac#add('euclio/vim-markdown-composer', {'do': ':!cargo build --release --locked'}, {'type': 'opt' })
-	else 
-		call minpac#add('euclio/vim-markdown-composer', {'do': ':!cargo build --release --locked --no-default-features --features json-rpc'}, {'type': 'opt' })
-	endif
-	"call minpac#add('oknozor/illumination', {'dir': '~/.illumination'}, {'do': './install.sh' }, {'type': 'opt'})
-	call minpac#add('fatih/vim-go', { 'do': ':GoInstallBinaries'}, {'type': 'opt' })
-	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
-	call minpac#add('vmchale/ion-vim', {'type': 'opt' })
-	call minpac#add('python-mode/python-mode', {'type': 'opt' })
 	call minpac#add('junegunn/goyo.vim')
 	call minpac#add('junegunn/limelight.vim')
-	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt' })
+	call minpac#add('liuchengxu/vista.vim')
+	call minpac#add('bagrat/vim-buffet')
+	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
+	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
+	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release; call ca'})
+
+	" Loaded only for specific filetypes on demand. Requires autocommands below.
+	call minpac#add('k-takata/minpac', {'type': 'opt'})
+	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
+	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
+	call minpac#add('mhinz/vim-crates', {'type': 'opt'})
+	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
+	call minpac#add('python-mode/python-mode', {'type': 'opt' })
+	if executable('ion')
+		call minpac#add('vmchale/ion-vim', {'type': 'opt' })
+	endif
+	if executable('go')
+		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
+	endif
+
+	" Coc and Extensions
+	call minpac#add('neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('coc-extensions/coc-utils', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('fannheyward/coc-marketplace', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('iamcco/coc-diagnostic', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-git', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-pairs', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-snippets', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-yank', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-highlight', {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('weirongxu/coc-explorer', {'do': {-> system('yarn install --frozen-lockfile') }})
+
+	" Language Specific Coc Extensions
+	call minpac#add('neoclide/coc-tsserver', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-html', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-json', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-css', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-yaml', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-emmet', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('fannheyward/coc-markdownlint', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-python', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('josa42/coc-sh', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('iamcco/coc-vimlsp', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('iamcco/coc-svg', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+
+	if executable('flutter')
+		call minpac#add('iamcco/coc-flutter', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('erlang_ls')
+		call minpac#add('hyhugh/coc-erlang_ls', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('elixir') && executable('mix')
+		call minpac#add('amiralies/coc-elixir', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('php')
+		call minpac#add('marlonfan/coc-phpls', {'type': 'opt' }, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('ra_lsp_server')
+		call minpac#add('fannheyward/coc-rust-analyzer', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	elseif executable('rls')
+		call minpac#add('neoclide/coc-rls', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('r')
+		call minpac#add('neoclide/coc-r-lsp', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('ruby')
+		call minpac#add('neoclide/coc-solargraph', {'type': 'opt' }, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('texlab')
+		call minpac#add('fannheyward/coc-texlab', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
+	if executable('vls')
+		call minpac#add('neoclide/coc-vetur', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	endif
 endfunction
 
 function! PackList(...)
-  call PackInit()
-  return join(sort(keys(minpac#getpluglist())), "\n")
+	call PackInit()
+	return join(sort(keys(minpac#getpluglist())), "\n")
 endfunction
 
-command! -nargs=1 -complete=custom,PackList
-      \ PackOpenUrl call PackInit() | call openbrowser#open(
-      \    minpac#getpluginfo(<q-args>).url)
+" Load plugins only for specific filetype
+augroup lazy_load_coc_ft
+	autocmd!
+	autocmd! FileType javascript,typescript		packadd coc-tsserver | silent CocRestart 
+	autocmd! FileType sass,scss,css 			packadd coc-css | silent CocRestart 
+	autocmd! FileType less						packadd vim-less,coc-css | silent CocRestart 
+	autocmd! FileType python 					packadd python-mode,coc-python | silent CocRestart 
+	autocmd! FileType json						packadd coc-json | silent CocRestart 
+	autocmd! FileType yaml						packadd coc-yaml | silent CocRestart 
+	autocmd! FileType markdown,mkd				call SetUpMk()
+	autocmd! FileType html						packadd coc-html,coc-emmet  | silent CocRestart 
+	autocmd! FileType sh						packadd coc-sh | silent CocRestart 
+	autocmd! FileType vim						packadd coc-vimlsp | silent CocRestart 
+	autocmd! FileType svg						packadd coc-svg | silent CocRestart 
 
-command! -nargs=1 -complete=custom,PackList
-      \ PackOpenDir call PackInit() | call term_start(&shell,
-      \    {'cwd': minpac#getpluginfo(<q-args>).dir,
-      \     'term_finish': 'close'})
-
-" Define user commands for updating/cleaning the plugins.
-" Each of them loads minpac, reloads .vimrc to register the
-" information of plugins, then performs the task.
-command! PackUpdate call PackInit() | source $HOME/.config/nvim/config/pack.vim | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  call PackInit() | source $HOME/.config/nvim/config/pack.vim | call minpac#clean()
-command! PackStatus call PackInit() | source $HOME/.config/nvim/config/pack.vim | call minpac#status()
-
-"Load plugins only for specific filetype
-augroup packager_filetype
-  autocmd!
-  autocmd! FileType go 							packadd vim-go
-  autocmd! FileType less						packadd vim-less 
-  autocmd! FileType latex						packadd vim-latex-live-preview 
-  autocmd! FileType ion 						packadd ion-vim
-  autocmd! FileType python 						packadd python-mode
-  autocmd! FileType markdown					packadd vim-markdown-composer,goyo.vim,limelight.vim
-  autocmd! FileType c, cpp, java, sh, python	packadd vim-asyncrun
+	if executable('flutter')
+		autocmd! FileType dart					packadd coc-flutter | silent CocRestart 
+	endif
+	if executable('erlang_ls')
+		autocmd! FileType erlang				packadd coc-erlang_ls | silent CocRestart 
+	endif
+	if executable('go')
+		autocmd! FileType go 					packadd vim-go
+	endif
+	if executable('ion')
+		autocmd! FileType ion 					packadd ion-vim
+	endif
+	if executable('texlab')
+		autocmd! FileType latex					packadd vim-latex-live-preview,coc-texlab | silent CocRestart 
+	else
+		autocmd! FileType latex					packadd vim-latex-live-preview
+	endif
+	if executable('php')
+		autocmd! FileType php					packadd coc-phpls | silent CocRestart 
+	endif
+	if executable('r')
+		autocmd! FileType r						packadd coc-r-lsp | silent CocRestart 
+	endif
+	if executable('ruby')
+		autocmd! FileType ruby					packadd coc-solargraph | silent CocRestart 
+	endif
+	if executable('ra_lsp_server')
+		autocmd! FileType rust					packadd coc-rust-analyzer | silent CocRestart 
+	elseif executable('rls')
+		autocmd! FileType rust					packadd coc-rls | silent CocRestart 
+	endif
+	if executable('vls')
+		autocmd! FileType vue					packadd coc-vetur | silent CocRestart 
+	endif
+	if has('nvim')
+		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
+	endif
+	autocmd! FileType c,cpp,go,haskell,ion,java,javascript,lhaskell,markdown,python,php,sh,tex		packadd vim-asyncrun
 augroup END
+
+function! SetUpMk()
+    " execute `Goyo` if it's not already active
+    if !exists('#goyo')
+        Goyo
+    endif
+	packadd coc-markdownlint  | silent CocRestart 
+endfunction
