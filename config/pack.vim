@@ -11,6 +11,22 @@ endif
 " Set path for minpac
 set packpath^=~/.cache/vim/
 
+
+function! s:vc_cb(hooktype, name) abort
+	execute 'packadd ' . a:name
+	if executable('sk') && executable('fzy')
+		if executable('cargo')
+			call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_all')})
+		else
+			call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_maple')})
+		endif
+	elseif executable('cargo')
+		call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_rust_ext')})
+	else
+		call minpac#add('liuchengxu/vim-clap')
+	endif
+endfunction
+
 function! PackInit() abort
 	packadd minpac
 	call minpac#init()
@@ -18,7 +34,6 @@ function! PackInit() abort
 	call minpac#add('lambdalisue/gina.vim')
 	call minpac#add('taigacute/spaceline.vim')
 	call minpac#add('ryanoasis/vim-devicons')
-	call minpac#add('tyru/open-browser.vim')
 	call minpac#add('honza/vim-snippets')
 	call minpac#add('SirVer/ultisnips')
 	call minpac#add('w0rp/ale')
@@ -26,22 +41,27 @@ function! PackInit() abort
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
 	call minpac#add('sbdchd/neoformat')
-	call minpac#add('junegunn/goyo.vim')
-	call minpac#add('junegunn/limelight.vim')
 	call minpac#add('liuchengxu/vista.vim')
 	call minpac#add('bagrat/vim-buffet')
 	call minpac#add('Th3Whit3Wolf/vim-shebang')
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
+	call minpac#add('liuchengxu/vim-which-key')
+	call minpac#add('godlygeek/tabular')
+
 	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
 
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
+	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
+
 	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
 	call minpac#add('mhinz/vim-crates', {'type': 'opt'})
 	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
 	call minpac#add('python-mode/python-mode', {'type': 'opt' })
+	call minpac#add('junegunn/goyo.vim', {'type': 'opt'})
+	call minpac#add('junegunn/limelight.vim', {'type': 'opt'})
 	if executable('go')
 		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
 	endif
@@ -84,7 +104,7 @@ function! PackInit() abort
 		call minpac#add('marlonfan/coc-phpls', {'type': 'opt' }, {'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('ra_lsp_server')
-		call minpac#add('fannheyward/coc-rust-analyzer', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('fannheyward/coc-rust-analyzer', {'do': {-> system('yarn install --frozen-lockfile') }})
 	elseif executable('rls')
 		call minpac#add('neoclide/coc-rls', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
