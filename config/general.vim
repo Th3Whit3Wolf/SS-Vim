@@ -107,12 +107,18 @@ set smartcase       " Keep case when searching with *
 set infercase       " Adjust case in insert completion mode
 set incsearch       " Incremental search
 set hlsearch        " Highlight search results
-set grepprg=rg\ --vimgrep\ $*
 set wrapscan        " Searches wrap around the end of the file
 set showmatch       " Jump to matching bracket
 set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
+if executable('rg')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'rg --vimgrep' . (&smartcase ? ' --smart-case' : '')
+elseif executable('ag')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'ag --vimgrep' . (&smartcase ? ' --smart-case' : '')
+endif
 """"""""""""""""""""""""""""""
 "          Behavior          "
 """"""""""""""""""""""""""""""
@@ -134,6 +140,15 @@ set completeopt+=noselect       " Do not select a match in the menu
 
 if exists('+inccommand')
 	set inccommand=nosplit
+endif
+if has('patch-7.4.775')
+	" Do not insert any text for a match until the user selects from menu
+	set completeopt+=noinsert
+endif
+
+if has('patch-8.1.0360') || has('nvim-0.4')
+	set diffopt+=internal,algorithm:patience
+	" set diffopt=indent-heuristic,algorithm:patience
 endif
 """""""""""""""""""""""""""""""""
 " Editor UI Appearance
@@ -163,6 +178,30 @@ set cmdwinheight=5      " Command-line lines
 set noequalalways       " Don't resize windows on split or close
 set colorcolumn=80      " Highlight the 80th character limit
 
+if has('patch-7.4.314')
+	" Do not display completion messages
+	set shortmess+=c
+endif
+
+if has('patch-7.4.1570')
+	" Do not display message when editing files
+	set shortmess+=F
+endif
+
+if has('conceal') && v:version >= 703
+	" For snippet_complete marker
+	set conceallevel=2 concealcursor=niv
+endif
+
+if exists('&pumblend')
+	" pseudo-transparency for completion menu
+	set pumblend=20
+endif
+
+if exists('&winblend')
+	" pseudo-transparency for floating window
+	set winblend=20
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folds
 " FastFold
@@ -218,3 +257,12 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+if has('vim_starting')
+	set encoding=utf-8
+	scriptencoding utf-8
+endif
+
+" Enables 24-bit RGB color in the TUI
+if has('termguicolors')
+	set termguicolors
+endif
