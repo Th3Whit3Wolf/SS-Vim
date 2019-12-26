@@ -8,7 +8,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 command! -nargs=1 -complete=custom,PackList
-	\ PackOpenUrl call PackInit() | call openbrowser#open(
+	\ PackOpenUrl call PackInit() | packadd open-browser.vim | call openbrowser#open(
 	\    minpac#getpluginfo(<q-args>).url)
 
 command! -nargs=1 -complete=custom,PackList
@@ -18,7 +18,8 @@ command! -nargs=1 -complete=custom,PackList
 
 " Define user commands for updating/cleaning the plugins.
 " information of plugins, then performs the task.
-"command! PackUpdate call PackInit() | call minpac#update('', {'do': function('updateVC')})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+
+command! Goyo packadd goyo.vim | packadd limelight.vim | Goyo
