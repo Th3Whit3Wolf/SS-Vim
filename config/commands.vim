@@ -21,4 +21,4 @@ command! -nargs=1 -complete=custom,PackList
 "command! PackUpdate call PackInit() | call minpac#update('', {'do': function('updateVC')})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
-command! PackUpdate call PackInit() | call minpac#update()
+command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
