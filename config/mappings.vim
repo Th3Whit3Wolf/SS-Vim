@@ -327,8 +327,7 @@ vnoremap <Leader>, :Tabularize comma<CR>
 
 nnoremap <C-z> :PackUpdate<CR>           " Update Plugins
 nnoremap <C-x> :qa!<CR>                 " Exit
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
-nnoremap <silent> <leader><leader> <leader>t<leader>f
+nnoremap <silent> <leader><leader> <leader>ot<leader>of
 """""""""""""""""""""""
 " Vim Buffet
 """""""""""""""""""""""
@@ -360,6 +359,14 @@ nnoremap <silent><Leader>gp :Gina push<CR>
 """""""""""""""""""""""
 nnoremap <Leader>G :Goyo<CR>
 """""""""""""""""""""""
+" git lists
+"""""""""""""""""""""""
+nnoremap <Leader>gs  :<C-u>CocList --normal gstatus<CR>
+nnoremap <Leader>gi  :<C-u>CocList --normal issues<CR>
+nnoremap <Leader>gb  :<C-u>CocList --normal branches<CR>
+nnoremap <Leader>gc  :<C-u>CocList --normal commits<CR>
+nnoremap <Leader>gf  :<C-u>CocList --normal gfiles<CR>
+"""""""""""""""""""""""
 " Vim Startify
 """""""""""""""""""""""
 nnoremap <silent> <leader>s :Startify<CR>
@@ -389,3 +396,4 @@ function! TapTagbar() abort
 endfunction
 " toggle tagbar
 nnoremap <silent> <leader>ot :call TapTagbar()<CR>
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
