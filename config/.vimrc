@@ -108,7 +108,7 @@ syntax enable
 " Initialize base requirements
 call s:source_file('general.vim')
 call s:source_file('pack.vim')
-call s:source_file('ft.vim')
+call s:source_file('filetype.vim')
 call s:source_file('commands.vim')
 call s:source_file('mappings.vim')
 
