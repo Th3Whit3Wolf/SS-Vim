@@ -114,4 +114,5 @@ call s:source_file('mappings.vim')
 
 " Loading plugin specific configuration modules
 call s:source_file('plugins/ss.vim')
+call s:source_file('plugins/coc.vim')
 call s:source_file('plugins/all.vim')

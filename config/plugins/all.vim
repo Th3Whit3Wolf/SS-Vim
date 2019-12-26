@@ -2,11 +2,9 @@
 " => Apperance
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 color space-vim-dark
-set termguicolors
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
-set encoding=UTF-8
 set mouse=a " Enable mouse if possible
 let g:spaceline_colorscheme = 'space'
 let g:spaceline_seperate_style= 'arrow-fade'
@@ -547,19 +545,6 @@ let g:limelight_eop = '\ze\n^\s'
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Coc.nvim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup mygroup
-  autocmd!
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-" To not interfere with coc
-let g:UltiSnipsExpandTrigger="s<Tab>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Clap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
