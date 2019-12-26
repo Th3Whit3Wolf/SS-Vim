@@ -2,7 +2,7 @@
 
 Vim with Super Sayain Performance
 
-Lean mean Neo/vim machine, 31-39ms startup time.
+Lean mean Neo/vim machine, 26-33ms startup time.
 
 Best with Neovim or Vim 8 with +python3 extensions enabled.
 
@@ -10,7 +10,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 - Robust, yet light-weight
 - Use (neo)vim builtin package manager
-- Fast Startup (31-39ms)
+- Fast Startup (26-33ms)
     - Lazy Loading 52% of plugins (30/58)
 - Watch code execute and automatically disappear (try it out! <kbd>F9</kbd>)
 - Modular configuration
@@ -38,7 +38,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ## Install
 
-**_1._** Let's clone this repo! Clone to `~/.config/nvim`,
+[1.] Let's clone this repo! Clone to `~/.config/nvim`,
 we'll also symlink it for Vim:
 
 ```sh
@@ -49,22 +49,49 @@ ln -s ~/.config/nvim ~/.vim  # For Vim8
 just install
 ```
 
-- _Note:_ If your system sets `$XDG_CONFIG_HOME`,
+- _**Note:**_ If your system sets `$XDG_CONFIG_HOME`,
   use that instead of `~/.config` in the code above.
   Nvim follows the XDG base-directories convention.
 
-**_2._** Install extensions from below to get better autocompletion and linting
+[1.] Install extensions from below to get better autocompletion and linting
 
 Enjoy!
 
+### Recommended Fonts
 
-## Auto Shebang
+| Ligature Fonts    | No Ligatures but Awesome |
+| ----------------- | ------------------------ |
+| **[Fira Code](https://github.com/tonsky/FiraCode) (free)** |  **[IBM Plex Mono](https://github.com/IBM/plex) (free)** |
+| **[Hasklig](https://github.com/i-tu/Hasklig) (free)** | **[Hack](https://sourcefoundry.org/hack/) (free)** |
+| **[PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm) (€59)** | **[Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) (free)** |
+| **[Monoid](http://larsenwork.com/monoid/) (free)** | **[Menlo](https://www.typewolf.com/site-of-the-day/fonts/menlo) (free)**     |
+| **[Fixedsys Excelsior](https://github.com/kika/fixedsys) (free)** | **[Monaco](https://gist.github.com/rogerleite/99819) (free)**    |
+| **[Iosevka](https://be5invis.github.io/Iosevka/) (free)** |     |
+| **[DejaVu Sans Code](https://github.com/SSNikolaevich/DejaVuSansCode) (free)** |        |
+
+### Recommended Tools
+
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [fzy](https://github.com/jhawthorn/fzy)
+* [sk](https://github.com/lotabout/skim)
+* [fd](https://github.com/sharkdp/fd)
+* [Universal ctags](https://ctags.io/)
+
+## Upgrade
+
+```sh
+just upgrade
+```
+
+## Features In-depth
+
+### Auto Shebang
 
 When creating a new shell or python (neo)vim will prompt you for what shebang you would like to use. It is automatic for ruby, perl, and php
 
 You can press <kbd>F6</kbd> to change shebangs
 
-### Shebangs
+#### Shebangs
 
 **Shell**
 
@@ -105,8 +132,8 @@ Press <kbd>F9</kbd> to use
 
 | Languages  | Compilers            |
 | :--------- | :------------------- |
-| C          | gcc                  |
-| C++        | g++                  |
+| C          | gcc, clang           |
+| C++        | g++, clang++         |
 | Go         | go                   |
 | Haskel     | ghc                  |
 | Java       | javac                |
@@ -148,7 +175,10 @@ Press <kbd>F10</kbd> to use
 
 ## Custom Mappings
 
+coming soonish . . .
+
 ## Credits
+
 I owe a specail thanks to the following projects:
 
 - [Minpac](https://github.com/k-takata/minpac) - minimal package manager for Vim 8 (and Neovim)
