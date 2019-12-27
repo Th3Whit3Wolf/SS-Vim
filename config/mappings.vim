@@ -160,6 +160,7 @@ else
 	vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
 	cnoremap <silent><C-s> <C-u>write  \| call <SID>MakeExec() \| write<CR>
 endif
+
 " I like to :quit with 'q', shrug.
 nnoremap <silent> q :<C-u>:quit<CR>
 autocmd MyAutoCmd FileType man nnoremap <silent><buffer> q :<C-u>:quit<CR>

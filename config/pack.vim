@@ -30,13 +30,10 @@ function! PackInit() abort
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
 	call minpac#add('liuchengxu/vim-which-key')
 	call minpac#add('godlygeek/tabular')
-
-	"call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
 	call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_all')})
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
-	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
@@ -48,6 +45,7 @@ function! PackInit() abort
 	if executable('go')
 		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
 	endif
+	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 
 	" Coc and Extensions
 	call minpac#add('neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile') }})
