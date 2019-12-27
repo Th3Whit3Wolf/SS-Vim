@@ -11,22 +11,6 @@ endif
 " Set path for minpac
 set packpath^=~/.cache/vim/
 
-
-function! s:vc_cb(hooktype, name) abort
-	execute 'packadd ' . a:name
-	if executable('sk') && executable('fzy')
-		if executable('cargo')
-			call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_all')})
-		else
-			call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_maple')})
-		endif
-	elseif executable('cargo')
-		call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_rust_ext')})
-	else
-		call minpac#add('liuchengxu/vim-clap')
-	endif
-endfunction
-
 function! PackInit() abort
 	packadd minpac
 	call minpac#init()
@@ -40,7 +24,6 @@ function! PackInit() abort
 	call minpac#add('sheerun/vim-polyglot')
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
-	call minpac#add('sbdchd/neoformat')
 	call minpac#add('liuchengxu/vista.vim')
 	call minpac#add('bagrat/vim-buffet')
 	call minpac#add('Th3Whit3Wolf/vim-shebang')
@@ -48,12 +31,12 @@ function! PackInit() abort
 	call minpac#add('liuchengxu/vim-which-key')
 	call minpac#add('godlygeek/tabular')
 
-	call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
-
+	"call minpac#add('liuchengxu/vim-clap', {'do': 'silent !cargo build --release'})
+	call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_all')})
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
-
+	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
@@ -180,6 +163,7 @@ augroup lazy_load_coc_ft
 		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
 	endif
 	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh	packadd asyncrun.vim
+	autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNF()
 augroup END
 
 function! SetUpMk()
@@ -188,4 +172,9 @@ function! SetUpMk()
         Goyo
     endif
 	packadd coc-markdownlint  | silent CocRestart 
+endfunction
+
+function SetNF()
+	packadd neoformat
+	let g:neoformat_is_on = 1
 endfunction
