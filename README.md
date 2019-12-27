@@ -11,7 +11,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Robust, yet light-weight
 - Use (neo)vim builtin package manager
 - Fast Startup (26-33ms)
-    - Lazy Loading 52% of plugins (30/58)
+    - Lazy Loading 52% of plugins (31/60)
 - Watch code execute and automatically disappear (try it out! <kbd>F9</kbd>)
 - Modular configuration
 - [Intellisense engine autocompletion](https://github.com/neoclide/coc.nvim)
@@ -21,6 +21,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Markdown Previewer(custom css)
 - Auto Shebang
 - Code Runner & Compiler
+- Can determine filetype for files with no extensions(via shebang)
 
 ## Screenshots
 ![](./img/ss-screenshot.png)
@@ -61,21 +62,52 @@ Enjoy!
 
 | Ligature Fonts    | No Ligatures but Awesome |
 | ----------------- | ------------------------ |
-| **[Fira Code](https://github.com/tonsky/FiraCode) (free)** |  **[IBM Plex Mono](https://github.com/IBM/plex) (free)** |
-| **[Hasklig](https://github.com/i-tu/Hasklig) (free)** | **[Hack](https://sourcefoundry.org/hack/) (free)** |
-| **[PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm) (€59)** | **[Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) (free)** |
-| **[Monoid](http://larsenwork.com/monoid/) (free)** | **[Menlo](https://www.typewolf.com/site-of-the-day/fonts/menlo) (free)**     |
-| **[Fixedsys Excelsior](https://github.com/kika/fixedsys) (free)** | **[Monaco](https://gist.github.com/rogerleite/99819) (free)**    |
-| **[Iosevka](https://be5invis.github.io/Iosevka/) (free)** |     |
-| **[DejaVu Sans Code](https://github.com/SSNikolaevich/DejaVuSansCode) (free)** |        |
+| [Fira Code](https://github.com/tonsky/FiraCode) (free) |  [IBM Plex Mono](https://github.com/IBM/plex) (free) |
+| [Hasklig](https://github.com/i-tu/Hasklig) (free) | [Hack](https://sourcefoundry.org/hack/) (free)** |
+| [PragmataPro](http://www.fsd.it/fonts/pragmatapro.htm) (€59) | [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/) (free) |
+| [Monoid](http://larsenwork.com/monoid/) (free) | [Menlo](https://www.typewolf.com/site-of-the-day/fonts/menlo) (free)     |
+| [Fixedsys Excelsior](https://github.com/kika/fixedsys) (free) | [Monaco](https://gist.github.com/rogerleite/99819) (free)    |
+| [Iosevka](https://be5invis.github.io/Iosevka/) (free) |     |
+| [DejaVu Sans Code](https://github.com/SSNikolaevich/DejaVuSansCode) (free) |        |
+
+#### Terminals that support font ligatures
+
+| Works              | Doesn’t work       |
+| ------------------ | ------------------ |
+| Butterfly      | Alacritty      |
+| Hyper.app      | cmd.exe        |
+| iTerm 2 ([since 3.1](https://gitlab.com/gnachman/iterm2/issues/3568#note_13118332)) | Cmder |
+| Kitty          | ConEmu         |
+| Konsole        | GNOME Terminal | 
+| QTerminal      | mate-terminal  |
+| Terminal.app   | mintty         |
+| Termux         | PuTTY          |
+| Token2Shell/MD | rxvt           |
+| upterm         | ZOC (Windows)  |
+| ZOC (macOS)    | libvte-based terminals ([bug report](https://bugzilla.gnome.org/show_bug.cgi?id=584160)) |
+
+#### Why use ligatures
+
+So This..
+
+<img src="https://raw.githubusercontent.com/i-tu/Hasklig/master/SourceCodeProSample.png">
+
+Looks Like This
+
+<img src="https://raw.githubusercontent.com/i-tu/Hasklig/master/hasklig_example.png">
 
 ### Recommended Tools
 
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
+    - Faster grepping (also used by vim-clap)
 * [fzy](https://github.com/jhawthorn/fzy)
+    - Used by vim-clap
 * [sk](https://github.com/lotabout/skim)
+    - Used by vim-clap
 * [fd](https://github.com/sharkdp/fd)
+    - Used by vim-clap
 * [Universal ctags](https://ctags.io/)
+    - for syntax tokenization
 
 ## Upgrade
 
@@ -87,22 +119,35 @@ just upgrade
 
 ### Auto Shebang
 
-When creating a new shell or python (neo)vim will prompt you for what shebang you would like to use. It is automatic for ruby, perl, and php
+When creating a new shell or python (neo)vim will prompt you for what shebang you would like to use. It is automatic for escript, fish, ion, lua, perl, php, & ruby.
 
 You can press <kbd>F6</kbd> to change shebangs
 
 #### Shebangs
 
-**Shell**
+**Escript**
 
-- bash - `#!/usr/bin/env bash`
-- csh  - `#!/usr/bin/env csh`
-- dash - `#!/usr/bin/env dash`
-- fish - `#!/usr/bin/env fish`
-- ion  - `#!/usr/bin/env ion`
-- ksh  - `#!/usr/bin/env ksh`
-- tcsh - `#!/usr/bin/env tcsh`
-- zsh  - `#!/usr/bin/env zsh`
+`#!/usr/bin/env escript`
+
+**Fish**
+
+`#!/usr/bin/env fish`
+
+**Ion**
+
+`#!/usr/bin/env ion`
+
+**Lua**
+
+`#!/usr/bin/env lua`
+
+**Perl**
+
+`#!/usr/bin/env perl`
+
+**PHP**
+
+`#!/usr/bin/env php`
 
 **Python**
 
@@ -116,13 +161,19 @@ You can press <kbd>F6</kbd> to change shebangs
 
 `#!/usr/bin/env ruby`
 
-**Perl**
+**Shell**
 
-`#!/usr/bin/env perl`
-
-**PHP**
-
-`#!/usr/bin/env php`
+- ash   - `#!/usr/bin/env ash`
+- bash  - `#!/usr/bin/env bash`
+- csh   - `#!/usr/bin/env csh`
+- dash  - `#!/usr/bin/env dash`
+- fish  - `#!/usr/bin/env fish`
+- ksh   - `#!/usr/bin/env ksh`
+- ion   - `#!/usr/bin/env ion`
+- mksh  - `#!/usr/bin/env mksh`
+- pdksh - `#!/usr/bin/env pdksh`
+- tcsh  - `#!/usr/bin/env tcsh`
+- zsh   - `#!/usr/bin/env zsh`
 
 ## Compiler
 
