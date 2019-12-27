@@ -12,11 +12,11 @@ let g:spaceline_seperate_style= 'arrow-fade'
 highlight link Crates Comment
 " vim-buffet
 function! g:BuffetSetCustomColors()
-    hi! BuffetCurrentBuffer guibg=#5d4d7a guifg=#cbc1d5 " cterm=NONE ctermbg=106 ctermfg=8
-    hi! BuffetTrunc cterm=bold guibg=#5d4d7a guifg=#5d4d7a " ctermbg=66 ctermfg=8 
-    hi! BuffetBuffer cterm=NONE guibg=#212026 guifg=#64606b " ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
-    hi! BuffetTab cterm=NONE guibg=#212026 guifg=#5d4d7a " ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
-    hi! BuffetActiveBuffer cterm=NONE guibg=#21206 guifg=#5d4d7a " ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
+  hi! BuffetCurrentBuffer guibg=#5d4d7a guifg=#cbc1d5 " cterm=NONE ctermbg=106 ctermfg=8
+  hi! BuffetTrunc cterm=bold guibg=#5d4d7a guifg=#5d4d7a " ctermbg=66 ctermfg=8 
+  hi! BuffetBuffer cterm=NONE guibg=#212026 guifg=#64606b " ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
+  hi! BuffetTab cterm=NONE guibg=#212026 guifg=#5d4d7a " ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
+  hi! BuffetActiveBuffer cterm=NONE guibg=#21206 guifg=#5d4d7a " ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
 endfunction
 let g:buffet_use_devicons = 1
 "let g:buffet_powerline_separators = 1
@@ -51,7 +51,7 @@ function! s:shell_shebang()
   endif
 
   let choice = inputlist([ 'Select your shell:' ]
-          \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
+    \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
 
   if choice >= 1 && choice <= (len(copy(options)) - 2)
     0put = '#!/usr/bin/env ' . (options)[choice - 1]
@@ -59,18 +59,18 @@ function! s:shell_shebang()
 endfunction
 
 function! s:python_shebang()
-	 if getline(1)[0:1] !=# "#!"
+	if getline(1)[0:1] !=# "#!"
     let options  = [
-        \ 'python2',
-        \ 'python3',
-        \ 'pypy',
-        \ 'pypy3',
-        \ 'jython',
-        \ 'none'
-        \ ]
+      \ 'python2',
+      \ 'python3',
+      \ 'pypy',
+      \ 'pypy3',
+      \ 'jython',
+      \ 'none'
+      \ ]
 
     let choice = inputlist([ 'Select your shell:' ]
-            \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
+      \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
 
     if choice >= 1 && choice <= (len(copy(options)) - 2)
 			0put = '#!/usr/bin/env ' . (options)[choice - 1]
