@@ -144,9 +144,6 @@ cnoremap <Down> <C-n>
 """"""""""""""""""""""
 " File operations
 """"""""""""""""""""""
-" When pressing <leader>cd switch to the directory of the open buffer
-map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
-
 function! s:MakeExec()
 	if executable(expand('%:p')) == 0 && getline(1)[0:13] ==# "#!/usr/bin/env"
 		:silent exec "!chmod +x %"
@@ -154,12 +151,15 @@ function! s:MakeExec()
 endfunction
 
 " Fast saving
-nnoremap <silent><Leader>w :write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-vnoremap <silent><Leader>w <Esc>:write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-cnoremap <silent><C-s> <C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-
+if exists("g:neoformat_is_on")
+	nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+	vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+	cnoremap <silent><C-s> <C-u>write  \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+else
+	nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
+	vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
+	cnoremap <silent><C-s> <C-u>write  \| call <SID>MakeExec() \| write<CR>
+endif
 " I like to :quit with 'q', shrug.
 nnoremap <silent> q :<C-u>:quit<CR>
 autocmd MyAutoCmd FileType man nnoremap <silent><buffer> q :<C-u>:quit<CR>
