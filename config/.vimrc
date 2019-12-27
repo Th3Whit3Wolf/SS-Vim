@@ -15,6 +15,10 @@ if has('nvim') && isdirectory($DATA_PATH . '/venv/neovim3')
 	let g:python3_host_prog = $DATA_PATH . '/venv/neovim3/bin/python'
 endif
 
+if !empty(glob("~/.node_modules/bin/neovim-node-host"))
+	let g:node_host_prog    = '~/.node_modules/bin/neovim-node-host'
+endif
+
 " Ensure cache directory
 if ! isdirectory(expand($DATA_PATH))
 	" Create missing dirs i.e. cache/{undo,backup}
@@ -114,7 +118,6 @@ call s:source_file('filetype.vim')
 call s:source_file('plugins/ss.vim')
 call s:source_file('plugins/coc.vim')
 call s:source_file('plugins/all.vim')
-
 
 call s:source_file('commands.vim')
 call s:source_file('mappings.vim')
