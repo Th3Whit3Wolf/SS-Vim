@@ -87,8 +87,8 @@ if has("autocmd")
   autocmd BufNewFile *.pl      0put =\"#!/usr/bin/env perl"
 	autocmd BufNewFile *.php     0put =\"#!/usr/bin/env php
   autocmd BufNewFile *.py      call <SID>python_shebang()
+  autocmd BufNewFile *.rb      0put =\"#!/usr/bin/env ruby"
 	autocmd BufNewFile *.sh      call <SID>shell_shebang()
- 	autocmd BufNewFile *.rb      0put =\"#!/usr/bin/env ruby"
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
