@@ -72,11 +72,15 @@ endfunction
 
 " Autoprompt Add Shebang
 if has("autocmd")
-	autocmd BufNewFile *.sh call <SID>shell_shebang()
-  autocmd BufNewFile *.py call <SID>python_shebang()
- 	autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby"
-  autocmd BufNewFile *.pl 0put =\"#!/usr/bin/env perl"
-	autocmd BufNewFile *.php 0put =\"#!/usr/bin/env php
+ 	autocmd BufNewFile *.escript 0put =\"#!/usr/bin/env escript"
+ 	autocmd BufNewFile *.fish    0put =\"#!/usr/bin/env fish"
+ 	autocmd BufNewFile *.ion     0put =\"#!/usr/bin/env ion"
+ 	autocmd BufNewFile *.lua     0put =\"#!/usr/bin/env lua"
+  autocmd BufNewFile *.pl      0put =\"#!/usr/bin/env perl"
+	autocmd BufNewFile *.php     0put =\"#!/usr/bin/env php
+  autocmd BufNewFile *.py      call <SID>python_shebang()
+	autocmd BufNewFile *.sh      call <SID>shell_shebang()
+ 	autocmd BufNewFile *.rb      0put =\"#!/usr/bin/env ruby"
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,38 +89,46 @@ endif
 nnoremap  <buffer><F6> :call <SID>change_bang()<CR>
 function! s:change_bang()
 	if &filetype == 'shell'
-   if getline(1)[0:1] !=# "#!"
-    let shell_options  = [
+    if getline(1)[0:1] !=# "#!"
+      let shell_options  = [
+        \ 'ash',
         \ 'bash',
         \ 'csh',
         \ 'dash',
         \ 'fish',
         \ 'ion',
         \ 'ksh',
+        \ 'mksh',
+        \ 'pdksh',
+        \ 'sh',
         \ 'tcsh',
         \ 'zsh',
         \ 'none'
         \ ]
 
-    let choice = inputlist([ 'Select your shell:' ]
-      \ + map(copy(shell_options), '"[".(v:key+1)."] ".v:val'))
+      if has('mac')
+        let shell_options = ['osascript'] + shell_options
+      endif
 
-    if choice >= 1 && choice <= (len(copy(shell_options)) - 2)
-			1d
-			0put = '#!/usr/bin/env ' . (shell_options)[choice - 1]
+      let choice = inputlist([ 'Select your shell:' ]
+        \ + map(copy(shell_options), '"[".(v:key+1)."] ".v:val'))
+
+      if choice >= 1 && choice <= (len(copy(shell_options)) - 2)
+        1d
+        0put = '#!/usr/bin/env ' . (shell_options)[choice - 1]
       endif
     endif
 	elseif &filetype == 'python'
-   if getline(1)[0:1] !=# "#!"
+    if getline(1)[0:1] !=# "#!"
 
     let python_options  = [
-        \ 'python2',
-        \ 'python3',
-        \ 'pypy',
-        \ 'pypy3',
-        \ 'jython',
-        \ 'none'
-        \ ]
+      \ 'python2',
+      \ 'python3',
+      \ 'pypy',
+      \ 'pypy3',
+      \ 'jython',
+      \ 'none'
+      \ ]
 
     let choice = inputlist([ 'Select your shell:' ]
       \ + map(copy(python_options), '"[".(v:key+1)."] ".v:val'))
@@ -124,9 +136,8 @@ function! s:change_bang()
     if choice >= 1 && choice <= (len(copy(python_options)) - 2)
 			1d
 			0put = '#!/usr/bin/env ' . (python_options)[choice - 1]
-      endif
     endif
-	endif
+  endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Async Code Runner
@@ -494,7 +505,7 @@ function! s:goyo_enter()
 	endif
 
 	" Activate Limelight
-	Limelight
+  Limelight
 endfunction
 
 " Enable visuals when leaving Goyo mode
@@ -510,7 +521,7 @@ function! s:goyo_leave()
 	endif
 
 	" De-activate Limelight
-	Limelight!
+  Limelight!
 endfunction
 
 " Goyo Commands
