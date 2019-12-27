@@ -1,4 +1,6 @@
 VIM := `which nvim || which vim`
+NPM := `which yarn || which npm`
+
 
 # Install Super Sayain Vim
 install: initialize venv vimclap
@@ -52,9 +54,9 @@ venv:
 		yapf \
 		autopep8 \
 		pylint \
-		prospector \
 		flake8 \
 		pylama
+
 	echo -e '\n:: PYTHON 3'
 	"$venv/neovim3/bin/pip" install -U \
 		pynvim \
@@ -64,7 +66,38 @@ venv:
 		prospector \
 		flake8 \
 		pylama \
-		mypy
+		mypy \
+		isort \
+		jedi \
+		rope \
+		nodeenv
+
+node:
+	#!/usr/bin/env bash
+	echo -e '\n:: Nodejs'
+	if [ -x "$(command -v npm)" ]; then
+		npm install -g\
+		neovim \
+		eslint \
+		eslint-cli
+		prettier \
+		eslint-config-prettier \
+		eslint-plugin-prettier \
+		ts-node \
+		tslint
+		typescript \
+	elif [ -x "$(command -v yarn)" ]; then
+		yarn gloabl add \
+		neovim \
+		eslint \
+		prettier \
+		eslint-config-prettier \
+		eslint-plugin-prettier \
+		ts-node \
+		typescript 
+	else	
+		echo "Please install yarn or npms"
+	fi
 
 vimclap:
 	#!/usr/bin/env bash
