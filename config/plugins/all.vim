@@ -31,16 +31,24 @@ let g:buffet_separator = "|"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:shell_shebang()
   let options  = [
-      \ 'bash',
-      \ 'csh',
-      \ 'dash',
-      \ 'ksh',
-      \ 'fish',
-      \ 'tcsh',
-      \ 'zsh',
-      \ 'ruby',
-      \ 'none'
-      \ ]
+    \ 'ash',
+    \ 'bash',
+    \ 'csh',
+    \ 'dash',
+    \ 'fish',
+    \ 'ksh',
+    \ 'ion',
+    \ 'mksh',
+    \ 'pdksh',
+    \ 'sh',
+    \ 'tcsh',
+    \ 'zsh',
+    \ 'none'
+    \ ]
+
+  if has('mac')
+    let options = ['osascript'] + options
+  endif
 
   let choice = inputlist([ 'Select your shell:' ]
           \ + map(copy(options), '"[".(v:key+1)."] ".v:val'))
@@ -96,8 +104,8 @@ function! s:change_bang()
         \ 'csh',
         \ 'dash',
         \ 'fish',
-        \ 'ion',
         \ 'ksh',
+        \ 'ion',
         \ 'mksh',
         \ 'pdksh',
         \ 'sh',
