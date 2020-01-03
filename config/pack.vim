@@ -6,11 +6,16 @@ if &runtimepath !~# '/minpac.vim'
 
 	execute 'set runtimepath+='.substitute(
 		\ fnamemodify(s:minpac_dir, ':p') , '/$', '', '')
-    
 endif
 " Set path for minpac
-set packpath^=~/.cache/vim/
+set packpath^=~/.cache/vim
 
+function! s:clap_hook(hooktype, name) abort
+	execute 'packadd ' . a:name
+	source $MYVIMRC
+	packloadall
+	call clap#helper#build_all() 
+endfunction
 function! PackInit() abort
 	packadd minpac
 	call minpac#init()
@@ -30,7 +35,11 @@ function! PackInit() abort
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
 	call minpac#add('liuchengxu/vim-which-key')
 	call minpac#add('godlygeek/tabular')
-	call minpac#add('liuchengxu/vim-clap', {'do': function('clap#helper#build_all')})
+	if executable('cargo')
+		call minpac#add('liuchengxu/vim-clap', {'type': 'opt', 'do': 'packadd vim-clap | call clap#helper#build_all()'})
+	else
+		call minpac#add('liuchengxu/vim-clap')
+	endif
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
@@ -60,46 +69,46 @@ function! PackInit() abort
 	call minpac#add('weirongxu/coc-explorer', {'do': {-> system('yarn install --frozen-lockfile') }})
 
 	" Language Specific Coc Extensions
-	call minpac#add('neoclide/coc-tsserver', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-html', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-json', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-css', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-yaml', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-emmet', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('fannheyward/coc-markdownlint', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-python', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('josa42/coc-sh', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('iamcco/coc-vimlsp', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('iamcco/coc-svg', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-tsserver', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-html', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-json', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-css', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-yaml', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-emmet', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('fannheyward/coc-markdownlint', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('neoclide/coc-python', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('josa42/coc-sh', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('iamcco/coc-vimlsp', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
+	call minpac#add('iamcco/coc-svg', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 
 	if executable('flutter')
-		call minpac#add('iamcco/coc-flutter', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('iamcco/coc-flutter', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('erlang_ls')
-		call minpac#add('hyhugh/coc-erlang_ls', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('hyhugh/coc-erlang_ls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('elixir') && executable('mix')
-		call minpac#add('amiralies/coc-elixir', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('amiralies/coc-elixir', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('php')
-		call minpac#add('marlonfan/coc-phpls', {'type': 'opt' }, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('marlonfan/coc-phpls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('ra_lsp_server')
-		call minpac#add('fannheyward/coc-rust-analyzer', {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('fannheyward/coc-rust-analyzer', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	elseif executable('rls')
-		call minpac#add('neoclide/coc-rls', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('neoclide/coc-rls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('r')
-		call minpac#add('neoclide/coc-r-lsp', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('neoclide/coc-r-lsp', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('ruby')
-		call minpac#add('neoclide/coc-solargraph', {'type': 'opt' }, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('neoclide/coc-solargraph', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('texlab')
-		call minpac#add('fannheyward/coc-texlab', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('fannheyward/coc-texlab', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 	if executable('vls')
-		call minpac#add('neoclide/coc-vetur', {'type': 'opt'}, {'do': {-> system('yarn install --frozen-lockfile') }})
+		call minpac#add('neoclide/coc-vetur', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
 	endif
 endfunction
 
@@ -161,7 +170,7 @@ augroup lazy_load_coc_ft
 		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
 	endif
 	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh	packadd asyncrun.vim
-	autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNF()
+	"autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNeoformat()
 augroup END
 
 function! SetUpMk()
@@ -172,7 +181,13 @@ function! SetUpMk()
 	packadd coc-markdownlint  | silent CocRestart 
 endfunction
 
-function SetNF()
+function! SetNeoformat()
 	packadd neoformat
 	let g:neoformat_is_on = 1
 endfunction
+
+
+let g:coc_global_extensions = [
+	\ 'coc-tag',
+	\ 'coc-word'
+	\ ]

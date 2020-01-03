@@ -25,8 +25,12 @@ augroup filetypedetect
 	autocmd BufNewFile,BufRead Brewfile                 setfiletype ruby
 	autocmd BufNewFile,BufRead Justfile,justfile        setfiletype make
 	autocmd BufNewFile,BufRead *.ion                    setfiletype ion
-	autocmd BufRead 			*.rs :setlocal tags=./rusty-tags.vi;/
-	autocmd BufWritePost 		*.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+	if exists("$RUST_SRC_PATH")
+		autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+	else
+		autocmd BufRead 		   *.rs :setlocal tags=./rusty-tags.vi;/
+	endif
+	autocmd BufWritePost 	   *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 augroup END
 
 =" Reload vim config automatically
