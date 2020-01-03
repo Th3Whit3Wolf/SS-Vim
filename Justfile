@@ -72,11 +72,18 @@ venv:
 		rope \
 		nodeenv
 
-node:
+web:
 	#!/usr/bin/env bash
 	echo -e '\n:: Nodejs'
 	if [ -x "$(command -v npm)" ]; then
-		npm install -g\
+		js_install="npm install -g"
+	elif [ -x "$(command -v yarn)" ]; then
+		js_install="yarn gloabl add"
+	else	
+		echo "Please install yarn or npms"
+		return 1
+	fi
+		$js_install \
 		neovim \
 		eslint \
 		eslint-cli
@@ -84,31 +91,14 @@ node:
 		eslint-config-prettier \
 		eslint-plugin-prettier \
 		ts-node \
-		tslint
+		tslint \
 		typescript \
-	elif [ -x "$(command -v yarn)" ]; then
-		yarn gloabl add \
-		neovim \
-		eslint \
-		prettier \
-		eslint-config-prettier \
-		eslint-plugin-prettier \
-		ts-node \
-		typescript 
-	else	
-		echo "Please install yarn or npms"
-	fi
-
-vimclap:
-	#!/usr/bin/env bash
-	fzy=$(which fzy)
-	sk=$(which sk)
-	if [ -z $fzy && -z $sk ]
-	then
-		echo "Install fzy and sk for even better fuzzing"
-		{{VIM}} -c 'call clap#helper#build_rust_ext()|q'
-	else
-		echo "sk :" $sk
-		echo "fzy:" $fzy
-		{{VIM}} -c 'call clap#helper#build_all()|q'
-	fi
+		tern \
+		jshint \
+		jsxhint \ 
+		jsonlint \
+		stylelint \
+		sass-lint \
+		raml-cop \
+		markdownlint-cli \
+		write-good
