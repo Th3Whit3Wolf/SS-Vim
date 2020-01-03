@@ -25,3 +25,5 @@ command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac
 command! Goyo packadd goyo.vim | packadd limelight.vim | Goyo
 
 autocmd VimEnter * packadd vim-clap
+
+command! ExecMK silent exec "!chmod +x %"

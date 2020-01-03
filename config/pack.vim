@@ -54,7 +54,7 @@ function! PackInit() abort
 	if executable('go')
 		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
 	endif
-	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
+	"call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 
 	" Coc and Extensions
 	call minpac#add('neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile') }})
@@ -169,8 +169,8 @@ augroup lazy_load_coc_ft
 	if has('nvim')
 		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
 	endif
-	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh	packadd asyncrun.vim
-	"autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNeoformat()
+	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh packadd asyncrun.vim
+	autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNeoformat()
 augroup END
 
 function! SetUpMk()

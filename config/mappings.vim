@@ -144,12 +144,6 @@ cnoremap <Down> <C-n>
 """"""""""""""""""""""
 " File operations
 """"""""""""""""""""""
-function! s:MakeExec()
-	if executable(expand('%:p')) == 0 && getline(1)[0:13] ==# "#!/usr/bin/env"
-		:silent exec "!chmod +x %"
-	endif
-endfunction
-
 " Fast saving
 if exists("g:neoformat_is_on")
 	nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>

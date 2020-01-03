@@ -3,7 +3,7 @@ NPM := `which yarn || which npm`
 
 
 # Install Super Sayain Vim
-install: initialize venv vimclap
+install: initialize venv
 	echo "Super Saiyan Vim Installed Sucessfully"
 
 initialize: 

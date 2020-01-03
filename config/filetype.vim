@@ -172,4 +172,3 @@ let g:xml_syntax_folding = 1
 let g:php_folding = 2
 let g:php_phpdoc_folding = 1
 let g:perl_fold = 1
-
