@@ -2,7 +2,7 @@
 
 Vim with Super Sayain Performance
 
-Lean mean Neo/vim machine, 26-33ms startup time.
+Lean mean Neo/vim machine, 27-35ms startup time.
 
 Best with Neovim or Vim 8 with +python3 extensions enabled.
 
@@ -11,7 +11,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Robust, yet light-weight
 - Use (neo)vim builtin package manager
 - Fast Startup (27-34ms)
-    - Lazy Loading 53% of plugins (32/60)
+    - Lazy Loading 57% of plugins (34/60)
 - Watch code execute and automatically disappear (try it out! <kbd>F9</kbd>)
 - Modular configuration
 - [Intellisense engine autocompletion](https://github.com/neoclide/coc.nvim)
