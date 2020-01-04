@@ -29,7 +29,6 @@ function! PackInit() abort
 	call minpac#add('sheerun/vim-polyglot')
 	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('mhinz/vim-startify')
-	call minpac#add('liuchengxu/vista.vim')
 	call minpac#add('bagrat/vim-buffet')
 	call minpac#add('Th3Whit3Wolf/vim-shebang')
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
@@ -43,7 +42,7 @@ function! PackInit() abort
 	" Loaded only for specific filetypes on demand. Requires autocommands below.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
-	call minpac#add('majutsushi/tagbar', {'type': 'opt'})
+	call minpac#add('liuchengxu/vista.vim', {'type': 'opt'})
 	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
 	call minpac#add('mhinz/vim-crates', {'type': 'opt'})
@@ -54,7 +53,7 @@ function! PackInit() abort
 	if executable('go')
 		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
 	endif
-	"call minpac#add('sbdchd/neoformat', {'type': 'opt'})
+	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 
 	" Coc and Extensions
 	call minpac#add('neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile') }})
@@ -185,7 +184,6 @@ function! SetNeoformat()
 	packadd neoformat
 	let g:neoformat_is_on = 1
 endfunction
-
 
 let g:coc_global_extensions = [
 	\ 'coc-tag',
