@@ -33,7 +33,6 @@ tnoremap <A-t> <C-\><C-n>:call TermToggle(10)<CR>
 tnoremap <Esc> <C-\><C-n>
 tnoremap :q! <C-\><C-n>:q!<CR>
 
-
 " Window-control prefix
 nnoremap  [Window]   <Nop>
 nmap      s [Window]
@@ -41,10 +40,6 @@ nmap      s [Window]
 " Fix keybind name for Ctrl+Spacebar
 map <Nul> <C-Space>
 map! <Nul> <C-Space>
-
-" Double leader key for toggling visual-line mode
-nmap <silent> <Leader><Leader> V
-vmap <Leader><Leader> <Esc>
 
 " Change current word in a repeatable manner
 nnoremap <leader>cn *``cgn
@@ -366,11 +361,6 @@ nnoremap <Leader>gf  :<C-u>CocList --normal gfiles<CR>
 """""""""""""""""""""""
 nnoremap <silent> <leader>s :Startify<CR>
 """""""""""""""""""""""
-" Vista
-"""""""""""""""""""""""
-nnoremap <silent><localleader>v :Vista!!<CR>
-nnoremap <silent><leader>fv     :Vista finder coc<CR>
-"""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""
 nmap [a <Plug>(ale_next_wrap)
@@ -378,17 +368,28 @@ nmap ]a <Plug>(ale_previous_wrap)
 " toggle line numbers
 nnoremap <silent> <leader>n :set number! number?<CR>
 """""""""""""""""""""""
-" Tagbar
+" Better Tagbar
 """""""""""""""""""""""
 function! TapTagbar() abort
     if exists("g:loaded_tagbar")
-        TagbarToggle
+        Vista!!
     else
-        packadd tagbar
+        packadd vista.vim
         let g:loaded_tagbar = 1
-        TagbarToggle
+        Vista!!
+    endif 
+endfunction
+function! VistaCoc() abort
+    if exists("g:loaded_tagbar")
+        Vista finder coc
+    else
+        packadd vista.vim
+        let g:loaded_tagbar = 1
+        Vista finder coc
     endif 
 endfunction
 " toggle tagbar
-nnoremap <silent> <leader>ot :call TapTagbar()<CR>
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> <leader>ot :call TapTagbar() <CR>
+nnoremap <silent><leader>fv  :VistaCoc()<CR>
+
+nnoremap <silent> <leader>a :WhichKey '<Space>'<CR>
