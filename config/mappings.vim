@@ -390,6 +390,10 @@ function! VistaCoc() abort
 endfunction
 " toggle tagbar
 nnoremap <silent> <leader>ot :call TapTagbar() <CR>
-nnoremap <silent><leader>fv  :VistaCoc()<CR>
+nnoremap <silent> <leader>fv  :call VistaCoc()<CR>
 
 nnoremap <silent> <leader>a :WhichKey '<Space>'<CR>
+
+if executable('lazygit')
+	nnoremap <silent> <leader>lg :call OpenLazyGit()<CR>
+endif

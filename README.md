@@ -10,7 +10,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 - Robust, yet light-weight
 - Use (neo)vim builtin package manager
-- Fast Startup (27-34ms)
+- Fast Startup (27-35ms)
     - Lazy Loading 57% of plugins (34/60)
 - Watch code execute and automatically disappear (try it out! <kbd>F9</kbd>)
 - Modular configuration
@@ -22,10 +22,13 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Auto Shebang
 - Code Runner & Compiler
 - Can determine filetype for files with no extensions(via shebang)
+- Lazygit integration 
 
 ## Screenshots
+
 ![](./img/ss-screenshot.png)
 ![](./img/ss-busy-screenshot.png)
+
 ## Pre-requisites
 
 - Python 3
@@ -108,6 +111,9 @@ Looks Like This
     - Used by vim-clap
 * [Universal ctags](https://ctags.io/)
     - for syntax tokenization
+* [Lazy Git](https://github.com/jesseduffield/lazygit)
+    - Simple terminal UI for git commands
+    - Makes using git insanely easy
 
 ## Upgrade
 
