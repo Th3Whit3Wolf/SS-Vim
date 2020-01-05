@@ -141,13 +141,13 @@ cnoremap <Down> <C-n>
 """"""""""""""""""""""
 " Fast saving
 if exists("g:neoformat_is_on")
-	nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-	vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \|  Neoformat \| write<CR>
-	cnoremap <silent><C-s> <C-u>write  \| call <SID>MakeExec() \|  Neoformat \| write<CR>
+	nnoremap <silent><C-s> :<C-u>write \| Neoformat \| write<CR>
+	vnoremap <silent><C-s> :<C-u>write \| Neoformat \| write<CR>
+	cnoremap <silent><C-s> <C-u>write  \| Neoformat \| write<CR>
 else
-	nnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
-	vnoremap <silent><C-s> :<C-u>write \| call <SID>MakeExec() \| write<CR>
-	cnoremap <silent><C-s> <C-u>write  \| call <SID>MakeExec() \| write<CR>
+	nnoremap <silent><C-s> :<C-u>write \| write<CR>
+	vnoremap <silent><C-s> :<C-u>write \| write<CR>
+	cnoremap <silent><C-s> <C-u>write  \| write<CR>
 endif
 
 " I like to :quit with 'q', shrug.

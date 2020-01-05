@@ -189,3 +189,5 @@ let g:coc_global_extensions = [
 	\ 'coc-tag',
 	\ 'coc-word'
 	\ ]
+
+packadd vim-clap
