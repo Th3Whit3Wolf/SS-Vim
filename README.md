@@ -28,6 +28,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 
 ![](./img/ss-screenshot.png)
 ![](./img/ss-busy-screenshot.png)
+![](./img/lazygit-screenshot.png)
 
 ## Pre-requisites
 
