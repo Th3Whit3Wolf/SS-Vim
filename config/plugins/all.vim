@@ -197,7 +197,7 @@ function! s:code_runner()
     else 
       echo 'Neither GCC or Clang is installed!'
     endif
-  elseif filetype == 'fish'
+  elseif &filetype == 'fish'
       if executable('fish')
         AsyncRun!  fish %:p
         call s:sleepKill()
@@ -311,7 +311,7 @@ function! s:code_runner()
   elseif &filetype == 'rust'
     if executable('cargo')
       try
-        AsyncRun echo "Running Cargo"; cargo build; cargo run;
+        AsyncRun echo "Running Cargo"; cargo run;
       catch
         AsyncRun echo "Running Rust Compiler"; rustc %; ./%:p;
       endtry
