@@ -1,7 +1,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Apperance
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set termguicolors
 color space-vim-dark
+if has('nvim')
+  let g:terminal_color_0 = '#262626'
+  let g:terminal_color_1 = '#f2241f'
+  let g:terminal_color_2 = '#67b11d'
+  let g:terminal_color_3 = '#d7af5f'
+  let g:terminal_color_4 = '#2aa1ae'
+  let g:terminal_color_5 = '#5d4d7a'
+  let g:terminal_color_6 = '#0086df'
+  let g:terminal_color_7 = '#b2b2b2'
+
+  let g:terminal_color_8 = '#262626'
+  let g:terminal_color_9 = '#f2241f'
+  let g:terminal_color_10 = '#67b11d'
+  let g:terminal_color_11 = '#d7af5f'
+  let g:terminal_color_12 = '#2aa1ae'
+  let g:terminal_color_13 = '#5d4d7a'
+  let g:terminal_color_14 = '#0086df'
+  let g:terminal_color_15 = '#b2b2b2'
+endif
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
@@ -588,7 +608,7 @@ function! CreateCenteredFloatingWindow()
     let s:buf = nvim_create_buf(v:false, v:true)
     call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
     call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
+    set winhl=Normal:Pmenu
     let opts.row += 1
     let opts.height -= 2
     let opts.col += 2
