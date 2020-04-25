@@ -3,13 +3,6 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
 
 function! s:select_current_word()
 	if !get(g:, 'coc_cursors_activated', 0)
@@ -49,7 +42,7 @@ nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
 nmap <silent> ]c <Plug>(coc-diagnostic-prev)
 nmap <silent> [c <Plug>(coc-diagnostic-next)
 " Remap for rename current word
-nmap <leader>cn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 " Remap for format selected region
 vmap <leader>cf  <Plug>(coc-format-selected)
 nmap <leader>cf  <Plug>(coc-format-selected)
@@ -97,13 +90,40 @@ noremap <silent> <leader>of :CocCommand explorer
     \ --width=30
     \ --file-columns=git,selection,icon,clip,indent,filename,size<CR>
 
+" coc-tasks
+noremap <silent> T :CocList tasks<CR>
+
 " Highlight symbol under cursor on CursorHold
 augroup mygroup
     autocmd!
-    " Update signature help on jump placeholder
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder
     autocmd CursorHold * silent call CocActionAsync('highlight')
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    
 augroup end
 " To not interfere with coc
 let g:UltiSnipsExpandTrigger="s<Tab>"
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+if executable('fd')
+    silent! call coc#config('list.source.files.command', 'fd')
+    silent! call coc#config('list.source.files.args', ['-I'])
+elseif executable('bfind')
+    silent! call coc#config('list.source.files.command', 'bfind')
+    silent! call coc#config('list.source.files.args', [])
+endif
+
+if exists('g:python3_host_prog') && g:python3_host_prog != ''
+    silent! call coc#config('python.pythonPath', g:python3_host_prog)
+endif
