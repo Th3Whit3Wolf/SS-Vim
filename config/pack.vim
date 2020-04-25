@@ -37,7 +37,7 @@ function! PackInit() abort
 	call minpac#add('skywind3000/asyncrun.vim')
 	call minpac#add('skywind3000/asynctasks.vim')
 	if executable('cargo')
-		call minpac#add('liuchengxu/vim-clap', {'do': 'call Clap install-binary!'})
+		call minpac#add('liuchengxu/vim-clap', {'do': 'Clap install-binary!'})
 	else
 		call minpac#add('liuchengxu/vim-clap')
 	endif
@@ -52,7 +52,7 @@ function! PackInit() abort
 	call minpac#add('junegunn/goyo.vim', {'type': 'opt'})
 	call minpac#add('junegunn/limelight.vim', {'type': 'opt'})
 	if executable('go')
-		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': ':GoInstallBinaries'})
+		call minpac#add('fatih/vim-go', {'type': 'opt' }, { 'do': 'GoInstallBinaries'})
 	endif
 	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 
