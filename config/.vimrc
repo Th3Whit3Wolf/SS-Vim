@@ -15,7 +15,7 @@ if has('nvim') && isdirectory($DATA_PATH . '/venv/neovim3')
 	let g:python3_host_prog = $DATA_PATH . '/venv/neovim3/bin/python'
 endif
 
-if !empty(glob("~/.node_modules/bin/neovim-node-host"))
+if has('nvim') && filereadable('~/.node_modules/bin/neovim-node-host')
 	let g:node_host_prog    = '~/.node_modules/bin/neovim-node-host'
 endif
 
