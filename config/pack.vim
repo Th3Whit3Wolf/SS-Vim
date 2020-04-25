@@ -34,8 +34,10 @@ function! PackInit() abort
 	call minpac#add('euclio/vim-markdown-composer', {'do': 'silent !cargo build --release'})
 	call minpac#add('liuchengxu/vim-which-key')
 	call minpac#add('godlygeek/tabular')
+	call minpac#add('skywind3000/asyncrun.vim')
+	call minpac#add('skywind3000/asynctasks.vim')
 	if executable('cargo')
-		call minpac#add('liuchengxu/vim-clap', {'type': 'opt', 'do': 'packadd vim-clap | call clap#helper#build_all()'})
+		call minpac#add('liuchengxu/vim-clap', {'do': 'call Clap install-binary!'})
 	else
 		call minpac#add('liuchengxu/vim-clap')
 	endif
@@ -43,7 +45,6 @@ function! PackInit() abort
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('tyru/open-browser.vim', {'type': 'opt'})
 	call minpac#add('liuchengxu/vista.vim', {'type': 'opt'})
-	call minpac#add('skywind3000/asyncrun.vim', {'type': 'opt'})
 	call minpac#add('tweekmonster/startuptime.vim', {'type': 'opt'})
 	call minpac#add('mhinz/vim-crates', {'type': 'opt'})
 	call minpac#add('xuhdev/vim-latex-live-preview', {'type': 'opt' })
@@ -56,59 +57,7 @@ function! PackInit() abort
 	call minpac#add('sbdchd/neoformat', {'type': 'opt'})
 
 	" Coc and Extensions
-	call minpac#add('neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('coc-extensions/coc-utils', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('fannheyward/coc-marketplace', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('iamcco/coc-diagnostic', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-git', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-pairs', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-snippets', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-yank', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-highlight', {'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('weirongxu/coc-explorer', {'do': {-> system('yarn install --frozen-lockfile') }})
-
-	" Language Specific Coc Extensions
-	call minpac#add('neoclide/coc-tsserver', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-html', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-json', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-css', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-yaml', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-emmet', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('fannheyward/coc-markdownlint', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('neoclide/coc-python', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('josa42/coc-sh', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('iamcco/coc-vimlsp', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	call minpac#add('iamcco/coc-svg', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-
-	if executable('flutter')
-		call minpac#add('iamcco/coc-flutter', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('erlang_ls')
-		call minpac#add('hyhugh/coc-erlang_ls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('elixir') && executable('mix')
-		call minpac#add('amiralies/coc-elixir', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('php')
-		call minpac#add('marlonfan/coc-phpls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('ra_lsp_server')
-		call minpac#add('fannheyward/coc-rust-analyzer', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	elseif executable('rls')
-		call minpac#add('neoclide/coc-rls', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('r')
-		call minpac#add('neoclide/coc-r-lsp', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('ruby')
-		call minpac#add('neoclide/coc-solargraph', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('texlab')
-		call minpac#add('fannheyward/coc-texlab', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
-	if executable('vls')
-		call minpac#add('neoclide/coc-vetur', {'type': 'opt', 'do': {-> system('yarn install --frozen-lockfile') }})
-	endif
+	call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 endfunction
 
 function! PackList(...)
@@ -117,26 +66,9 @@ function! PackList(...)
 endfunction
 
 " Load plugins only for specific filetype
-augroup lazy_load_coc_ft
+augroup lazy_load_ft
 	autocmd!
-	autocmd! FileType javascript,typescript		packadd coc-tsserver | silent CocRestart 
-	autocmd! FileType sass,scss,css 			packadd coc-css | silent CocRestart 
-	autocmd! FileType less						packadd vim-less,coc-css | silent CocRestart 
-	autocmd! FileType python 					packadd python-mode,coc-python | silent CocRestart 
-	autocmd! FileType json						packadd coc-json | silent CocRestart 
-	autocmd! FileType yaml						packadd coc-yaml | silent CocRestart 
 	autocmd! FileType markdown,mkd				call SetUpMk()
-	autocmd! FileType html						packadd coc-html,coc-emmet  | silent CocRestart 
-	autocmd! FileType sh						packadd coc-sh | silent CocRestart 
-	autocmd! FileType vim						packadd coc-vimlsp | silent CocRestart 
-	autocmd! FileType svg						packadd coc-svg | silent CocRestart 
-
-	if executable('flutter')
-		autocmd! FileType dart					packadd coc-flutter | silent CocRestart 
-	endif
-	if executable('erlang_ls')
-		autocmd! FileType erlang				packadd coc-erlang_ls | silent CocRestart 
-	endif
 	if executable('go')
 		autocmd! FileType go 					packadd vim-go
 	endif
@@ -144,31 +76,13 @@ augroup lazy_load_coc_ft
 		autocmd! FileType ion 					packadd ion-vim
 	endif
 	if executable('texlab')
-		autocmd! FileType latex					packadd vim-latex-live-preview,coc-texlab | silent CocRestart 
+		autocmd! FileType latex					packadd vim-latex-live-preview
 	else
 		autocmd! FileType latex					packadd vim-latex-live-preview
-	endif
-	if executable('php')
-		autocmd! FileType php					packadd coc-phpls | silent CocRestart 
-	endif
-	if executable('r')
-		autocmd! FileType r						packadd coc-r-lsp | silent CocRestart 
-	endif
-	if executable('ruby')
-		autocmd! FileType ruby					packadd coc-solargraph | silent CocRestart 
-	endif
-	if executable('ra_lsp_server')
-		autocmd! FileType rust					packadd coc-rust-analyzer | silent CocRestart 
-	elseif executable('rls')
-		autocmd! FileType rust					packadd coc-rls | silent CocRestart 
-	endif
-	if executable('vls')
-		autocmd! FileType vue					packadd coc-vetur | silent CocRestart 
 	endif
 	if has('nvim')
 		autocmd BufRead Cargo.toml 				packadd vim-crates | call crates#toggle()
 	endif
-	autocmd! FileType bash,c,cpp,csh,dash,fish,go,haskell,ion,java,javascript,ksh,lhaskell,markdown,perl,php,python,ruby,rust,sh,tcsh,tex,zsh packadd asyncrun.vim
 	autocmd! FileType arduino,asm,bzl,c,cmake,cpp,crystal,cs,css,csv,d,dart,dhall,dune,elixir,elm,fish,glsl,go,graphql,haskell,html,jade,java,javascript,jinja,json,kotlin,less,lua,markdown,matlab,nim,nix,objc,ocaml,pandoc,pawn,perl,php,proto,pug,purescript,python,r,reason,ruby,rust,sass,sbt,scala,scss,sh,sql,starlark,svelte,swift,terraform,tex,typescript,vala,vue,xhtml,xml,ysml call SetNeoformat()
 augroup END
 
@@ -177,7 +91,6 @@ function! SetUpMk()
     if !exists('#goyo')
         Goyo
     endif
-	packadd coc-markdownlint  | silent CocRestart 
 endfunction
 
 function! SetNeoformat()
@@ -185,9 +98,113 @@ function! SetNeoformat()
 	let g:neoformat_is_on = 1
 endfunction
 
-let g:coc_global_extensions = [
+let s:coc_extensions = [
 	\ 'coc-tag',
-	\ 'coc-word'
-	\ ]
+	\ 'coc-word',
+	\ 'coc-utils',
+	\ 'coc-marketplace',
+	\ 'coc-diagnostic',
+	\ 'coc-git',
+	\ 'coc-pairs',
+	\ 'coc-snippets',
+	\ 'coc-yank',
+	\ 'coc-highlight',
+	\ 'coc-explorer',
+	\ 'coc-python',
+	\ 'coc-markdownlint',
+	\ 'coc-sh',
+	\ 'coc-emmet',
+	\ 'coc-html',
+	\ 'coc-json',
+	\ 'coc-css',
+	\ 'coc-yaml',
+	\ 'coc-svg',
+	\ 'coc-vimlsp',
+	\ 'coc-eslint',
+	\ 'coc-actions',
+	\ 'coc-tasks'
+	\]
+if executable('clangd')
+	let s:coc_extensions += ['coc-clangd']
+endif
+if executable('docker')
+	let s:coc_extensions += ['coc-docker']
+endif
+if executable('elixir') && executable('mix')
+	let s:coc_extensions += ['coc-elixir']
+endif
+if executable('erlang_ls')
+	let s:coc_extensions += ['coc-erlang_ls']
+endif
+if executable('flutter')
+	let s:coc_extensions += ['coc-flutter']
+endif
+if executable('php')
+	let s:coc_extensions += ['coc-phpls']
+endif
+if executable('ra_lsp_server')
+	let s:coc_extensions += ['coc-rust-analyzer']
+elseif executable('rls')
+	let s:coc_extensions += ['coc-rls']
+endif
+if executable('r')
+	let s:coc_extensions += ['coc-r-lsp']
+endif
+if executable('ruby')
+	let s:coc_extensions += ['coc-solargraph']
+endif
+if executable('texlab')
+	let s:coc_extensions += ['coc-texlab']
+endif
+if executable('vls')
+	let s:coc_extensions += ['coc-vetur']
+endif
 
-packadd vim-clap
+function! s:uninstall_unused_coc_extensions() abort
+    for e in keys(json_decode(join(readfile(expand('~/.config/coc/extensions/package.json')), "\n"))['dependencies'])
+        if index(s:coc_extensions, e) < 0
+            execute 'CocUninstall ' . e
+        endif
+    endfor
+endfunction
+autocmd User CocNvimInit call s:uninstall_unused_coc_extensions()
+
+for e in s:coc_extensions
+    silent! call coc#add_extension(e)
+endfor
+
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'markdown'
+		exec "MarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'dart'
+		CocCommand flutter.run
+	elseif &filetype == 'go'
+		set splitbelow
+		:sp
+		:term go run .
+	endif
+endfunc
