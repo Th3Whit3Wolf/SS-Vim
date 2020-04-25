@@ -397,3 +397,5 @@ nnoremap <silent> <leader>a :WhichKey '<Space>'<CR>
 if executable('lazygit')
 	nnoremap <silent> <leader>lg :call OpenLazyGit()<CR>
 endif
+
+noremap F5 :call CompileRunGcc()<CR>
