@@ -11,8 +11,7 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Robust, yet light-weight
 - Use (neo)vim builtin package manager
 - Fast Startup (27-35ms)
-    - Lazy Loading 57% of plugins (34/60)
-- Watch code execute and automatically disappear (try it out! <kbd>F9</kbd>)
+  - Lazy Loading 27% of plugins (8/30)
 - Modular configuration
 - [Intellisense engine autocompletion](https://github.com/neoclide/coc.nvim)
 - Ultimate Linting, Code Formating, & Language Support
@@ -22,13 +21,13 @@ Best with Neovim or Vim 8 with +python3 extensions enabled.
 - Auto Shebang
 - Code Runner & Compiler
 - Can determine filetype for files with no extensions(via shebang)
-- Lazygit integration 
+- Lazygit integration
 
 ## Screenshots
 
-![](./img/ss-screenshot.png)
-![](./img/ss-busy-screenshot.png)
-![](./img/lazygit-screenshot.png)
+![screenshot](./img/ss-screenshot.png)
+![busy screenshot](./img/ss-busy-screenshot.png)
+![lazygit](./img/lazygit-screenshot.png)
 
 ## Pre-requisites
 
@@ -48,11 +47,13 @@ we'll also symlink it for Vim:
 
 ```sh
 mkdir ~/.config
-git clone git://github.com/Th3Whit3Wolf/SS-Vim.git ~/.config/nvim
+git clone https://github.com/Th3Whit3Wolf/SS-Vim.git ~/.config/nvim
 cd ~/.config/nvim
 ln -s ~/.config/nvim ~/.vim  # For Vim8
 just install
 ```
+
+If you do web development you may also want to run `just web` for linters, formatters, and spell checker.
 
 - _**Note:**_ If your system sets `$XDG_CONFIG_HOME`,
   use that instead of `~/.config` in the code above.
@@ -73,6 +74,7 @@ Enjoy!
 | [Fixedsys Excelsior](https://github.com/kika/fixedsys) (free) | [Monaco](https://gist.github.com/rogerleite/99819) (free)    |
 | [Iosevka](https://be5invis.github.io/Iosevka/) (free) |     |
 | [DejaVu Sans Code](https://github.com/SSNikolaevich/DejaVuSansCode) (free) |        |
+| [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) | |
 
 #### Terminals that support font ligatures
 
@@ -82,7 +84,7 @@ Enjoy!
 | Hyper.app      | cmd.exe        |
 | iTerm 2 ([since 3.1](https://gitlab.com/gnachman/iterm2/issues/3568#note_13118332)) | Cmder |
 | Kitty          | ConEmu         |
-| Konsole        | GNOME Terminal | 
+| Konsole        | GNOME Terminal |
 | QTerminal      | mate-terminal  |
 | Terminal.app   | mintty         |
 | Termux         | PuTTY          |
@@ -102,19 +104,31 @@ Looks Like This
 
 ### Recommended Tools
 
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
-    - Faster grepping (also used by vim-clap)
-* [fzy](https://github.com/jhawthorn/fzy)
-    - Used by vim-clap
-* [sk](https://github.com/lotabout/skim)
-    - Used by vim-clap
-* [fd](https://github.com/sharkdp/fd)
-    - Used by vim-clap
-* [Universal ctags](https://ctags.io/)
-    - for syntax tokenization
-* [Lazy Git](https://github.com/jesseduffield/lazygit)
-    - Simple terminal UI for git commands
-    - Makes using git insanely easy
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+  - Faster grepping (also used by vim-clap)
+
+- [fzy](https://github.com/jhawthorn/fzy)
+
+  - Used by vim-clap
+
+- [sk](https://github.com/lotabout/skim)
+
+  - Used by vim-clap
+
+- [fd](https://github.com/sharkdp/fd)
+
+  - Used by vim-clap
+
+- [Universal ctags](https://ctags.io/)
+
+  - for syntax tokenization
+
+- [Lazy Git](https://github.com/jesseduffield/lazygit)
+
+  - Simple terminal UI for git commands
+
+  - Makes using git insanely easy
 
 ## Upgrade
 
@@ -182,54 +196,6 @@ You can press <kbd>F6</kbd> to change shebangs
 - tcsh  - `#!/usr/bin/env tcsh`
 - zsh   - `#!/usr/bin/env zsh`
 
-## Compiler
-
-Compiles your code.
-
-Press <kbd>F9</kbd> to use
-
-| Languages  | Compilers            |
-| :--------- | :------------------- |
-| C          | gcc, clang           |
-| C++        | g++, clang++         |
-| Go         | go                   |
-| Haskel     | ghc                  |
-| Java       | javac                |
-| Markdown   | pandoc               |
-| Rust       | cargo, rustc         |
-
-**Note** - `README.md`'s will be compiled with github styling
-
-## Code Runner
-
-Runs code in a buffer and then closes buffer after 5 seconds.
-
-Press <kbd>F10</kbd> to use
-
-| Languages  | Compilers/Interpreters |
-| :--------- | :--------------------- |
-| Bash       | bash                   |
-| C          | gcc                    |
-| C++        | g++                    |
-| Csh        | csh                    |
-| Dash       | dash                   |
-| Fish       | fish                   |
-| Go         | go                     |
-| Haskel     | ghc                    |
-| Ion        | ion                    |
-| Java       | javac                  |
-| Javascript | node                   |
-| Ksh        | ksh                    |
-| Lhaskel    | ghc                    |
-| Perl       | perl                   |
-| PHP        | php                    |
-| Python     | python2, python3, pypy2, pypy3, jython |
-| Ruby       | ruby                   |
-| Rust       | cargo, rustc           |
-| Tcsh       | tcsh                   |
-| Tex        | pdflatex               |
-| Zsh        | zsh                    |
-
 
 ## Custom Mappings
 
@@ -240,19 +206,29 @@ coming soonish . . .
 I owe a specail thanks to the following projects:
 
 - [Minpac](https://github.com/k-takata/minpac) - minimal package manager for Vim 8 (and Neovim)
-- [Coc](https://github.com/neoclide/coc.nvim) - Intellisense engine for vim8 & neovim, full language server protocol support as VSCode 
-    - SS-vim uses coc and a lot of it's extensions (most lazily loaded) to provide great out of the box support for a large variety of languages. Including Code Completion, Jump to Definition, Workspace Symbols, Find Refernces, Diagnostics, Linting, and Code Formatting on Save.
+
+- [Coc](https://github.com/neoclide/coc.nvim) - Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
+
+  - SS-vim uses coc and a lot of it's extensions (most lazily loaded) to provide great out of the box support for a large variety of languages. Including Code Completion, Jump to Definition, Workspace Symbols, Find Refernces, Diagnostics, Linting, and Code Formatting on Save.
+
 - [Sprint](https://github.com/pedsm/sprint) - Async File Runner
-    - Gave me idea to compile markdown `README.md` with github style
-    - Gave me github.css
-- [Async Run](https://github.com/skywind3000/asyncrun.vim) - 
-Run Async Shell Commands in Vim 8.0 / NeoVim and Output to Quickfix Window
-    - Powers SS-vim Code Runner and Compiler
+
+  - Gave me idea to compile markdown `README.md` with github style
+
+  - Gave me github.css
+
 - [ALE](https://github.com/dense-analysis/ale) - Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
-    - Can lint when Coc can't.
+
+  - Can lint when Coc can't.
+
 - [Neoformat](https://github.com/sbdchd/neoformat) - A (Neo)vim plugin for formatting code.
-    - Provides code formating when Coc can't.
+
+  - Provides code formating when Coc can't.
+
 - [Vim Buffet](https://github.com/bagrat/vim-buffet) and [Spaceline](https://github.com/hardcoreplayers/spaceline.vim) - Provide an IDE-like Vim tabline & vim statusline like spacemacs 
-    - Provides beautiful UI
-- [Vim Clap](https://github.com/liuchengxu/vim-clap) - Modern generic interactive finder and dispatcher for Vim and NeoVim 
-    - Extraordinarily fast interactive finder and dispatcher
+
+  - Provides beautiful UI
+
+- [Vim Clap](https://github.com/liuchengxu/vim-clap) - Modern generic interactive finder and dispatcher for Vim and NeoVim
+
+  - Extraordinarily fast interactive finder and dispatcher
