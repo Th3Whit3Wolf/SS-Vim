@@ -167,295 +167,7 @@ function! s:change_bang()
     endif
   endif
 endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Async Code Runner
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <F10> :call <SID>code_runner()<CR>
-function s:sleepKill()
-  exec 'sleep 5'
-  exec bufnr('$') . 'bw'
-endfunction
-function! s:code_runner()
-  exec 'w'
-  if &filetype == 'c'
-    if executable('gcc')
-      AsyncRun echo "Running C compiler"; gcc -Wall -Wuninitialized -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return % -o %<; ./%<
-      call s:sleepKill()
-    elseif executable('clang')
-      AsyncRun echo "Running C compiler"; clang -Wall -Wuninitialized -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return % -o %<; ./%<
-      call s:sleepKill()
-    else
-      echo 'Neither GCC or Clang is installed!'
-    endif
-  elseif &filetype == 'cpp'
-    if executable('g++')
-      AsyncRun echo "Running C++ compiler"; g++ -Wall -Wuninitialized -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return % -o %<; ./%<
-      call s:sleepKill()
-    elseif executable('clang++')
-      AsyncRun echo "Running C++ compiler"; clang++ -Wall -Wuninitialized -Wundef -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return % -o %<; ./%<
-      call s:sleepKill()
-    else 
-      echo 'Neither GCC or Clang is installed!'
-    endif
-  elseif &filetype == 'fish'
-      if executable('fish')
-        AsyncRun!  fish %:p
-        call s:sleepKill()
-      else
-        echo 'Fish is not installed!'
-      endif
-  elseif &filetype == 'go'
-    if executable('go')
-      AsyncRun! echo "Running Go compiler"; go build %;  ./%<
-      call s:sleepKill()
-    else
-        echo 'Go is not installed!'
-    endif
-  elseif (&filetype == 'haskell' || &filetype=='lhaskell')
-    if executable('ghc')
-      AsyncRun! echo "Running Haskell compiler"; ghc % -o %<; ./%<
-      call s:sleepKill()
-    else
-        echo 'GHC is not installed!'
-    endif
-  elseif (&filetype == 'ion' || getline(1)[0:17] ==# "#!/usr/bin/env ion" || getline(1)[0:13] ==# "#!/usr/bin/ion")
-    if executable('go')
-      AsyncRun! ion %:p
-      call s:sleepKill()
-    else
-        echo 'Ion is not installed!'
-    endif
-	elseif &filetype == 'java'
-    if executable('javac')
-      AsyncRun echo "Running Java Compiler"; javac Main.java; java Main;
-      call s:sleepKill()
-    else
-      echo 'Java is not installed!'
-    endif
-  elseif &filetype == 'javascript'
-    if executable('node')
-      AsyncRun echo "Running Node"; node %:p
-      call s:sleepKill()
-    else
-        echo 'Node is not installed!'
-    endif
-  elseif (&filetype == 'perl' || getline(1)[0:18] ==# "#!/usr/bin/env perl" || getline(1)[0:14] ==# "#!/usr/bin/perl")
-    if executable('perl')
-      AsyncRun! perl %:p
-      call s:sleepKill()
-    else
-        echo 'Perl is not installed!'
-    endif
-  elseif &filetype == 'php'
-    if executable('php')
-      AsyncRun echo "Running php"; php %:p
-      call s:sleepKill()
-    else
-        echo 'PHP is not installed!'
-    endif
-  elseif &filetype == 'python'
-    if (getline(1)[0:21] ==# "#!/usr/bin/env python3" || getline(1)[0:17] ==# "#!/usr/bin/python3")
-      if executable('python3')
-        AsyncRun! python3 %:p
-        call s:sleepKill()
-      else
-        echo 'Python3 is not installed!'
-      endif
-    elseif (getline(1)[0:21] ==# "#!/usr/bin/env python2" || getline(1)[0:17] ==# "#!/usr/bin/python2")
-      if executable('python2')
-        try
-          AsyncRun! python2 %:p
-        catch
-          AsyncRun! python %:p
-        endtry
-        call s:sleepKill()
-      else
-        echo 'Python2 is not installed!'
-      endif
-    elseif (getline(1)[0:20] ==# "#!/usr/bin/env python" || getline(1)[0:16] ==# "#!/usr/bin/python")
-      if executable('python')
-        AsyncRun! python %:p
-        call s:sleepKill()
-      else
-        echo 'Python executable can not be found!'
-      endif
-    elseif (getline(1)[0:19] ==# "#!/usr/bin/env pypy3" || getline(1)[0:15] ==# "#!/usr/bin/pypy3")
-      if executable('pypy3')
-        AsyncRun! pypy3 %:p
-        call s:sleepKill()
-      else
-        echo 'Pypy3 is not installed!'
-      endif
-    elseif (getline(1)[0:18] ==# "#!/usr/bin/env pypy" || getline(1)[0:14] ==# "#!/usr/bin/pypy")
-      if executable('pypy')
-        AsyncRun! pypy %:p
-        call s:sleepKill()
-      else
-        echo 'Pypy is not installed!'
-      endif
-    elseif (getline(1)[0:20] ==# "#!/usr/bin/env jython" || getline(1)[0:16] ==# "#!/usr/bin/jython")
-      if executable('jython')
-        AsyncRun! jython %:p
-        call s:sleepKill()
-      else
-        echo 'Jython is not installed!'
-      endif
-    endif
-  elseif (&filetype == 'ruby' || getline(1)[0:18] ==# "#!/usr/bin/env ruby" || getline(1)[0:14] ==# "#!/usr/bin/ruby")
-    if executable('ruby')
-      AsyncRun! ruby %:p
-      call s:sleepKill()
-    else
-        echo 'Ruby is not installed!'
-    endif
-  elseif &filetype == 'rust'
-    if executable('cargo')
-      try
-        AsyncRun echo "Running Cargo"; cargo run;
-      catch
-        AsyncRun echo "Running Rust Compiler"; rustc %; ./%:p;
-      endtry
-      call s:sleepKill()
-    else
-      echo 'Rust is not installed!'
-    endif
-  elseif &filetype == 'sh'
-    if (getline(1)[0:18] ==# "#!/usr/bin/env bash" || getline(1)[0:14] ==# "#!/usr/bin/bash")
-      if executable('bash')
-        AsyncRun!  bash %:p
-        call s:sleepKill()
-      else
-        echo 'Bash is not installed!'
-      endif
-    elseif (getline(1)[0:18] ==# "#!/usr/bin/env dash" || getline(1)[0:14] ==# "#!/usr/bin/dash")
-      if executable('dash')
-        AsyncRun!  dash %:p
-        call s:sleepKill()
-      else
-        echo 'Dash is not installed!'
-      endif
-    elseif (getline(1)[0:18] ==# "#!/usr/bin/env fish" || getline(1)[0:14] ==# "#!/usr/bin/fish")
-      if executable('fish')
-        AsyncRun!  fish %:p
-        call s:sleepKill()
-      else
-        echo 'Fish is not installed!'
-      endif
-    elseif (getline(1)[0:18] ==# "#!/usr/bin/env tcsh" || getline(1)[0:14] ==# "#!/usr/bin/tcsh")
-      if executable('tcsh')
-        AsyncRun!  tcsh %:p
-        call s:sleepKill()
-        else
-          echo 'Tcsh is not installed!'
-      endif
-    elseif (getline(1)[0:17] ==# "#!/usr/bin/env csh" || getline(1)[0:13] ==# "#!/usr/bin/csh")
-      if executable('csh')
-        AsyncRun!  csh %:p
-        call s:sleepKill()
-      else
-        echo 'Csh is not installed!'
-      endif
-    elseif (getline(1)[0:17] ==# "#!/usr/bin/env ksh" || getline(1)[0:13] ==# "#!/usr/bin/ksh")
-      if executable('ksh')
-        AsyncRun!  ksh %:p
-        call s:sleepKill()
-      else
-        echo 'Ksh is not installed!'
-      endif
-    elseif (getline(1)[0:17] ==# "#!/usr/bin/env zsh" || getline(1)[0:13] ==# "#!/usr/bin/zsh")
-      if executable('zsh')
-        AsyncRun!  zsh %:p
-        call s:sleepKill()
-      else
-        echo 'Zsh is not installed!'
-      endif
-    endif
-  elseif &filetype == 'tex'
-    if executable('pdflatex')
-      AsyncRun echo "Running pdfLatex"; pdflatex %p;
-      call s:sleepKill()
-    else
-        echo 'PDFlatex is not installed!'
-    endif
-  elseif &filetype == 'typescript'
-    if executable('ts-node')
-      AsyncRun echo "Running TS Node"; ts-node %:p
-      call s:sleepKill()
-    else
-        echo 'TS Node is not installed!'
-    endif
-  endif
-endfunction
-let g:asyncrun_open = 12
-let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Async Compile
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <F9> :call <SID>compile()<CR>
-function! s:compile()
-  exec 'w'
-  if &filetype == 'c'
-    if executable('gcc')
-      AsyncRun! echo "Running C compiler"; gcc % -o %< -march=native -mtune=native -O2
-      call s:sleepKill()
-    elseif executable('clang')
-      AsyncRun! clang % -o %< -march=native -mtune=native -O2
-      call s:sleepKill()
-    else 
-      echo 'Neither GCC or Clang is installed!'
-    endif
-  elseif &filetype == 'cpp'
-    if executable('g++')
-      AsyncRun! echo "Running C compiler"; g++ -std=c++17 % -o %< -march=native -mtune=native -O2
-      call s:sleepKill()
-    elseif executable('clang++')
-      AsyncRun! clang++ -std=c++17 % -o %< -march=native -mtune=native -O2
-      call s:sleepKill()
-    else
-      echo 'Neither GCC or Clang is installed!'
-    endif
-  elseif &filetype == 'go'
-    if executable('go')
-      AsyncRun! echo "Running Go compiler"; go build %
-      call s:sleepKill()
-    else
-      echo 'Go is not installed!'
-    endif
-  elseif (&filetype == 'haskell' || &filetype=='lhaskell')
-    if executable('ghc')
-      AsyncRun! echo "Running Haskell compiler"; ghc % -o %<
-      call s:sleepKill()
-    else
-      echo 'GHC is not installed!'
-    endif
-  elseif &filetype == 'java'
-    if executable('javac')
-      AsyncRun! echo "Running Java compiler"; javac %
-      call s:sleepKill()
-    else
-      echo 'Java is not installed!'
-    endif
-  elseif &filetype == 'markdown'
-    if executable('pandoc')
-      if(expand("%:t") == "README.md" || expand("%:t") == "README.md")
-        AsyncRun echo "Compiling github markdown"; pandoc -s -S -c ~/.config/nvim/plugins/markdown/github.css -o %<.html %;
-        call s:sleepKill()
-      else
-        AsyncRun echo "Compiling pandoc pdflatex"; pandoc -s -S -o %<.pdf %;
-        call s:sleepKill()
-      endif
-    else
-        echo 'pandoc is not installed!'
-    endif
-  elseif &filetype == 'rust'
-    if executable('cargo')
-      exec AsyncRun! cargo build --release
-      call s:sleepKill()
-    else
-      echo 'Rust is not installed!'
-    endif
-  endif
-endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Markdown Composer
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -497,12 +209,21 @@ let g:vista_fzf_preview = ['right:50%']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vista 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <c-t> :silent! Vista finder coc<CR>
 let g:vista_executive_for = {
   \ 'go': 'ctags',
   \ 'javascript': 'coc',
   \ 'javascript.jsx': 'coc',
   \ 'python': 'ctags',
   \ }
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -638,3 +359,10 @@ if executable('lazygit')
       endif
   endfunction
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => asyncrun
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:asyncrun_open = 6
+let g:asynctasks_edit_split = 'auto'
